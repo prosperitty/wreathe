@@ -1,9 +1,47 @@
-import Image from 'next/image'
 import Nav from './components/nav'
+import Hero from './components/hero'
+import Footer from './components/footer'
+import Benefit from './components/benefit'
 
-export default function Example() {
+const benefit1 = [
+  {
+    title: 'Understand your customers',
+    desc: 'Then explain the first point breifly in one or two lines.',
+    icon: 'icon',
+  },
+  {
+    title: 'Improve acquisition',
+    desc: 'Here you can add the next benefit point.',
+    icon: 'icon',
+  },
+  {
+    title: 'Drive customer retention',
+    desc: 'This will be your last bullet point in this section.',
+    icon: 'icon',
+  },
+]
+
+const benefit2 = [
+  {
+    title: 'Mobile Responsive Template',
+    desc: 'Nextly is designed as a mobile first responsive template.',
+    icon: 'icon',
+  },
+  {
+    title: 'Powered by Next.js & TailwindCSS',
+    desc: 'This template is powered by latest technologies and tools.',
+    icon: 'icon',
+  },
+  {
+    title: 'Dark & Light Mode',
+    desc: 'Nextly comes with a zero-config light & dark mode. ',
+    icon: 'icon',
+  },
+]
+
+export default function Home() {
   return (
-    <div className='bg-white'>
+    <div className='bg-white dark:bg-gray-900'>
       <header className='absolute inset-x-0 top-0 z-50'>
         <Nav />
       </header>
@@ -21,52 +59,7 @@ export default function Example() {
             }}
           />
         </div>
-        <div className='py-48 sm:py-48 lg:py-32 lg:grid lg:grid-cols-12'>
-          <div className='lg:col-span-6 place-self-center'>
-            <div className='hidden sm:mb-8 sm:flex sm:justify-center lg:justify-start'>
-              <div className='relative rounded-full px-3 py-1 text-sm leading-6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20'>
-                Announcing our next round of funding.{' '}
-                <a href='#' className='font-semibold text-indigo-600'>
-                  <span className='absolute inset-0' aria-hidden='true' />
-                  Read more <span aria-hidden='true'>&rarr;</span>
-                </a>
-              </div>
-            </div>
-            <div className='text-center lg:text-start'>
-              <h1 className='text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl'>
-                Data to enrich your online business
-              </h1>
-
-              <p className='mt-6 text-lg leading-8 text-gray-600'>
-                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-                lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-                fugiat aliqua.
-              </p>
-              <div className='mt-10 flex items-center justify-center lg:justify-start gap-x-6 '>
-                <a
-                  href='#'
-                  className='rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-                >
-                  Get started
-                </a>
-                <a
-                  href='#'
-                  className='text-sm font-semibold leading-6 text-gray-900'
-                >
-                  Learn more <span aria-hidden='true'>→</span>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className='lg:col-span-6 hidden lg:block'>
-            <Image
-              src='/App monetization-bro.svg'
-              alt='app monetization'
-              width={1200}
-              height={1200}
-            />
-          </div>
-        </div>
+        <Hero />
         <div
           className='absolute inset-x-0 top-[calc(90%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(90%-30rem)]'
           aria-hidden='true'
@@ -81,158 +74,23 @@ export default function Example() {
         </div>
       </div>
 
-      <div className='container flex flex-wrap lg:flex-nowrap p-6 mx-auto lg:p-8 lg:gap-14'>
-        <div className='flex justify-center w-full lg:w-1/2'>
-          <Image
-            src='/Consultative sales-bro.svg'
-            alt='app monetization'
-            width={1200}
-            height={1200}
-          />
-        </div>
-        <div className='flex flex-wrap items-center justify-center w-full lg:w-1/2'>
-          <div className='flex flex-col w-full mt-4'>
-            <h3 className='max-w-2xl mt-3 text-3xl font-bold leading-snug tracking-tight text-gray-800 lg:leading-tight lg:text-4xl '>
-              Title title title title title title
-            </h3>
-            <p className='max-w-2xl py-4 text-lg leading-normal text-gray-500 lg:text-xl xl:text-xl dark:text-gray-300'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
-              quod?
-            </p>
-          </div>
-
-          <div className='w-full mt-5'>
-            <div className='flex items-start mt-8 space-x-3'>
-              <div className='flex items-center justify-center flex-shrink-0 mt-1 bg-indigo-500 rounded-md w-11 h-11 '>
-                icon
-              </div>
-              <div>
-                <h4 className='text-xl font-medium text-gray-800 dark:text-gray-200'>
-                  Lorem, ipsum dolor.
-                </h4>
-                <p className='mt-1 text-gray-500 dark:text-gray-400'>
-                  Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className='w-full mt-5'>
-            <div className='flex items-start mt-8 space-x-3'>
-              <div className='flex items-center justify-center flex-shrink-0 mt-1 bg-indigo-500 rounded-md w-11 h-11 '>
-                icon
-              </div>
-              <div>
-                <h4 className='text-xl font-medium text-gray-800 dark:text-gray-200'>
-                  Lorem, ipsum dolor.
-                </h4>
-                <p className='mt-1 text-gray-500 dark:text-gray-400'>
-                  Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className='w-full mt-5'>
-            <div className='flex items-start mt-8 space-x-3'>
-              <div className='flex items-center justify-center flex-shrink-0 mt-1 bg-indigo-500 rounded-md w-11 h-11 '>
-                icon
-              </div>
-              <div>
-                <h4 className='text-xl font-medium text-gray-800 dark:text-gray-200'>
-                  Lorem, ipsum dolor.
-                </h4>
-                <p className='mt-1 text-gray-500 dark:text-gray-400'>
-                  Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className='container flex flex-wrap lg:flex-nowrap p-6 mx-auto lg:p-8 lg:gap-14'>
-        <div className='flex flex-wrap items-center justify-center w-full lg:w-1/2'>
-          <div className='flex flex-col w-full mt-4'>
-            <h3 className='max-w-2xl mt-3 text-3xl font-bold leading-snug tracking-tight text-gray-800 lg:leading-tight lg:text-4xl '>
-              Title title title title title title
-            </h3>
-            <p className='max-w-2xl py-4 text-lg leading-normal text-gray-500 lg:text-xl xl:text-xl dark:text-gray-300'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim,
-              quod?
-            </p>
-          </div>
-
-          <div className='w-full mt-5'>
-            <div className='flex items-start mt-8 space-x-3'>
-              <div className='flex items-center justify-center flex-shrink-0 mt-1 bg-indigo-500 rounded-md w-11 h-11 '>
-                icon
-              </div>
-              <div>
-                <h4 className='text-xl font-medium text-gray-800 dark:text-gray-200'>
-                  Lorem, ipsum dolor.
-                </h4>
-                <p className='mt-1 text-gray-500 dark:text-gray-400'>
-                  Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className='w-full mt-5'>
-            <div className='flex items-start mt-8 space-x-3'>
-              <div className='flex items-center justify-center flex-shrink-0 mt-1 bg-indigo-500 rounded-md w-11 h-11 '>
-                icon
-              </div>
-              <div>
-                <h4 className='text-xl font-medium text-gray-800 dark:text-gray-200'>
-                  Lorem, ipsum dolor.
-                </h4>
-                <p className='mt-1 text-gray-500 dark:text-gray-400'>
-                  Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className='w-full mt-5'>
-            <div className='flex items-start mt-8 space-x-3'>
-              <div className='flex items-center justify-center flex-shrink-0 mt-1 bg-indigo-500 rounded-md w-11 h-11 '>
-                icon
-              </div>
-              <div>
-                <h4 className='text-xl font-medium text-gray-800 dark:text-gray-200'>
-                  Lorem, ipsum dolor.
-                </h4>
-                <p className='mt-1 text-gray-500 dark:text-gray-400'>
-                  Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className='flex justify-center w-full lg:w-1/2'>
-          <Image
-            src='/Finance leaders-bro.svg'
-            alt='app monetization'
-            width={1200}
-            height={1200}
-          />
-        </div>
-      </div>
-
-      <div className='container px-6 mx-auto lg:px-8'>
-        <div className='py-10 mt-5 text-sm text-center border-t border-gray-100 dark:border-trueGray-700  text-gray-600 dark:text-gray-400'>
-          Copyright © {new Date().getFullYear()}. Made with ♥ by{' '}
-          <a href='https://github.com/alex-lvl' target='_blank' rel='noopener'>
-            Alex Marmolejo.{' '}
-          </a>
-          Illustrations from{' '}
-          <a href='https://www.glazestock.com/' target='_blank' rel='noopener '>
-            lorem
-          </a>
-        </div>
-      </div>
+      <section className='[&>*:nth-child(even)]:flex-row-reverse'>
+        <Benefit
+          src='/Consultative sales-bro.svg'
+          alt='consultative sales illustration'
+          title='Highlight your benefits'
+          desc='You can use this space to highlight your first benefit or a feature of your product. It can also contain an image or Illustration like in the example along with some bullet points.'
+          benefit={benefit1}
+        />
+        <Benefit
+          src='/Finance leaders-bro.svg'
+          alt='fincance leaders illustration'
+          title='Offer more benefits here'
+          desc='You can use this same layout with a flip image to highlight your rest of the benefits of your product. It can also contain an image or Illustration as above section along with some bullet points.'
+          benefit={benefit2}
+        />
+      </section>
+      <Footer />
     </div>
   )
 }

@@ -2,40 +2,45 @@ import Nav from './components/nav'
 import Hero from './components/hero'
 import Footer from './components/footer'
 import Benefit from './components/benefit'
+import {
+  ArrowTrendingUpIcon,
+  CurrencyDollarIcon,
+  DocumentChartBarIcon,
+} from '@heroicons/react/24/outline'
 
 const benefit1 = [
   {
-    title: 'Understand your customers',
-    desc: 'Then explain the first point breifly in one or two lines.',
-    icon: 'icon',
+    title: 'Catch market trends',
+    desc: 'Stay updated with economic events.',
+    icon: <ArrowTrendingUpIcon className='w-7 h-7' />,
   },
   {
-    title: 'Improve acquisition',
-    desc: 'Here you can add the next benefit point.',
-    icon: 'icon',
+    title: 'Improve your knowledge',
+    desc: 'Learn together to become educated in personal finance.',
+    icon: <DocumentChartBarIcon className='w-7 h-7' />,
   },
   {
-    title: 'Drive customer retention',
-    desc: 'This will be your last bullet point in this section.',
-    icon: 'icon',
+    title: 'Risk management',
+    desc: 'Manage your risk so you can become profitable.',
+    icon: <CurrencyDollarIcon className='w-7 h-7' />,
   },
 ]
 
 const benefit2 = [
   {
-    title: 'Mobile Responsive Template',
-    desc: 'Nextly is designed as a mobile first responsive template.',
-    icon: 'icon',
+    title: 'Follow fellow traders',
+    desc: 'You choose what you want to see on your timeline.',
+    icon: <ArrowTrendingUpIcon className='w-7 h-7' />,
   },
   {
-    title: 'Powered by Next.js & TailwindCSS',
-    desc: 'This template is powered by latest technologies and tools.',
-    icon: 'icon',
+    title: 'View any market',
+    desc: 'Whether its bonds, stocks, or crypto, you can view it here.',
+    icon: <DocumentChartBarIcon className='w-7 h-7' />,
   },
   {
-    title: 'Dark & Light Mode',
-    desc: 'Nextly comes with a zero-config light & dark mode. ',
-    icon: 'icon',
+    title: 'Profit',
+    desc: 'Look forward to profiting to achieve your financial goals.',
+    icon: <CurrencyDollarIcon className='w-7 h-7' />,
   },
 ]
 
@@ -78,15 +83,15 @@ export default function Home() {
         <Benefit
           src='/Consultative sales-bro.svg'
           alt='consultative sales illustration'
-          title='Highlight your benefits'
-          desc='You can use this space to highlight your first benefit or a feature of your product. It can also contain an image or Illustration like in the example along with some bullet points.'
+          title='Market analysis'
+          desc='This platform can be used to voice ideas about short term or long term market trends. There are various opinions floating around of how the market will perform, and this is the ideal place to discuss.'
           benefit={benefit1}
         />
         <Benefit
           src='/Finance leaders-bro.svg'
           alt='fincance leaders illustration'
-          title='Offer more benefits here'
-          desc='You can use this same layout with a flip image to highlight your rest of the benefits of your product. It can also contain an image or Illustration as above section along with some bullet points.'
+          title="Don't trade alone"
+          desc='You can use this social platform to discuss forecasts and analysis with a community of market participants. Grow with a community of traders looking to succeed.'
           benefit={benefit2}
         />
       </section>

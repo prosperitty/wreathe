@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import { ReactElement } from 'react'
+import { ReactComponentElement, ReactElement } from 'react'
 
 interface Bullet {
   title: string
   desc: string
-  icon: string
+  icon: ReactElement
 }
 
 export default function Benefit(props: {
@@ -31,7 +31,7 @@ export default function Benefit(props: {
 
         <div className='w-full mt-5'>
           <div className='flex items-start mt-8 space-x-3'>
-            <div className='flex items-center justify-center flex-shrink-0 mt-1 bg-indigo-500 rounded-md w-11 h-11 '>
+            <div className='flex items-center justify-center flex-shrink-0 mt-1 bg-indigo-500 rounded-md w-11 h-11'>
               {props.benefit[0].icon}
             </div>
             <div>

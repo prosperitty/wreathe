@@ -1,14 +1,13 @@
 'use client'
 
+import Image from 'next/image'
 import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'Home', href: '#home' },
+  { name: 'Benefits', href: '#benefits' },
 ]
 
 export default function Nav() {
@@ -22,11 +21,18 @@ export default function Nav() {
       >
         <div className='flex lg:flex-1'>
           <a href='#' className='-m-1.5 p-1.5'>
-            <span className='sr-only'>Your Company</span>
-            <img
+            <span className='sr-only'>Wreathe</span>
+            {/* <img
               className='h-8 w-auto'
               src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
               alt=''
+            /> */}
+            <Image
+              src='/logo.svg'
+              alt='wreathe logo'
+              width={50}
+              height={50}
+              className='h-8 w-auto'
             />
           </a>
         </div>
@@ -54,6 +60,12 @@ export default function Nav() {
         <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
           <a
             href='#'
+            className='text-sm font-semibold leading-6 mr-3 text-gray-900 dark:text-gray-100'
+          >
+            Sign Up
+          </a>
+          <a
+            href='#'
             className='text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100'
           >
             Log in <span aria-hidden='true'>&rarr;</span>
@@ -70,11 +82,18 @@ export default function Nav() {
         <Dialog.Panel className='fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 dark:bg-gray-900'>
           <div className='flex items-center justify-between'>
             <a href='#' className='-m-1.5 p-1.5'>
-              <span className='sr-only'>Your Company</span>
-              <img
+              <span className='sr-only'>Wreathe</span>
+              {/* <img
                 className='h-8 w-auto'
                 src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
                 alt=''
+              /> */}
+              <Image
+                src='/logo.svg'
+                alt='wreathe logo'
+                width={50}
+                height={50}
+                className='h-8 w-auto'
               />
             </a>
             <button
@@ -100,6 +119,12 @@ export default function Nav() {
                 ))}
               </div>
               <div className='py-6'>
+                <a
+                  href='#'
+                  className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-950'
+                >
+                  Sign Up
+                </a>
                 <a
                   href='#'
                   className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-950'

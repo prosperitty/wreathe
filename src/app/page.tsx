@@ -51,7 +51,7 @@ export default function Home() {
         <Nav />
       </header>
 
-      <div className='relative isolate px-6 pt-14 lg:px-8'>
+      <div id='home' className='relative isolate px-6 pt-14 lg:px-8'>
         <div
           className='absolute inset-x-0 -top-40 -z-10 transform-gpu blur-3xl sm:-top-80'
           aria-hidden='true'
@@ -79,7 +79,7 @@ export default function Home() {
         </div>
       </div>
 
-      <section className='[&>*:nth-child(even)]:flex-row-reverse'>
+      <section id='benefits' className='[&>*:nth-child(even)]:flex-row-reverse'>
         <Benefit
           src='/Consultative sales-bro.svg'
           alt='consultative sales illustration'

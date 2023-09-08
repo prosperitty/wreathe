@@ -1,16 +1,16 @@
-import Image from 'next/image';
+import Image from 'next/image'
 
 export default function AuthLayout({
   children, // will be a page or nested layout
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <section className='bg-white dark:bg-gray-900'>
       <div className='grid grid-cols-12 h-screen'>
         <div className='hidden relative lg:block lg:col-span-4 bg-amber-200 h-screen'>
           <div className='relative z-0 w-ful py-10 px-5'>
-            <h1 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-red-800'>
+            <h1 className='text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl dark:text-red-800'>
               Your trading journey awaits. Join the world of finance.
             </h1>
           </div>
@@ -28,5 +28,5 @@ export default function AuthLayout({
         {children}
       </div>
     </section>
-  );
+  )
 }

@@ -120,13 +120,13 @@ export default function Nav() {
               </div>
               <div className='py-6'>
                 <a
-                  href='#'
+                  href='/register'
                   className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-950'
                 >
                   Sign Up
                 </a>
                 <a
-                  href='#'
+                  href='/login'
                   className='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 dark:text-gray-200 dark:hover:bg-gray-950'
                 >
                   Log in

@@ -59,13 +59,13 @@ export default function Nav() {
         </div>
         <div className='hidden lg:flex lg:flex-1 lg:justify-end'>
           <a
-            href='#'
+            href='/register'
             className='text-sm font-semibold leading-6 mr-3 text-gray-900 dark:text-gray-100'
           >
             Sign Up
           </a>
           <a
-            href='#'
+            href='/login'
             className='text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100'
           >
             Log in <span aria-hidden='true'>&rarr;</span>

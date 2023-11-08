@@ -1,30 +1,49 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState } from 'react'
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
-const AuthContext = createContext(null)
+type AccessToken = string | null
 
-export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState('')
+interface ResponseData {
+  accessToken: string
+  error: string
+}
+
+interface IAuthContext {
+  accessToken: string | null
+  setAccessToken: Dispatch<SetStateAction<AccessToken>>
+}
+
+const AuthContext = createContext<IAuthContext>(null)
+
+export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
+  const [accessToken, setAccessToken] = useState<AccessToken>(null)
 
   useEffect(() => {
     async function checkRefreshToken() {
       try {
-        const result = await (
-          await fetch('http://localhost:8080/refresh-token', {
-            method: 'POST',
-            credentials: 'include', // Needed to include the cookie
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          })
-        ).json()
-        // if (!result.ok) {
-        //   throw new Error('Failed to refresh token')
-        // }
+        const res = await fetch('http://localhost:8080/refresh-token', {
+          method: 'POST',
+          credentials: 'include', // Needed to include the cookie
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+        const result: ResponseData = await res.json()
+        if (!res.ok) {
+          throw new Error(result.error)
+        }
         console.log(result)
         const newAccesstoken = result.accessToken
-        newAccesstoken ? setUser(newAccesstoken) : setUser(null)
+        newAccesstoken ? setAccessToken(newAccesstoken) : setAccessToken(null)
       } catch (error) {
         console.error('Error refreshing access token:', error)
       }
@@ -33,10 +52,10 @@ export const AuthContextProvider = ({ children }) => {
   }, [])
 
   return (
-    <AuthContext.Provider value={[user, setUser]}>
+    <AuthContext.Provider value={{ accessToken, setAccessToken }}>
       {children}
     </AuthContext.Provider>
   )
 }
 
-export const useAuthContext = () => useContext(AuthContext)
+export const useAuthContext = () => useContext<IAuthContext>(AuthContext)

@@ -7,7 +7,7 @@ import {
 
 export default function MobileNav() {
   return (
-    <div className='bg-white fixed bottom-0 w-full border-t border-gray-200 flex transition-transform translate-y-0 sm:translate-y-full dark:bg-gray-800 dark:border-gray-600'>
+    <nav className='bg-white fixed bottom-0 w-full border-t border-gray-200 flex transition-transform translate-y-0 sm:translate-y-full dark:bg-gray-800 dark:border-gray-600'>
       <a
         href='#'
         className='flex flex-grow items-center justify-center p-2 text-indigo-500 hover:text-indigo-500'
@@ -52,6 +52,6 @@ export default function MobileNav() {
           <span className='block text-xs leading-none'>Profile</span>
         </div>
       </a>
-    </div>
+    </nav>
   )
 }

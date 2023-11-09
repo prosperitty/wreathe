@@ -22,7 +22,7 @@ export default function Dropdown() {
           sizes='100vw'
         /> */}
         <Image
-          src='/logo.svg'
+          src='/undraw_profile_pic.svg'
           className='rounded-full'
           alt='profile picture and dropdown'
           width={35}
@@ -49,7 +49,7 @@ export default function Dropdown() {
         // leaveTo='transform opacity-0 scale-95'
         leaveTo='-translate-y-3/4 opacity-0'
       >
-        <Menu.Items className='absolute -top-2 -translate-y-full mb-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white dark:bg-gray-900 shadow-lg ring-1 ring-black/5 focus:outline-none'>
+        <Menu.Items className='absolute -top-2 -translate-y-full mb-2 w-56 origin-top-right border border-gray-600 divide-y divide-gray-600 rounded-md bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black/5 focus:outline-none'>
           <Menu.Item>
             {({ active }) => (
               <a

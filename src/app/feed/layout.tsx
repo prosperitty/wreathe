@@ -1,4 +1,4 @@
-import Navigation from '../users/[Username]/components/Navigation'
+import Sidebar from '../users/[Username]/components/Sidebar'
 
 export default function UserLayout({
   children, // will be a page or nested layout
@@ -8,7 +8,7 @@ export default function UserLayout({
   return (
     <section className='bg-white dark:bg-gray-900'>
       {/* take the content section out and put into feed page */}
-      <Navigation />
+      <Sidebar />
       {children}
       {/* <div className='grid grid-cols-12 h-screen'>
         <div className='hidden relative lg:block lg:col-span-4 bg-amber-200 h-screen border-r-2 border-white'>

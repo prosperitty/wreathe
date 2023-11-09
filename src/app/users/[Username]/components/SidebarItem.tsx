@@ -1,4 +1,10 @@
-export default function SidebarItem(props) {
+interface Props {
+  href: string
+  icon: string
+  navName: string
+}
+
+export default function SidebarItem(props: Props) {
   return (
     <li>
       <a

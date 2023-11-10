@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import { Tab } from '@headlessui/react'
+import Thread from './thread'
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
@@ -12,7 +13,8 @@ export default function Threads() {
     Threads: [
       {
         id: 1,
-        title: 'Does drinking coffee make you smarter?',
+        title:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ut perferendis vero cumque doloribus, eius repellat neque, eos rem velit sit omnis, doloremque beatae voluptatum. Non, rem. Modi doloremque illo, obcaecati consectetur recusandae voluptas iusto laboriosam pariatur rem illum dolorum qui et blanditiis ipsam magnam beatae quidem aperiam excepturi eum explicabo veritatis. Sint accusantium pariatur quaerat, consectetur assumenda optio aliquid. Et at odit explicabo ut quod unde esse repellat quos tenetur accusantium iste, voluptatem, dolorem similique consequatur voluptates eaque beatae fugit nostrum? Dolores quis labore modi magnam totam impedit qui pariatur. Deleniti, ipsum magni dolorum sunt cupiditate veritatis nesciunt nobis architecto vel. Doloremque quidem nesciunt deleniti dolores quae architecto similique! Autem, error nam necessitatibus corrupti possimus itaque debitis esse voluptates.',
         date: '5h ago',
         commentCount: 5,
         shareCount: 2,
@@ -91,30 +93,38 @@ export default function Threads() {
             >
               <ul>
                 {posts.map((post) => (
-                  <li
+                  // <li
+                  //   key={post.id}
+                  //   className='relative rounded-md p-3 hover:bg-gray-100 dark:hover:bg-white/[0.12]'
+                  // >
+                  //   <h3 className='text-sm font-medium leading-5 text-black dark:text-white'>
+                  //     {post.title}
+                  //   </h3>
+
+                  //   <ul className='mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500'>
+                  //     <li>{post.date}</li>
+                  //     <li>&middot;</li>
+                  //     <li>{post.commentCount} comments</li>
+                  //     <li>&middot;</li>
+                  //     <li>{post.shareCount} shares</li>
+                  //   </ul>
+
+                  //   <a
+                  //     href='#'
+                  //     className={classNames(
+                  //       'absolute inset-0 rounded-md',
+                  //       'ring-blue-400 focus:z-10 focus:outline-none focus:ring-2'
+                  //     )}
+                  //   />
+                  // </li>
+                  <Thread
                     key={post.id}
-                    className='relative rounded-md p-3 hover:bg-gray-100 dark:hover:bg-white/[0.12]'
-                  >
-                    <h3 className='text-sm font-medium leading-5 text-black dark:text-white'>
-                      {post.title}
-                    </h3>
-
-                    <ul className='mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500'>
-                      <li>{post.date}</li>
-                      <li>&middot;</li>
-                      <li>{post.commentCount} comments</li>
-                      <li>&middot;</li>
-                      <li>{post.shareCount} shares</li>
-                    </ul>
-
-                    <a
-                      href='#'
-                      className={classNames(
-                        'absolute inset-0 rounded-md',
-                        'ring-blue-400 focus:z-10 focus:outline-none focus:ring-2'
-                      )}
-                    />
-                  </li>
+                    title={post.title}
+                    date={post.date}
+                    commentCount={post.commentCount}
+                    shareCount={post.shareCount}
+                    classNames={classNames}
+                  />
                 ))}
               </ul>
             </Tab.Panel>

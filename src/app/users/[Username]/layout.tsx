@@ -8,9 +8,9 @@ export default function UserLayout({
 }) {
   return (
     <div className='bg-white dark:bg-gray-900 pb-16 sm:pb-0'>
-      <MobileNav />
       <Sidebar />
       <div className='p-2 sm:p-4 sm:ml-64'>{children}</div>
+      <MobileNav />
     </div>
   )
 }

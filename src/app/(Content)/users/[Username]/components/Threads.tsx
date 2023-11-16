@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import { Tab } from '@headlessui/react'
-import Thread from './thread'
+import Thread from './Thread'
+import ScrollToTopButton from '../../../components/ScrollButton'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -11,6 +12,21 @@ function classNames(...classes: string[]) {
 export default function Threads() {
   let [categories] = useState({
     Threads: [
+      {
+        id: 1,
+        title:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ut perferendis vero cumque doloribus, eius repellat neque, eos rem velit sit omnis, doloremque beatae voluptatum. Non, rem. Modi doloremque illo, obcaecati consectetur recusandae voluptas iusto laboriosam pariatur rem illum dolorum qui et blanditiis ipsam magnam beatae quidem aperiam excepturi eum explicabo veritatis. Sint accusantium pariatur quaerat, consectetur assumenda optio aliquid. Et at odit explicabo ut quod unde esse repellat quos tenetur accusantium iste, voluptatem, dolorem similique consequatur voluptates eaque beatae fugit nostrum? Dolores quis labore modi magnam totam impedit qui pariatur. Deleniti, ipsum magni dolorum sunt cupiditate veritatis nesciunt nobis architecto vel. Doloremque quidem nesciunt deleniti dolores quae architecto similique! Autem, error nam necessitatibus corrupti possimus itaque debitis esse voluptates.',
+        date: '5h ago',
+        commentCount: 5,
+        shareCount: 2,
+      },
+      {
+        id: 2,
+        title: "So you've bought coffee... now what?",
+        date: '2h ago',
+        commentCount: 3,
+        shareCount: 2,
+      },
       {
         id: 1,
         title:
@@ -62,7 +78,8 @@ export default function Threads() {
   })
 
   return (
-    <div className='w-full px-2 sm:px-0'>
+    <main className='w-full px-2 sm:px-0'>
+      <ScrollToTopButton />
       <Tab.Group>
         <Tab.List className='flex space-x-1 rounded-xl p-1'>
           {Object.keys(categories).map((category) => (
@@ -123,7 +140,6 @@ export default function Threads() {
                     date={post.date}
                     commentCount={post.commentCount}
                     shareCount={post.shareCount}
-                    classNames={classNames}
                   />
                 ))}
               </ul>
@@ -131,6 +147,6 @@ export default function Threads() {
           ))}
         </Tab.Panels>
       </Tab.Group>
-    </div>
+    </main>
   )
 }

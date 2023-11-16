@@ -1,6 +1,8 @@
 import { cookies } from 'next/headers'
-import Content from './components/Content'
+import Content from '../../feed/components/Content'
 import Header from './components/Header'
+import Threads from './components/Threads'
+import ScrollToTopButton from '../../components/ScrollButton'
 
 interface params {
   params: { Username: string }
@@ -26,12 +28,10 @@ export default async function Username({ params }: params) {
   console.log(bearerToken)
   return (
     <>
-      <div className='max-w-2xl mx-auto'>
-        <Header />
-        <Content />
-        <div>
-          My Post: {params.Username} {result.message}
-        </div>
+      <Header username={params.Username} />
+      <Threads />
+      <div>
+        My Post: {params.Username} {result.message}
       </div>
     </>
   )

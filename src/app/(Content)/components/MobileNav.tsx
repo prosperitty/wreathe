@@ -7,7 +7,7 @@ import {
 
 export default function MobileNav() {
   return (
-    <nav className='bg-white fixed bottom-0 w-full border-t border-gray-200 flex transition-transform translate-y-0 sm:translate-y-full dark:bg-gray-800 dark:border-gray-600'>
+    <nav className='bg-white fixed bottom-0 w-full border-t border-gray-200 flex transition-transform translate-y-0 sm:translate-y-full dark:bg-gray-800 dark:border-gray-600 z-30'>
       <a
         href='#'
         className='flex flex-grow items-center justify-center p-2 text-indigo-500 hover:text-indigo-500'

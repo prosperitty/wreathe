@@ -1,9 +1,97 @@
-import Threads from './threads'
+'use client'
+import { useState, useEffect } from 'react'
+import Thread from '../../users/[Username]/components/Thread'
+import ScrollToTopButton from '../../components/ScrollButton'
+
+function classNames(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
 
 export default function Content() {
+  const [refreshing, setRefreshing] = useState(false)
+
+  useEffect(() => {
+    const handleRefresh = () => {
+      // Add your refresh logic here
+      // For example, you can fetch new data from an API
+
+      // Simulate an asynchronous operation (remove this in real implementation)
+      setRefreshing(true)
+      setTimeout(() => {
+        setRefreshing(false)
+      }, 1500)
+    }
+
+    window.addEventListener('scroll', handleRefresh)
+
+    return () => {
+      window.removeEventListener('scroll', handleRefresh)
+    }
+  }, [])
+
+  let [threads] = useState([
+    {
+      id: 1,
+      title:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ut perferendis vero cumque doloribus, eius repellat neque, eos rem velit sit omnis, doloremque beatae voluptatum. Non, rem. Modi doloremque illo, obcaecati consectetur recusandae voluptas iusto laboriosam pariatur rem illum dolorum qui et blanditiis ipsam magnam beatae quidem aperiam excepturi eum explicabo veritatis. Sint accusantium pariatur quaerat, consectetur assumenda optio aliquid. Et at odit explicabo ut quod unde esse repellat quos tenetur accusantium iste, voluptatem, dolorem similique consequatur voluptates eaque beatae fugit nostrum? Dolores quis labore modi magnam totam impedit qui pariatur. Deleniti, ipsum magni dolorum sunt cupiditate veritatis nesciunt nobis architecto vel. Doloremque quidem nesciunt deleniti dolores quae architecto similique! Autem, error nam necessitatibus corrupti possimus itaque debitis esse voluptates.',
+      date: '5h ago',
+      commentCount: 5,
+      shareCount: 2,
+    },
+    {
+      id: 2,
+      title: "So you've bought coffee... now what?",
+      date: '2h ago',
+      commentCount: 3,
+      shareCount: 2,
+    },
+
+    {
+      id: 1,
+      title: 'Is tech making coffee better or worse?',
+      date: 'Jan 7',
+      commentCount: 29,
+      shareCount: 16,
+    },
+    {
+      id: 2,
+      title: 'The most innovative things happening in coffee',
+      date: 'Mar 19',
+      commentCount: 24,
+      shareCount: 12,
+    },
+    {
+      id: 1,
+      title: 'Ask Me Anything: 10 answers to your questions about coffee',
+      date: '2d ago',
+      commentCount: 9,
+      shareCount: 5,
+    },
+    {
+      id: 2,
+      title: "The worst advice we've ever heard about coffee",
+      date: '4d ago',
+      commentCount: 1,
+      shareCount: 2,
+    },
+  ])
+
+  const posts = threads.map((post, i) => {
+    return (
+      <Thread
+        key={post.id}
+        title={post.title}
+        date={post.date}
+        commentCount={post.commentCount}
+        shareCount={post.shareCount}
+      />
+    )
+  })
+
   return (
     <main>
-      <Threads />
+      <ScrollToTopButton />
+      <ul>{posts}</ul>
       <div className='p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700'>
         <div className='grid grid-cols-3 gap-4 mb-4'>
           <div className='flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800'>

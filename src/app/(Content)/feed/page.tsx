@@ -1,4 +1,6 @@
 import { cookies } from 'next/headers'
+import Content from './components/Content'
+import Header from './components/Header'
 export default async function Feed({ params }: { params: { Feed: string } }) {
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')
@@ -15,8 +17,12 @@ export default async function Feed({ params }: { params: { Feed: string } }) {
   console.log(result, 'user data')
   console.log(bearerToken)
   return (
-    <div>
-      My Post: {params.Feed} {result.message}
-    </div>
+    <>
+      <Header />
+      <div>
+        My Post: {params.Feed} {result.message}
+      </div>
+      <Content />
+    </>
   )
 }

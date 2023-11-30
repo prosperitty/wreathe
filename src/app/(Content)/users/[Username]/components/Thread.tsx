@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface Props {
   title: string
@@ -12,7 +13,7 @@ export default function Thread(props: Props) {
     <li className='relative border-gray-600 border rounded-md p-3 my-3 over:bg-gray-100 dark:hover:bg-white/[0.12]'>
       <div className='flex items-center space-x-4'>
         <div className='relative h-12 w-12 z-20'>
-          <a href='2'>
+          <Link href='2'>
             <Image
               src='/next.svg'
               className='rounded-full border border-white'
@@ -22,15 +23,15 @@ export default function Thread(props: Props) {
               // width={35}
               // height={35}
             />
-          </a>
+          </Link>
         </div>
         <div className='relative font-medium dark:text-white z-20'>
-          <a href='2'>
+          <Link href='2'>
             <div>Jane Doe</div>
             <div className='text-sm text-gray-500 dark:text-gray-400'>
               @name
             </div>
-          </a>
+          </Link>
         </div>
       </div>
       <h3 className='relative py-4 text-sm font-medium leading-5 text-black dark:text-white'>
@@ -41,13 +42,13 @@ export default function Thread(props: Props) {
         <li>{props.date}</li>
         <li>&middot;</li>
         <li className='cursor-pointer hover:text-white'>
-          <a href='/users'>{props.commentCount} comments</a>
+          <Link href='/users'>{props.commentCount} comments</Link>
         </li>
         <li>&middot;</li>
-        <li>{props.shareCount} shares</li>
+        <li>{props.shareCount} likes</li>
       </ul>
 
-      <a
+      <Link
         href='#'
         className='absolute inset-0 rounded-md ring-blue-400 focus:z-10 focus:outline-none focus:ring-2'
       />

@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
+import Link from 'next/link'
 
 export default function Dropdown() {
   return (
@@ -52,30 +53,30 @@ export default function Dropdown() {
         <Menu.Items className='absolute -top-2 -translate-y-full mb-2 w-56 origin-top-right border border-gray-600 divide-y divide-gray-600 rounded-md bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black/5 focus:outline-none'>
           <Menu.Item>
             {({ active }) => (
-              <a
+              <Link
                 className={`${
                   active
                     ? 'bg-violet-500 text-white'
                     : 'text-gray-900 dark:text-white'
                 } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                href='#'
+                href='/logout'
               >
                 Logout
-              </a>
+              </Link>
             )}
           </Menu.Item>
           <Menu.Item>
             {({ active }) => (
-              <a
+              <Link
                 className={`${
                   active
                     ? 'bg-violet-500 text-white'
                     : 'text-gray-900 dark:text-white'
                 } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                href='#'
+                href='/users/1/settings'
               >
                 Settings
-              </a>
+              </Link>
             )}
           </Menu.Item>
         </Menu.Items>

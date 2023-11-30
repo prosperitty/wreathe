@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 interface Props {
   href: string
   icon: string
@@ -7,7 +9,7 @@ interface Props {
 export default function SidebarItem(props: Props) {
   return (
     <li>
-      <a
+      <Link
         href={props.href}
         className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'
       >
@@ -23,7 +25,7 @@ export default function SidebarItem(props: Props) {
           <path d='M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z' />
         </svg> */}
         <span className='ml-3'>{props.navName}</span>
-      </a>
+      </Link>
     </li>
   )
 }

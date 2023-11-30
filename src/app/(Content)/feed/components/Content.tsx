@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react'
 import Thread from '../../users/[Username]/components/Thread'
 import ScrollToTopButton from '../../components/ScrollButton'
+import { Suspense } from 'react'
+import ThreadSkeleton from '../../components/ThreadSkeleton'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -47,28 +49,28 @@ export default function Content() {
     },
 
     {
-      id: 1,
+      id: 3,
       title: 'Is tech making coffee better or worse?',
       date: 'Jan 7',
       commentCount: 29,
       shareCount: 16,
     },
     {
-      id: 2,
+      id: 4,
       title: 'The most innovative things happening in coffee',
       date: 'Mar 19',
       commentCount: 24,
       shareCount: 12,
     },
     {
-      id: 1,
+      id: 5,
       title: 'Ask Me Anything: 10 answers to your questions about coffee',
       date: '2d ago',
       commentCount: 9,
       shareCount: 5,
     },
     {
-      id: 2,
+      id: 6,
       title: "The worst advice we've ever heard about coffee",
       date: '4d ago',
       commentCount: 1,
@@ -76,7 +78,7 @@ export default function Content() {
     },
   ])
 
-  const posts = threads.map((post, i) => {
+  const posts = threads.map((post) => {
     return (
       <Thread
         key={post.id}
@@ -89,10 +91,21 @@ export default function Content() {
   })
 
   return (
-    <main>
+    <main className='px-2 sm:px-4 h-full overflow-y-auto'>
       <ScrollToTopButton />
-      <ul>{posts}</ul>
-      <div className='p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700'>
+      <ul>
+        <Suspense
+          fallback={
+            <>
+              <ThreadSkeleton /> <ThreadSkeleton /> <ThreadSkeleton />{' '}
+              <ThreadSkeleton />
+            </>
+          }
+        >
+          {posts}
+        </Suspense>
+      </ul>
+      {/* <div className='p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700'>
         <div className='grid grid-cols-3 gap-4 mb-4'>
           <div className='flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800'>
             <p className='text-2xl text-gray-400 dark:text-gray-500'>
@@ -346,7 +359,7 @@ export default function Content() {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
     </main>
   )
 }

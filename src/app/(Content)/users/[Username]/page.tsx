@@ -3,6 +3,9 @@ import Content from '../../feed/components/Content'
 import Header from './components/Header'
 import Threads from './components/Threads'
 import ScrollToTopButton from '../../components/ScrollButton'
+import { Suspense } from 'react'
+import Feed from './components/Feed'
+import ThreadSkeleton from '../../components/ThreadSkeleton'
 
 interface params {
   params: { Username: string }
@@ -29,10 +32,10 @@ export default async function Username({ params }: params) {
   return (
     <>
       <Header username={params.Username} />
-      <Threads />
-      <div>
+      {/* <div>
         My Post: {params.Username} {result.message}
-      </div>
+      </div> */}
+      <Threads />
     </>
   )
 }

@@ -6,8 +6,8 @@ interface Props {
 
 export default function Header(props: Props) {
   return (
-    <header>
-      <h2 className='text-center py-4 sm:py-6'>@{props.username}</h2>
+    <header className='px-2 sm:px-4'>
+      <h2 className='text-center  py-4 sm:py-6'>@{props.username}</h2>
       <div className='my-4 flex items-center justify-center'>
         <div className='relative h-20 w-20'>
           <Image
@@ -30,11 +30,11 @@ export default function Header(props: Props) {
           <h4 className='text-gray-200 text-sm'>Posts</h4>
           <h2 className='py-2 text-xl font-semibold'>0</h2>
         </div>
-        <div className='basis-1/3'>
+        <div className='basis-1/3 leading-5'>
           <h4 className='text-gray-200 text-sm'>Followers</h4>
           <h2 className='py-2 text-xl font-semibold'>0</h2>
         </div>
-        <div className='basis-1/3'>
+        <div className='basis-1/3 leading-5'>
           <h4 className='text-gray-200 text-sm'>Subscribers</h4>
           <h2 className='py-2 text-xl font-semibold'>0</h2>
         </div>

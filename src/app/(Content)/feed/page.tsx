@@ -19,9 +19,6 @@ export default async function Feed({ params }: { params: { Feed: string } }) {
   return (
     <>
       <Header />
-      <div>
-        My Post: {params.Feed} {result.message}
-      </div>
       <Content />
     </>
   )

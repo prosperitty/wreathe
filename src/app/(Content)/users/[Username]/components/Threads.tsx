@@ -2,7 +2,7 @@
 
 import { Suspense, useState } from 'react'
 import { Tab } from '@headlessui/react'
-import Thread from './Thread'
+import Thread from '../../../components/Thread'
 import ScrollToTopButton from '../../../components/ScrollButton'
 import ThreadSkeleton from '@/app/(Content)/components/ThreadSkeleton'
 
@@ -79,7 +79,7 @@ export default function Threads() {
   })
 
   return (
-    <main className='w-full px-2 sm:px-4 overflow-y-auto'>
+    <main className='w-full px-2 sm:px-4'>
       <ScrollToTopButton />
       <Tab.Group>
         <Tab.List className='flex rounded-xl'>
@@ -109,7 +109,7 @@ export default function Threads() {
                 'ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-0'
               )}
             >
-              <ul>
+              <ul className='overflow-y-auto'>
                 <Suspense
                   fallback={
                     <>
@@ -118,34 +118,16 @@ export default function Threads() {
                   }
                 >
                   {posts.map((post) => (
-                    // <li
-                    //   key={post.id}
-                    //   className='relative rounded-md p-3 hover:bg-gray-100 dark:hover:bg-white/[0.12]'
-                    // >
-                    //   <h3 className='text-sm font-medium leading-5 text-black dark:text-white'>
-                    //     {post.title}
-                    //   </h3>
-
-                    //   <ul className='mt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500'>
-                    //     <li>{post.date}</li>
-                    //     <li>&middot;</li>
-                    //     <li>{post.commentCount} comments</li>
-                    //     <li>&middot;</li>
-                    //     <li>{post.shareCount} shares</li>
-                    //   </ul>
-
-                    //   <a
-                    //     href='#'
-                    //     className={classNames(
-                    //       'absolute inset-0 rounded-md',
-                    //       'ring-blue-400 focus:z-10 focus:outline-none focus:ring-2'
-                    //     )}
-                    //   />
-                    // </li>
                     <Thread
                       key={post.id}
-                      title={post.title}
-                      date={post.date}
+                      user={{
+                        first_name: 'client',
+                        last_name: 'doe',
+                        username: 'johndoe',
+                      }}
+                      thread_uid={post.id.toString()}
+                      content={post.title}
+                      thread_timestamp={post.date}
                       commentCount={post.commentCount}
                       shareCount={post.shareCount}
                     />

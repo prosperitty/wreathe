@@ -24,21 +24,21 @@ export default function Header() {
         onClick={scrollToTop}
       />
       <div className='flex '>
-        <Link href='/logout'>
+        <Link href='/refresh-token/logout' scroll={false}>
           <ArrowLeftOnRectangleIcon
             aria-label='Logout'
             title='Logout'
             className='w-6 h-6 ml-3 cursor-pointer'
           />
         </Link>
-        <Link href='/feed'>
+        <Link href='/feed' scroll={false}>
           <MagnifyingGlassIcon
             aria-label='Search'
             title='Search'
             className='w-6 h-6 ml-3 cursor-pointer'
           />
         </Link>
-        <Link href='/feed'>
+        <Link href='/compose/thread' scroll={false}>
           <PencilSquareIcon
             aria-label='Compose A Thread'
             title='Compose A Thread'

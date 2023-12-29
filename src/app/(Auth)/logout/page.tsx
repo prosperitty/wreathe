@@ -1,4 +1,5 @@
 'use client'
+import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { useEffect } from 'react'
 // import { cookies } from 'next/headers'
@@ -82,4 +83,5 @@ export default function Logout() {
   //     <div>{list}</div>
   //   </main>
   // )
+  // return redirect('/')
 }

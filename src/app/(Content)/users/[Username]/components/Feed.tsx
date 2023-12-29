@@ -1,3 +1,4 @@
+import ThreadSkeleton from '@/app/(Content)/components/ThreadSkeleton'
 import { cookies } from 'next/headers'
 import { Suspense } from 'react'
 
@@ -23,7 +24,7 @@ interface params {
 //     )
 //   })
 
-export default async function Feed({ params }: params) {
+export default async function TestSkeleton({ params }: params) {
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')
   const bearerToken = `Bearer ${accessToken?.value}`
@@ -48,8 +49,10 @@ export default async function Feed({ params }: params) {
   console.log(bearerToken)
   return (
     <>
-      <div>My Post: 1</div>
-      <div>My Post: 1</div>
+      <Suspense fallback={<ThreadSkeleton />}>
+        <div>My Post: 1</div>
+        <div>My Post: 1</div>
+      </Suspense>
     </>
   )
 }

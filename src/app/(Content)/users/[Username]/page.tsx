@@ -6,6 +6,7 @@ import ScrollToTopButton from '../../components/ScrollButton'
 import { Suspense } from 'react'
 import Feed from './components/Feed'
 import ThreadSkeleton from '../../components/ThreadSkeleton'
+import TestSkeleton from './components/Feed'
 
 interface params {
   params: { Username: string }
@@ -27,11 +28,15 @@ export default async function Username({ params }: params) {
     }
   )
   const result = await response.json()
-  console.log(result, 'user data')
-  console.log(bearerToken)
+  const { userData } = result
+  console.log(result, params)
   return (
     <>
-      <Header username={params.Username} />
+      <Header
+        username={userData.username}
+        firstName={userData.first_name}
+        lastName={userData.last_name}
+      />
       {/* <div>
         My Post: {params.Username} {result.message}
       </div> */}
@@ -39,3 +44,5 @@ export default async function Username({ params }: params) {
     </>
   )
 }
+
+// e62092f1-a8ee-45de-ba19-3b28c7d1d221

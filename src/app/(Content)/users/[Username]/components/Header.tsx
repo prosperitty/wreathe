@@ -1,13 +1,20 @@
 import Image from 'next/image'
+import { Suspense } from 'react'
 
 interface Props {
   username: string
+  firstName: string
+  lastName: string
 }
 
 export default function Header(props: Props) {
   return (
     <header className='px-2 sm:px-4'>
-      <h2 className='text-center  py-4 sm:py-6'>@{props.username}</h2>
+      <h2 className='text-center  py-4 sm:py-6'>
+        <Suspense fallback={'loading....'}>
+          <span> @{props.username}</span>
+        </Suspense>
+      </h2>
       <div className='my-4 flex items-center justify-center'>
         <div className='relative h-20 w-20'>
           <Image
@@ -20,23 +27,36 @@ export default function Header(props: Props) {
         </div>
       </div>
       <div className='py-2 font-medium text-center dark:text-white '>
-        <h3>Jane Doe</h3>
+        <h3 className='space-x-1'>
+          <Suspense fallback={'loading.....'}>
+            <span>{props.firstName}</span>
+            <span>{props.lastName}</span>
+          </Suspense>
+        </h3>
         <h5 className='text-sm text-gray-500 dark:text-gray-400'>
-          @{props.username}
+          <Suspense fallback={'loading....'}>
+            <span>@{props.username}</span>
+          </Suspense>
         </h5>
       </div>
       <div className='flex flex-row flex-wrap text-center py-2 my-4'>
         <div className='basis-1/3'>
           <h4 className='text-gray-200 text-sm'>Posts</h4>
-          <h2 className='py-2 text-xl font-semibold'>0</h2>
+          <h2 className='py-2 text-xl font-semibold'>
+            <Suspense fallback={'--'}>0</Suspense>
+          </h2>
         </div>
         <div className='basis-1/3 leading-5'>
           <h4 className='text-gray-200 text-sm'>Followers</h4>
-          <h2 className='py-2 text-xl font-semibold'>0</h2>
+          <h2 className='py-2 text-xl font-semibold'>
+            <Suspense fallback={'--'}>0</Suspense>
+          </h2>
         </div>
         <div className='basis-1/3 leading-5'>
           <h4 className='text-gray-200 text-sm'>Subscribers</h4>
-          <h2 className='py-2 text-xl font-semibold'>0</h2>
+          <h2 className='py-2 text-xl font-semibold'>
+            <Suspense fallback={'--'}>0</Suspense>
+          </h2>
         </div>
       </div>
     </header>

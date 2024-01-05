@@ -12,7 +12,7 @@ export default function UserLayout({
     <div className='bg-white dark:bg-gray-900 pb-16 sm:pb-0'>
       <Sidebar />
       <div className='sm:ml-64 h-full min-h-screen'>
-        <div className='max-w-2xl mx-auto overflow-y-auto'>{children}</div>
+        <div className='max-w-2xl mx-auto'>{children}</div>
       </div>
       <MobileNav />
     </div>

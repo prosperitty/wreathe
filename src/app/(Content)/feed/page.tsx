@@ -1,6 +1,8 @@
 import { cookies } from 'next/headers'
 import Content from './components/Content'
 import Header from './components/Header'
+import Link from 'next/link'
+import Image from 'next/image'
 export default async function Feed() {
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')
@@ -16,11 +18,43 @@ export default async function Feed() {
   })
   const result = await response.json()
 
-  return (
-    <>
-      <Header />
-      {result.message}
-      <Content feedData={result.threads} />
-    </>
-  )
+  if (!result.threads || !accessToken) {
+    return (
+      <>
+        <main className='p-2 sm:p-4 h-full'>
+          <h1 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white'>
+            Please Sign In or Register for an account to view your feed.
+          </h1>
+          <h3>
+            Don&#39;t an account?
+            <Link href='/register' className='font-bold text-sky-500'>
+              {' '}
+              Register Here
+            </Link>
+          </h3>
+          <h3>
+            Have an account?
+            <Link href='/login' className='font-bold text-sky-500'>
+              {' '}
+              Log In Here
+            </Link>
+          </h3>
+          <Image
+            src='/App monetization-bro.svg'
+            alt='app monetization'
+            width={500}
+            height={500}
+          />
+        </main>
+      </>
+    )
+  } else {
+    return (
+      <>
+        <Header />
+        {result.message}
+        <Content feedData={result.threads} bearerToken={bearerToken} />
+      </>
+    )
+  }
 }

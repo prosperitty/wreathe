@@ -2,6 +2,8 @@ import Image from 'next/image'
 import Dropdown from './Dropdown'
 import SidebarButton from './SidebarButton'
 import Link from 'next/link'
+import SidebarItem from './SidebarItem'
+import { Suspense } from 'react'
 
 export default function Sidebar() {
   return (
@@ -13,10 +15,7 @@ export default function Sidebar() {
         aria-label='Sidebar'
       >
         <div className='h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800'>
-          <Link
-            href='https://flowbite.com/'
-            className='flex items-center pl-2.5 py-2 mb-5'
-          >
+          <Link href='/' className='flex items-center pl-2.5 py-2 mb-5'>
             <Image
               src='/logo.svg'
               className='h-6 mr-3 sm:h-7'
@@ -68,7 +67,7 @@ export default function Sidebar() {
                 </span>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href='/users/1'
                 className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'
@@ -84,8 +83,8 @@ export default function Sidebar() {
                 </svg>
                 <span className='flex-1 ml-3 whitespace-nowrap'>Profile</span>
               </Link>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <Link
                 href='/login'
                 className='flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group'
@@ -126,7 +125,10 @@ export default function Sidebar() {
                 </svg>
                 <span className='flex-1 ml-3 whitespace-nowrap'>Sign Up</span>
               </Link>
-            </li>
+            </li> */}
+            <Suspense fallback={<p>loading....</p>}>
+              <SidebarItem />
+            </Suspense>
           </ul>
           <div className='absolute bottom-2 mb-5 w-11/12'>
             <Dropdown />

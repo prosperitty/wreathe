@@ -1,12 +1,8 @@
 import { cookies } from 'next/headers'
-import Content from '../../feed/components/Content'
 import Header from './components/Header'
 import Threads from './components/Threads'
-import ScrollToTopButton from '../../components/ScrollButton'
 import { Suspense } from 'react'
-import Feed from './components/Feed'
 import ThreadSkeleton from '../../components/ThreadSkeleton'
-import TestSkeleton from './components/Feed'
 
 interface params {
   params: { Username: string }
@@ -28,21 +24,29 @@ export default async function Username({ params }: params) {
     }
   )
   const result = await response.json()
-  const { userData } = result
-  console.log(result, params)
+  const { profileData, profileThreads, profileComments, profileLikes } = result
+
   return (
     <>
       <Header
-        username={userData.username}
-        firstName={userData.first_name}
-        lastName={userData.last_name}
+        username={profileData.username}
+        firstName={profileData.first_name}
+        lastName={profileData.last_name}
       />
-      {/* <div>
-        My Post: {params.Username} {result.message}
-      </div> */}
-      <Threads />
+      <Suspense
+        fallback={
+          <>
+            <ThreadSkeleton /> <ThreadSkeleton /> <ThreadSkeleton />
+            <ThreadSkeleton />
+          </>
+        }
+      >
+        <Threads
+          profileThreads={profileThreads}
+          profileComments={profileComments}
+          profileLikes={profileLikes}
+        />
+      </Suspense>
     </>
   )
 }
-
-// e62092f1-a8ee-45de-ba19-3b28c7d1d221

@@ -14,48 +14,70 @@ type AccessToken = string | null
 
 interface ResponseData {
   accessToken: string
+  userData: UserData
   error: string
+}
+
+interface UserData {
+  user_uid: string
+  first_name: string
+  last_name: string
+  email: string | null
+  username: string
 }
 
 interface IAuthContext {
   accessToken: string | null
   setAccessToken: Dispatch<SetStateAction<AccessToken>>
+  userData: UserData | null
+  isLoading: boolean
+  setIsLoading: Dispatch<SetStateAction<boolean>>
 }
 
-const AuthContext = createContext<IAuthContext>(null)
+const AuthContext = createContext<IAuthContext | null>(null)
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
-  const [accessToken, setAccessToken] = useState<AccessToken>(null)
+  const [accessToken, setAccessToken] = useState<AccessToken | null>(null)
+  const [userData, setUserData] = useState<UserData | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+
+  async function checkRefreshToken() {
+    try {
+      const res = await fetch('http://localhost:8080/refresh-token', {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include', // Needed to include the cookie
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      const result: ResponseData = await res.json()
+      if (!res.ok) {
+        console.error('FAILED TO FETCH REFRESH TOKEN API ENDPOINT')
+        throw new Error(result.error)
+      }
+      // console.log(result)
+      const newAccesstoken = result.accessToken
+      result.userData ? setUserData(result.userData) : setUserData(null)
+      newAccesstoken ? setAccessToken(newAccesstoken) : setAccessToken(null)
+    } catch (error) {
+      console.error('ERROR REFRESHING TOKEN:', error)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   useEffect(() => {
-    async function checkRefreshToken() {
-      try {
-        const res = await fetch('http://localhost:8080/refresh-token', {
-          method: 'POST',
-          credentials: 'include', // Needed to include the cookie
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        })
-        const result: ResponseData = await res.json()
-        if (!res.ok) {
-          throw new Error(result.error)
-        }
-        console.log(result)
-        const newAccesstoken = result.accessToken
-        newAccesstoken ? setAccessToken(newAccesstoken) : setAccessToken(null)
-      } catch (error) {
-        console.error('Error refreshing access token:', error)
-      }
-    }
     checkRefreshToken()
   }, [])
 
   return (
-    <AuthContext.Provider value={{ accessToken, setAccessToken }}>
+    <AuthContext.Provider
+      value={{ accessToken, setAccessToken, userData, isLoading, setIsLoading }}
+    >
       {children}
     </AuthContext.Provider>
   )
 }
 
-export const useAuthContext = () => useContext<IAuthContext>(AuthContext)
+export const useAuthContext = () => useContext<IAuthContext | null>(AuthContext)

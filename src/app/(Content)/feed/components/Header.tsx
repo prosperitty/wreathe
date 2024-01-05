@@ -24,7 +24,7 @@ export default function Header() {
         onClick={scrollToTop}
       />
       <div className='flex '>
-        <Link href='/refresh-token/logout' scroll={false}>
+        <Link href='/logout' scroll={false}>
           <ArrowLeftOnRectangleIcon
             aria-label='Logout'
             title='Logout'

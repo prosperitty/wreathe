@@ -1,82 +1,90 @@
 'use client'
 
-import { Suspense, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Tab } from '@headlessui/react'
 import Thread from '../../../components/Thread'
 import ScrollToTopButton from '../../../components/ScrollButton'
 import ThreadSkeleton from '@/app/(Content)/components/ThreadSkeleton'
+import Comment from '@/app/(Content)/components/Comment'
+import { useAuthContext } from '@/app/components/context'
+import LikeButton from '@/app/(Content)/components/LikeButton'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Threads() {
+export default function Threads(props) {
+  const [threads, setThreads] = useState([])
+  const [comments, setComments] = useState([])
+  const { userData } = useAuthContext()
   let [categories] = useState({
-    Threads: [
-      {
-        id: 1,
-        title:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ut perferendis vero cumque doloribus, eius repellat neque, eos rem velit sit omnis, doloremque beatae voluptatum. Non, rem. Modi doloremque illo, obcaecati consectetur recusandae voluptas iusto laboriosam pariatur rem illum dolorum qui et blanditiis ipsam magnam beatae quidem aperiam excepturi eum explicabo veritatis. Sint accusantium pariatur quaerat, consectetur assumenda optio aliquid. Et at odit explicabo ut quod unde esse repellat quos tenetur accusantium iste, voluptatem, dolorem similique consequatur voluptates eaque beatae fugit nostrum? Dolores quis labore modi magnam totam impedit qui pariatur. Deleniti, ipsum magni dolorum sunt cupiditate veritatis nesciunt nobis architecto vel. Doloremque quidem nesciunt deleniti dolores quae architecto similique! Autem, error nam necessitatibus corrupti possimus itaque debitis esse voluptates.',
-        date: '5h ago',
-        commentCount: 5,
-        shareCount: 2,
-      },
-      {
-        id: 2,
-        title: "So you've bought coffee... now what?",
-        date: '2h ago',
-        commentCount: 3,
-        shareCount: 2,
-      },
-      {
-        id: 3,
-        title:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio ut perferendis vero cumque doloribus, eius repellat neque, eos rem velit sit omnis, doloremque beatae voluptatum. Non, rem. Modi doloremque illo, obcaecati consectetur recusandae voluptas iusto laboriosam pariatur rem illum dolorum qui et blanditiis ipsam magnam beatae quidem aperiam excepturi eum explicabo veritatis. Sint accusantium pariatur quaerat, consectetur assumenda optio aliquid. Et at odit explicabo ut quod unde esse repellat quos tenetur accusantium iste, voluptatem, dolorem similique consequatur voluptates eaque beatae fugit nostrum? Dolores quis labore modi magnam totam impedit qui pariatur. Deleniti, ipsum magni dolorum sunt cupiditate veritatis nesciunt nobis architecto vel. Doloremque quidem nesciunt deleniti dolores quae architecto similique! Autem, error nam necessitatibus corrupti possimus itaque debitis esse voluptates.',
-        date: '5h ago',
-        commentCount: 5,
-        shareCount: 2,
-      },
-      {
-        id: 4,
-        title: "So you've bought coffee... now what?",
-        date: '2h ago',
-        commentCount: 3,
-        shareCount: 2,
-      },
-    ],
-    Comments: [
-      {
-        id: 1,
-        title: 'Is tech making coffee better or worse?',
-        date: 'Jan 7',
-        commentCount: 29,
-        shareCount: 16,
-      },
-      {
-        id: 2,
-        title: 'The most innovative things happening in coffee',
-        date: 'Mar 19',
-        commentCount: 24,
-        shareCount: 12,
-      },
-    ],
-    Likes: [
-      {
-        id: 1,
-        title: 'Ask Me Anything: 10 answers to your questions about coffee',
-        date: '2d ago',
-        commentCount: 9,
-        shareCount: 5,
-      },
-      {
-        id: 2,
-        title: "The worst advice we've ever heard about coffee",
-        date: '4d ago',
-        commentCount: 1,
-        shareCount: 2,
-      },
-    ],
+    Threads: [...props.profileThreads],
+    Comments: [...props.profileComments],
+    Likes: [...props.profileLikes],
   })
+
+  useEffect(() => {
+    if (userData) {
+      setProfileFeed(userData)
+      setCommentFeed(userData)
+    } else {
+      setProfileFeed(null)
+      setCommentFeed(null)
+    }
+  }, [userData])
+
+  const setProfileFeed = (user) => {
+    if (user) {
+      const profileFeed = categories.Threads.map((post) => {
+        const isLiked = post.likes.some(
+          (like) =>
+            like.user_uid === user.user_uid &&
+            like.thread_uid === post.thread_uid
+        )
+        return <Thread key={post.thread_uid} isLiked={isLiked} thread={post} />
+      })
+      setThreads(profileFeed)
+    } else {
+      const profileFeed = categories.Threads.map((post) => {
+        return <Thread key={post.thread_uid} isLiked={false} thread={post} />
+      })
+      setThreads(profileFeed)
+    }
+  }
+
+  const setCommentFeed = (user) => {
+    if (user) {
+      const commentFeed = props.profileComments.map((post) => {
+        const isLiked = post.comment_likes.some(
+          (like) =>
+            like.user_uid === user.user_uid &&
+            like.comment_uid === post.comment_uid
+        )
+        console.log(isLiked)
+        return (
+          <li key={post.comment_uid}>
+            <Comment
+              commentData={post}
+              likeButton={<LikeButton isLiked={isLiked} commentData={post} />}
+            />
+          </li>
+        )
+      })
+      setComments(commentFeed)
+    } else {
+      const commentFeed = props.profileComments.map((post) => {
+        return (
+          <li key={post.comment_uid}>
+            <Comment
+              commentData={post}
+              likeButton={<LikeButton isLiked={false} commentData={post} />}
+            />
+          </li>
+        )
+      })
+      setComments(commentFeed)
+    }
+  }
 
   return (
     <main className='w-full px-2 sm:px-4'>
@@ -101,41 +109,66 @@ export default function Threads() {
           ))}
         </Tab.List>
         <Tab.Panels className='mt-2'>
-          {Object.values(categories).map((posts, idx) => (
-            <Tab.Panel
-              key={idx}
-              className={classNames(
-                'rounded-xl',
-                'ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-0'
-              )}
-            >
-              <ul className='overflow-y-auto'>
-                <Suspense
-                  fallback={
-                    <>
-                      <ThreadSkeleton /> <ThreadSkeleton /> <ThreadSkeleton />
-                    </>
-                  }
-                >
-                  {posts.map((post) => (
-                    <Thread
-                      key={post.id}
-                      user={{
-                        first_name: 'client',
-                        last_name: 'doe',
-                        username: 'johndoe',
-                      }}
-                      thread_uid={post.id.toString()}
-                      content={post.title}
-                      thread_timestamp={post.date}
-                      commentCount={post.commentCount}
-                      shareCount={post.shareCount}
-                    />
-                  ))}
-                </Suspense>
-              </ul>
-            </Tab.Panel>
-          ))}
+          <Tab.Panel
+            className={classNames(
+              'rounded-xl',
+              'ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-0'
+            )}
+          >
+            <ul className='overflow-y-auto'>
+              <Suspense
+                fallback={
+                  <>
+                    <ThreadSkeleton /> <ThreadSkeleton /> <ThreadSkeleton />
+                  </>
+                }
+              >
+                {threads}
+              </Suspense>
+            </ul>
+          </Tab.Panel>
+          <Tab.Panel
+            className={classNames(
+              'rounded-xl',
+              'ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-0'
+            )}
+          >
+            <ul className='overflow-y-auto space-y-3'>
+              <Suspense
+                fallback={
+                  <>
+                    <ThreadSkeleton /> <ThreadSkeleton /> <ThreadSkeleton />
+                  </>
+                }
+              >
+                {comments}
+              </Suspense>
+            </ul>
+          </Tab.Panel>
+          <Tab.Panel
+            className={classNames(
+              'rounded-xl',
+              'ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-0'
+            )}
+          >
+            <ul className='overflow-y-auto space-y-3'>
+              <Suspense
+                fallback={
+                  <>
+                    <ThreadSkeleton /> <ThreadSkeleton /> <ThreadSkeleton />
+                  </>
+                }
+              >
+                {props.profileLikes.map((post) => (
+                  <Thread
+                    key={post.thread.thread_uid}
+                    isLiked={true}
+                    thread={post.thread}
+                  />
+                ))}
+              </Suspense>
+            </ul>
+          </Tab.Panel>
         </Tab.Panels>
       </Tab.Group>
     </main>

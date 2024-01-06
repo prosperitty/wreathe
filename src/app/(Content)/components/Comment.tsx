@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 interface Props {
   commentData: Comment
+  threadAuthor: string
   isLiked: boolean
 }
 
@@ -50,6 +51,10 @@ interface CommentLikes {
 export default function Comment(props: Props) {
   return (
     <div className='border-gray-600 border rounded-md p-3'>
+      <p className='text-xs pb-2 text-yellow-400'>
+        <span>Replying to: </span>
+        <span>{`@${props.threadAuthor}`}</span>
+      </p>
       <div className='flex items-center space-x-4'>
         <div className='relative h-12 w-12 z-20'>
           <Link href={`/users/${props.commentData.author_ref}`}>
@@ -87,7 +92,7 @@ export default function Comment(props: Props) {
       <ul className='relative pt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500 z-20'>
         <li>{props.commentData.comment_timestamp}</li>
         <li>&middot;</li>
-        <li className='cursor-pointer hover:text-white'>
+        <li className='cursor-pointer hover:text-yellow-400'>
           <Link href='#'>{0} comments</Link>
         </li>
         <li>&middot;</li>

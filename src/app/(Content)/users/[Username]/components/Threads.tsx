@@ -8,6 +8,7 @@ import ThreadSkeleton from '@/app/(Content)/components/ThreadSkeleton'
 import Comment from '@/app/(Content)/components/Comment'
 import { useAuthContext } from '@/app/components/context'
 import LikeButton from '@/app/(Content)/components/LikeButton'
+import { useParams } from 'next/navigation'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -16,6 +17,7 @@ function classNames(...classes: string[]) {
 export default function Threads(props) {
   const [threads, setThreads] = useState([])
   const [comments, setComments] = useState([])
+  const [likes, setLikes] = useState([])
   const { userData } = useAuthContext()
   let [categories] = useState({
     Threads: [...props.profileThreads],
@@ -27,9 +29,11 @@ export default function Threads(props) {
     if (userData) {
       setProfileFeed(userData)
       setCommentFeed(userData)
+      setLikeFeed(userData)
     } else {
       setProfileFeed(null)
       setCommentFeed(null)
+      setLikeFeed(null)
     }
   }, [userData])
 
@@ -60,11 +64,11 @@ export default function Threads(props) {
             like.user_uid === user.user_uid &&
             like.comment_uid === post.comment_uid
         )
-        console.log(isLiked)
         return (
           <li key={post.comment_uid}>
             <Comment
               commentData={post}
+              threadAuthor={post.thread.wreathe_user.username}
               likeButton={<LikeButton isLiked={isLiked} commentData={post} />}
             />
           </li>
@@ -77,12 +81,76 @@ export default function Threads(props) {
           <li key={post.comment_uid}>
             <Comment
               commentData={post}
+              threadAuthor={post.thread.wreathe_user.username}
               likeButton={<LikeButton isLiked={false} commentData={post} />}
             />
           </li>
         )
       })
       setComments(commentFeed)
+    }
+  }
+
+  const setLikeFeed = (user) => {
+    if (user) {
+      const likeFeed = props.profileLikes.map((post) => {
+        if (post.thread_uid) {
+          const isLiked = post.thread.likes.some(
+            (like) =>
+              like.user_uid === user.user_uid &&
+              like.thread_uid === post.thread.thread_uid
+          )
+          return (
+            <Thread
+              key={post.thread.thread_uid}
+              isLiked={isLiked}
+              thread={post.thread}
+            />
+          )
+        } else if (post.comment_uid) {
+          const isLiked = post.comment.comment_likes.some(
+            (like) =>
+              like.user_uid === user.user_uid &&
+              like.comment_uid === post.comment.comment_uid
+          )
+          return (
+            <Comment
+              key={post.comment.comment_uid}
+              commentData={post.comment}
+              threadAuthor={post.comment.thread.wreathe_user.username}
+              likeButton={
+                <LikeButton isLiked={isLiked} commentData={post.comment} />
+              }
+            />
+          )
+        }
+      })
+      setLikes(likeFeed)
+    } else {
+      const likeFeed = props.profileLikes.map((post) => {
+        console.log(post)
+        if (post.thread_uid) {
+          return (
+            <Thread
+              key={post.thread.thread_uid}
+              isLiked={false}
+              thread={post.thread}
+            />
+          )
+        } else if (post.comment_uid) {
+          return (
+            <Comment
+              key={post.comment.comment_uid}
+              commentData={post.comment}
+              threadAuthor={post.comment.thread.wreathe_user.username}
+              likeButton={
+                <LikeButton isLiked={false} commentData={post.comment} />
+              }
+            />
+          )
+        }
+      })
+      setLikes(likeFeed)
     }
   }
 
@@ -159,13 +227,14 @@ export default function Threads(props) {
                   </>
                 }
               >
-                {props.profileLikes.map((post) => (
+                {/* {props.profileLikes.map((post) => (
                   <Thread
                     key={post.thread.thread_uid}
                     isLiked={true}
                     thread={post.thread}
                   />
-                ))}
+                ))} */}
+                {likes}
               </Suspense>
             </ul>
           </Tab.Panel>

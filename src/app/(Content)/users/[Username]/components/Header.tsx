@@ -53,7 +53,7 @@ export default function Header(props: Props) {
           </h2>
         </div>
         <div className='basis-1/3 leading-5'>
-          <h4 className='text-gray-200 text-sm'>Subscribers</h4>
+          <h4 className='text-gray-200 text-sm'>Following</h4>
           <h2 className='py-2 text-xl font-semibold'>
             <Suspense fallback={'--'}>0</Suspense>
           </h2>

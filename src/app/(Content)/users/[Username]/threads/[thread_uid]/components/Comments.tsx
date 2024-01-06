@@ -2,6 +2,7 @@
 import Comment from '@/app/(Content)/components/Comment'
 import LikeButton from '@/app/(Content)/components/LikeButton'
 import { useAuthContext } from '@/app/components/context'
+import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export default function CommentsSection(props) {
@@ -21,6 +22,7 @@ export default function CommentsSection(props) {
           <li key={post.comment_uid}>
             <Comment
               commentData={post}
+              threadAuthor={props.threadAuthor}
               likeButton={<LikeButton isLiked={isLiked} commentData={post} />}
             />
           </li>
@@ -33,6 +35,7 @@ export default function CommentsSection(props) {
           <li key={post.comment_uid}>
             <Comment
               commentData={post}
+              threadAuthor={props.threadAuthor}
               likeButton={<LikeButton isLiked={false} commentData={post} />}
             />
           </li>

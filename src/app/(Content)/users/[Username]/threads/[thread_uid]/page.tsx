@@ -34,7 +34,10 @@ export default async function ThreadPage({ params }) {
         </ul>
       </main>
       <Suspense fallback={<ThreadSkeleton />}>
-        <CommentsSection comments={thread.comment} />
+        <CommentsSection
+          comments={thread.comment}
+          threadAuthor={thread.wreathe_user.username}
+        />
       </Suspense>
     </>
   )

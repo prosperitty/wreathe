@@ -129,7 +129,7 @@ export default function Thread(props: Props) {
       <ul className='relative pt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500 z-20'>
         <li>{props.thread.thread_timestamp}</li>
         <li>&middot;</li>
-        <li className='cursor-pointer hover:text-white'>
+        <li className='cursor-pointer hover:text-yellow-400'>
           <Link
             href={`/compose/comment/${props.thread.thread_uid}`}
             scroll={false}
@@ -138,11 +138,11 @@ export default function Thread(props: Props) {
           </Link>
         </li>
         <li>&middot;</li>
-        <li className='cursor-pointer hover:text-white flex items-center'>
+        <li className='cursor-pointer hover:text-yellow-400 flex items-center'>
           <span className='mr-1'>{likes} </span>
           <span>likes</span>
         </li>
-        <li className='hover:text-white'>
+        <li className='hover:text-yellow-400'>
           <div className='absolute right-0 flex items-center'>
             <button
               onClick={handleLikeButton}
@@ -158,7 +158,7 @@ export default function Thread(props: Props) {
                 leaveFrom='opacity-100'
                 leaveTo='opacity-0'
               >
-                <HeartIconSolid className='text-yellow-300 absolute' />
+                <HeartIconSolid className='text-yellow-400 absolute' />
               </Transition>
               <Transition
                 as={Fragment}

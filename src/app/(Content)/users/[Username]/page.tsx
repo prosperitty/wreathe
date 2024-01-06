@@ -24,7 +24,14 @@ export default async function Username({ params }: params) {
     }
   )
   const result = await response.json()
-  const { profileData, profileThreads, profileComments, profileLikes } = result
+  const {
+    profileData,
+    profileThreads,
+    profileComments,
+    profileLikes,
+    allLikes,
+  } = result
+  // console.log(allLikes, '\n \n \n ALL LIKES= ==================== = = =')
 
   return (
     <>
@@ -44,7 +51,7 @@ export default async function Username({ params }: params) {
         <Threads
           profileThreads={profileThreads}
           profileComments={profileComments}
-          profileLikes={profileLikes}
+          profileLikes={allLikes}
         />
       </Suspense>
     </>

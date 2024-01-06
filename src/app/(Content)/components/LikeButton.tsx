@@ -49,11 +49,11 @@ export default function LikeButton(props) {
   }
   return (
     <>
-      <li className='cursor-pointer hover:text-white flex items-center'>
+      <li className='cursor-pointer hover:text-yellow-400 flex items-center'>
         <span className='mr-1'>{likes} </span>
         <span>likes</span>
       </li>
-      <li className='hover:text-white'>
+      <li className='hover:text-yellow-400'>
         <div className='absolute right-0 flex items-center'>
           <button
             onClick={handleLikeButton}
@@ -69,7 +69,7 @@ export default function LikeButton(props) {
               leaveFrom='opacity-100'
               leaveTo='opacity-0'
             >
-              <HeartIconSolid className='text-yellow-300 absolute' />
+              <HeartIconSolid className='text-yellow-400 absolute' />
             </Transition>
             <Transition
               as={Fragment}

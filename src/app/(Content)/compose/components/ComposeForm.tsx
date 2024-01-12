@@ -32,7 +32,7 @@ export default function ComposeForm({ postContent }) {
         <textarea
           name='content'
           minLength={1}
-          maxLength={500}
+          maxLength={250}
           onChange={handleCharacterCount}
           className='block py-2.5 px-0 w-full h-72 max-h-[500px] border-0 border-b text-lg text-gray-900 break-all bg-transparent appearance-none dark:text-white  dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer resize-none invalid:focus:caret-pink-500 invalid:focus:dark:border-pink-500 valid:focus:dark:border-green-500 valid:caret-green-500'
           required
@@ -56,7 +56,7 @@ export default function ComposeForm({ postContent }) {
         <div>
           <span>{characterCount}</span>
           <span>/</span>
-          <span>500</span>
+          <span>250</span>
           <span className='px-2'>{pending}</span>
         </div>
       </div>

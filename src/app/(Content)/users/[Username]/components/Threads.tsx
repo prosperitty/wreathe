@@ -128,7 +128,6 @@ export default function Threads(props) {
       setLikes(likeFeed)
     } else {
       const likeFeed = props.profileLikes.map((post) => {
-        console.log(post)
         if (post.thread_uid) {
           return (
             <Thread

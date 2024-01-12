@@ -4,11 +4,11 @@ import Threads from './components/Threads'
 import { Suspense } from 'react'
 import ThreadSkeleton from '../../components/ThreadSkeleton'
 
-interface params {
+export default async function Username({
+  params,
+}: {
   params: { Username: string }
-}
-
-export default async function Username({ params }: params) {
+}) {
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')
   const bearerToken = `Bearer ${accessToken?.value}`
@@ -30,8 +30,8 @@ export default async function Username({ params }: params) {
     profileComments,
     profileLikes,
     allLikes,
+    isFollowing,
   } = result
-  // console.log(allLikes, '\n \n \n ALL LIKES= ==================== = = =')
 
   return (
     <>
@@ -39,6 +39,10 @@ export default async function Username({ params }: params) {
         username={profileData.username}
         firstName={profileData.first_name}
         lastName={profileData.last_name}
+        following={profileData.followers}
+        followers={profileData.following}
+        posts={profileThreads.length + profileComments.length}
+        isFollowing={isFollowing}
       />
       <Suspense
         fallback={

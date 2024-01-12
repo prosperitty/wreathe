@@ -3,6 +3,7 @@ import Content from './components/Content'
 import Header from './components/Header'
 import Link from 'next/link'
 import Image from 'next/image'
+
 export default async function Feed() {
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')
@@ -45,6 +46,29 @@ export default async function Feed() {
             width={500}
             height={500}
           />
+        </main>
+      </>
+    )
+  } else if (result.threads.length === 0 && accessToken) {
+    return (
+      <>
+        <main className='p-2 sm:p-4 h-full'>
+          <h1 className='text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white'>
+            Welcome to Wreathe.
+          </h1>
+          <h1 className='text-center text-lg font-bold tracking-tight text-gray-900 sm:text-xl dark:text-white'>
+            You are not following any users yet. You can personalize your feed
+            with content from people you choose to follow. To personalize your
+            feed, start by following another user.
+          </h1>
+          <div className='flex justify-center'>
+            <Image
+              src='/App monetization-bro.svg'
+              alt='app monetization'
+              width={500}
+              height={500}
+            />
+          </div>
         </main>
       </>
     )

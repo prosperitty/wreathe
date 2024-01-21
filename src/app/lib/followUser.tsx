@@ -1,7 +1,7 @@
 'use server'
 import { cookies } from 'next/headers'
 
-export default async function followUser(userId) {
+export default async function followUser(userId: string) {
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')
   const bearerToken = `Bearer ${accessToken?.value}`

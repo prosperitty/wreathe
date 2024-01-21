@@ -8,6 +8,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { useAuthContext } from '@/app/components/context'
 import likePost from '@/app/lib/likePost'
 import unlikePost from '@/app/lib/unlikePost'
+import timeAgo from '@/app/lib/timeAgo'
 
 interface Props {
   thread: thread
@@ -48,12 +49,15 @@ interface Likes {
 
 export default function Thread(props: Props) {
   const [likes, setLikes] = useState(props.thread.likes.length)
+  const [date, setDate] = useState('')
   const [isLiked, setIsLiked] = useState(false)
 
   useEffect(() => {
     if (props.isLiked) {
       setIsLiked(true)
     }
+    const formattedDate = timeAgo(props.thread.thread_timestamp)
+    setDate(formattedDate)
   }, [])
 
   const handleLikeButton = async () => {
@@ -96,7 +100,7 @@ export default function Thread(props: Props) {
           >
             <Image
               src='/next.svg'
-              className='rounded-full border border-white'
+              className='rounded-full border border-gray-500'
               alt='profile picture'
               layout='fill'
               objectFit='contain'
@@ -127,7 +131,8 @@ export default function Thread(props: Props) {
       </h3>
 
       <ul className='relative pt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500 z-20'>
-        <li>{props.thread.thread_timestamp}</li>
+        {/* <li>{props.thread.thread_timestamp}</li> */}
+        <li>{date}</li>
         <li>&middot;</li>
         <li className='cursor-pointer hover:text-yellow-400'>
           <Link

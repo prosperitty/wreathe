@@ -25,8 +25,6 @@ export default async function Following({
     <>
       <Suspense fallback={<ThreadSkeleton />}>
         <UserCard users={result.following} />
-        <div>{result.message}</div>
-        <div>{result.success}</div>
       </Suspense>
     </>
   )

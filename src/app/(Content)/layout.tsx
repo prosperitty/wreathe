@@ -9,7 +9,8 @@ export default function UserLayout({
   modal: React.ReactNode
 }) {
   return (
-    <div className='bg-white dark:bg-gray-900 pb-16 sm:pb-0'>
+    //USED TO BE PADDING BOTTOM-16 HERE
+    <div className='bg-white dark:bg-gray-900 sm:pb-0'>
       <Sidebar />
       <div className='sm:ml-64 h-full min-h-screen'>
         <div className='max-w-2xl mx-auto'>{children}</div>

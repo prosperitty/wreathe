@@ -55,7 +55,7 @@ export default async function Post({ thread }) {
           </li>
           <li className='hover:text-white'>
             <div className='absolute right-0 flex items-center'>
-              {/* <button
+              <button
                 // onClick={handleLike}
                 className='w-4 h-4 flex overflow-hidden relative'
               >
@@ -83,7 +83,7 @@ export default async function Post({ thread }) {
                 >
                   <HeartIconOutline className='absolute' />
                 </Transition>
-              </button> */}
+              </button>
             </div>
           </li>
         </ul>

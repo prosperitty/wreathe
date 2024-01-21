@@ -15,6 +15,7 @@ interface Props {
   following: Array<any>
   followers: Array<any>
   posts: number
+  bio: string
   isFollowing: boolean
 }
 
@@ -56,12 +57,14 @@ export default function Header(props: Props) {
 
   function renderEditButton() {
     return (
-      <button
-        type='button'
-        className='text-white bg-gradient-to-br from-[#9B6BFF] to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4'
-      >
-        Edit Profile
-      </button>
+      <Link href={`${Username}/settings`}>
+        <button
+          type='button'
+          className='text-white bg-gradient-to-br from-[#9B6BFF] to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4'
+        >
+          Edit Profile
+        </button>
+      </Link>
     )
   }
 
@@ -129,6 +132,13 @@ export default function Header(props: Props) {
         >
           Follow
         </button> */}
+      </div>
+      <div className='py-2 font-sm text-center dark:text-white '>
+        <h3>
+          <Suspense fallback={'loading.....'}>
+            <span>{props.bio}</span>
+          </Suspense>
+        </h3>
       </div>
       <div className='flex flex-row flex-wrap text-center py-2 my-4'>
         <div className='basis-1/3 leading-5'>

@@ -1,6 +1,8 @@
 'use client'
+import timeAgo from '@/app/lib/timeAgo'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 interface Props {
   commentData: Comment
@@ -49,6 +51,13 @@ interface CommentLikes {
 }
 
 export default function Comment(props: Props) {
+  const [date, setDate] = useState('')
+
+  useEffect(() => {
+    const formattedDate = timeAgo(props.commentData.comment_timestamp)
+    setDate(formattedDate)
+  }, [props.commentData.comment_timestamp])
+
   return (
     <div className='border-gray-600 border rounded-md p-3'>
       <p className='text-xs pb-2 text-yellow-400'>
@@ -60,7 +69,7 @@ export default function Comment(props: Props) {
           <Link href={`/users/${props.commentData.author_ref}`}>
             <Image
               src='/next.svg'
-              className='rounded-full border border-white'
+              className='rounded-full border border-gray-500'
               alt='profile picture'
               layout='fill'
               objectFit='contain'
@@ -70,9 +79,7 @@ export default function Comment(props: Props) {
           </Link>
         </div>
         <div className='relative font-medium dark:text-white z-20'>
-          <Link
-            href={`/users/e62092f1-a8ee-45de-ba19-3b28c7d1d221/threads/${props.commentData.thread.thread_uid}/comments/${props.commentData.comment_uid}`}
-          >
+          <Link href={`/users/${props.commentData.author_ref}`}>
             <div>
               <span>{props.commentData.wreathe_user.first_name}</span>
               <span> </span>
@@ -90,7 +97,8 @@ export default function Comment(props: Props) {
       </h3>
 
       <ul className='relative pt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500 z-20'>
-        <li>{props.commentData.comment_timestamp}</li>
+        {/* <li>{props.commentData.comment_timestamp}</li> */}
+        <li>{date}</li>
         <li>&middot;</li>
         <li className='cursor-pointer hover:text-yellow-400'>
           <Link href='#'>{0} comments</Link>

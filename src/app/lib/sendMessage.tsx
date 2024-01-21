@@ -1,13 +1,13 @@
 'use server'
 import { cookies } from 'next/headers'
 
-export default async function unFollowUser(userId: string) {
+export default async function sendMessage(recepientUsername: string) {
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')
   const bearerToken = `Bearer ${accessToken?.value}`
   try {
     const response = await fetch(
-      `http://localhost:8080/users/${userId}/unfollow`,
+      `http://localhost:8080/messages/${recepientUsername}`,
       {
         method: 'POST',
         mode: 'cors',
@@ -19,13 +19,13 @@ export default async function unFollowUser(userId: string) {
       }
     )
     if (!response.ok) {
-      console.error('FAILED TO UNFOLLOW USER')
-      throw new Error('FAILED TO UNFOLLOW USER')
+      console.error('FAILED TO FOLLOW USER', response)
+      throw new Error('FAILED TO FOLLOW USER')
     }
     const result = await response.json()
-    console.log('does the UNFOLLOW ysstem work?! ======', result)
+    console.log('does the SEND MESSAGE system work?! ======', result)
     return result
   } catch (error) {
-    console.error('Error UNFOLLOWING the USER:', error)
+    console.error('Error FOLLOWING the USER:', error)
   }
 }

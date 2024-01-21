@@ -43,6 +43,7 @@ export default async function Username({
         followers={profileData.following}
         posts={profileThreads.length + profileComments.length}
         isFollowing={isFollowing}
+        bio={profileData.bio}
       />
       <Suspense
         fallback={

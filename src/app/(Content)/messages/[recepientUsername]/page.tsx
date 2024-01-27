@@ -4,6 +4,7 @@ import { Suspense } from 'react'
 import MessageHeader from './components/Header'
 import Messages from './components/Messages'
 import { revalidatePath } from 'next/cache'
+import Room from './components/Room'
 
 export default async function Recepient({
   params,
@@ -71,7 +72,9 @@ export default async function Recepient({
         </Suspense>
       </header>
 
-      <div className='flex-1 overflow-y-scroll px-4'>
+      <Room />
+
+      {/* <div className='flex-1 overflow-y-scroll px-4'>
         <div className='flex my-4 cursor-pointer'>
           <div className='w-9 h-9 rounded-full flex items-center justify-center mr-2'>
             <img
@@ -247,7 +250,7 @@ export default async function Recepient({
             Send
           </button>
         </form>
-      </footer>
+      </footer> */}
     </div>
   )
 }

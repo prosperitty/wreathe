@@ -12,6 +12,8 @@ export default async function Recepient({
   params: { recepientUsername: string }
 }) {
   const cookieStore = cookies()
+  const user = cookieStore.get('userData')
+  const userData = JSON.parse(user?.value)
   const accessToken = cookieStore.get('accessToken')
   const bearerToken = `Bearer ${accessToken?.value}`
   const response = await fetch(
@@ -72,7 +74,7 @@ export default async function Recepient({
         </Suspense>
       </header>
 
-      <Room />
+      <Room userData={userData} />
 
       {/* <div className='flex-1 overflow-y-scroll px-4'>
         <div className='flex my-4 cursor-pointer'>

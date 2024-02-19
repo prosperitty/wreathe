@@ -28,7 +28,7 @@ export default async function Recepient({
     }
   )
   const result = await response.json()
-  console.log(result)
+  console.log(result.directMessages)
 
   async function sendMessage(formData: FormData) {
     'use server'
@@ -47,18 +47,18 @@ export default async function Recepient({
           body: JSON.stringify({ content }),
         }
       )
-      console.log(response)
+      // console.log(response)
       if (!response.ok) {
         console.error('FAILED TO SEND MESSAGE', response)
         throw new Error('FAILED TO SEND MESSAGE')
       }
       const result = await response.json()
-      console.log('does the SEND MESSAGE system work?! ======', result)
+      // console.log('does the SEND MESSAGE system work?! ======', result)
       return result
     } catch (error) {
       console.error('ERROR SENDING A MESSAGE:', error)
     }
-    revalidatePath('/messages/[recepientUsername]', 'page')
+    // revalidatePath('/messages/[recepientUsername]', 'page')
   }
 
   return (
@@ -74,7 +74,13 @@ export default async function Recepient({
         </Suspense>
       </header>
 
-      <Room userData={userData} />
+      <Room
+        userData={userData}
+        recepientId={result.recepient.user_uid}
+        directMessages={result.directMessages}
+        sendMessage={sendMessage}
+        bearerToken={bearerToken}
+      />
 
       {/* <div className='flex-1 overflow-y-scroll px-4'>
         <div className='flex my-4 cursor-pointer'>

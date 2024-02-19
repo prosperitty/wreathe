@@ -58,7 +58,10 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       }
       // console.log(result)
       const newAccesstoken = result.accessToken
-      result.userData ? setUserData(result.userData) : setUserData(null)
+      //bug in server code where refresh token i set as json stringify must be parsed
+      result.userData
+        ? setUserData(JSON.parse(result.userData))
+        : setUserData(null)
       newAccesstoken ? setAccessToken(newAccesstoken) : setAccessToken(null)
     } catch (error) {
       console.error('ERROR REFRESHING TOKEN:', error)

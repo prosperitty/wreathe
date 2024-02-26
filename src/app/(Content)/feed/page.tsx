@@ -3,8 +3,14 @@ import Content from './components/Content'
 import Header from './components/Header'
 import Link from 'next/link'
 import Image from 'next/image'
+import UserList from '../components/UserList'
 
-export default async function Feed() {
+export default async function Feed({
+  searchParams,
+}: {
+  searchParams?: { query: string }
+}) {
+  const query = searchParams?.query || ''
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')
   const bearerToken = `Bearer ${accessToken?.value}`
@@ -75,8 +81,12 @@ export default async function Feed() {
   } else {
     return (
       <>
-        <Header />
-        {result.message}
+        <Header>
+          <div className='relative w-full rounded-md'>
+            <UserList query={query} />
+          </div>
+        </Header>
+
         <Content feedData={result.threads} bearerToken={bearerToken} />
       </>
     )

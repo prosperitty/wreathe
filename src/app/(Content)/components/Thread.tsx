@@ -99,7 +99,7 @@ export default function Thread(props: Props) {
             scroll={false}
           >
             <Image
-              src='/next.svg'
+              src='/undraw_profile_pic.svg'
               className='rounded-full border border-gray-500'
               alt='profile picture'
               layout='fill'

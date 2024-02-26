@@ -45,7 +45,7 @@ export default function MobileNav() {
         </div>
       </a> */}
       <Link
-        href='/feed'
+        href='/search'
         className='flex flex-grow items-center justify-center p-2 text-gray-500 hover:text-indigo-500 dark:text-white'
       >
         <div className='text-center'>
@@ -56,7 +56,7 @@ export default function MobileNav() {
         </div>
       </Link>
       <Link
-        href={profileURL}
+        href='/messages'
         className='flex flex-grow items-center justify-center p-2 text-gray-500 hover:text-indigo-500 dark:text-white'
       >
         <div className='text-center'>

@@ -21,16 +21,16 @@ export default async function UserList({ query }: { query: string }) {
   return (
     <ul
       id='user-list'
-      className='absolute w-full z-30'
+      className='absolute w-full z-30 transition ease-in-out'
       aria-labelledby='userList'
     >
       {searchedUsers.map((user: UserData) => (
         <li
           key={user.user_uid}
-          className=' hover:bg-violet-500 bg-gray-600 transition'
+          className='rounded-md hover:bg-violet-500 bg-gray-900 border border-gray-600 divide-y divide-gray-600 transition'
         >
           <Link href={`/users/${user.user_uid}`} scroll={false}>
-            <div className='flex items-start justify-between rouned-md p-2'>
+            <div className='flex items-start justify-between p-2'>
               <div className='flex gap-3'>
                 <Image
                   src='/undraw_profile_pic.svg'

@@ -15,7 +15,6 @@ interface UserData {
 
 export default async function SearchList({ query }: { query: string }) {
   const result = await fetchSearchedUsers(query)
-  console.log(result, 'query=====================')
   const searchedUsers = result.searchedUsers ? result.searchedUsers : []
 
   return (

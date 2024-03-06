@@ -60,7 +60,7 @@ export default function Header(props: Props) {
       <Link href={`${Username}/settings`}>
         <button
           type='button'
-          className='text-white bg-gradient-to-br from-[#9B6BFF] to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4'
+          className='text-white bg-gradient-to-br from-[#9B6BFF] to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center my-2'
         >
           Edit Profile
         </button>
@@ -74,7 +74,7 @@ export default function Header(props: Props) {
         <button
           onClick={follow}
           type='button'
-          className='text-white bg-gradient-to-br from-[#9B6BFF] to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4'
+          className='text-white bg-gradient-to-br from-[#9B6BFF] to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center my-2'
         >
           Follow
         </button>
@@ -84,7 +84,7 @@ export default function Header(props: Props) {
         <button
           onClick={unfollow}
           type='button'
-          className='text-white bg-gradient-to-br from-[#9B6BFF] to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4'
+          className='text-white bg-gradient-to-br from-[#9B6BFF] to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center my-2'
         >
           Unfollow
         </button>
@@ -128,7 +128,7 @@ export default function Header(props: Props) {
         {/* <button
           onClick={follow}
           type='button'
-          className='text-white bg-gradient-to-br from-[#9B6BFF] to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4'
+          className='text-white bg-gradient-sm#] to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mt-4'
         >
           Follow
         </button> */}
@@ -143,14 +143,14 @@ export default function Header(props: Props) {
       <div className='flex flex-row flex-wrap text-center py-2 my-4'>
         <div className='basis-1/3 leading-5'>
           <h4 className='text-gray-200 text-sm'>Posts</h4>
-          <h2 className='py-2 text-xl font-semibold'>
+          <h2 className='py-2 text-xl font-semibold dark:text-[#9B6BFF] transition delay-100'>
             <Suspense fallback={'--'}>{props.posts}</Suspense>
           </h2>
         </div>
         <div className='basis-1/3 leading-5'>
           <Link href={`${Username}/followers`}>
             <h4 className='text-gray-200 text-sm'>Followers</h4>
-            <h2 className='py-2 text-xl font-semibold'>
+            <h2 className='py-2 text-xl font-semibold hover:text-[#9B6BFF] transition delay-100'>
               <Suspense fallback={'--'}>{props.followers.length}</Suspense>
             </h2>
           </Link>
@@ -158,7 +158,7 @@ export default function Header(props: Props) {
         <div className='basis-1/3 leading-5'>
           <Link href={`${Username}/following`}>
             <h4 className='text-gray-200 text-sm'>Following</h4>
-            <h2 className='py-2 text-xl font-semibold'>
+            <h2 className='py-2 text-xl font-semibold hover:text-[#9B6BFF] transition delay-100'>
               <Suspense fallback={'--'}>{props.following.length}</Suspense>
             </h2>
           </Link>

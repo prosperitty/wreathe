@@ -8,7 +8,7 @@ import { Suspense } from 'react'
 export default function Sidebar() {
   return (
     <>
-      <SidebarButton />
+      {/* <SidebarButton /> */}
       <aside
         id='logo-sidebar'
         className='fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0'

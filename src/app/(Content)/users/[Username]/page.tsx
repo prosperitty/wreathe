@@ -1,8 +1,8 @@
 import { cookies } from 'next/headers'
 import Header from './components/Header'
-import Threads from './components/Threads'
 import { Suspense } from 'react'
 import ThreadSkeleton from '../../components/ThreadSkeleton'
+import Tabs from './components/Tabs'
 
 export default async function Username({
   params,
@@ -53,7 +53,7 @@ export default async function Username({
           </>
         }
       >
-        <Threads
+        <Tabs
           profileThreads={profileThreads}
           profileComments={profileComments}
           profileLikes={allLikes}

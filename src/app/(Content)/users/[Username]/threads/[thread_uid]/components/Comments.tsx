@@ -45,9 +45,5 @@ export default function CommentsSection(props) {
     }
   }, [userData])
 
-  return (
-    <section className='mt-12'>
-      <ul>{commentList}</ul>
-    </section>
-  )
+  return <ul>{commentList}</ul>
 }

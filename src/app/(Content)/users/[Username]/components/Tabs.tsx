@@ -14,7 +14,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Threads(props) {
+export default function Tabs(props) {
   const [threads, setThreads] = useState([])
   const [comments, setComments] = useState([])
   const [likes, setLikes] = useState([])
@@ -164,7 +164,7 @@ export default function Threads(props) {
               className={({ selected }) =>
                 classNames(
                   'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700 dark:text-white',
-                  'ring-white/60 ring-offset-2 ring-offset-amber-200 focus:outline-none focus:ring-0',
+                  'ring-white/60 ring-offset-2 ring-offset-[#9B6BFF] focus:outline-none focus:ring-0',
                   selected
                     ? 'bg-[#9B6BFF] shadow'
                     : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'

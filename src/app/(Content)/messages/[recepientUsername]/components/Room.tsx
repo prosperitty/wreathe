@@ -24,9 +24,6 @@ export default function Room({
   bearerToken,
 }) {
   const [chat, setChat] = useState<SocketMessage[]>([])
-  const [connectionMessage, setConnectionMessage] = useState<SocketMessage[]>(
-    []
-  )
   const [pendingChat, setPendingChat] = useState('')
   const [message, setMessage] = useState('')
   const [messageList, setMessageList] = useState<React.JSX.Element[]>([])

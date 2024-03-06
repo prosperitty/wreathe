@@ -8,7 +8,7 @@ The technology used to build the client-side are Next.js(App router), TailwindCS
 
 This project was built to test my abilities in building full stack apps with modern technologies. After building projects with MERN stack technology, I researched modern technologies and found that Next.js(React Framework), TailwindCSS(CSS Framework), Typescript(Javascript Typechecker), Postgresql(Database), Prisma(ORM), Express(Node.js Framework), and other technologies, are among the most popular modern web development technologies in 2024. Building this project has taught me a vast amount of information on building applications in modern times.
 
-Some learning takeaways:
+#### Some learning takeaways:
 
 - Server Side Rendering
 - Client Side Rendering
@@ -44,7 +44,7 @@ I want to continue to build on top of this app to hopefully, in the future, appl
 
 I considered the authentication the app would need along with allowing authenticated users to post content similar to tweets. Furthermore, users would have the ability to interact with these posts by liking, commenting, viewing the post, and choosing which posts to view based on their following. The timeline was based on most recent posts, however, I have yet to still learn about applying **_Lazy Loading_** to the feed.
 
-Some features I implemented:
+#### Some features I implemented:
 
 - Ensuring the content filled the height of the screen in case there was just one post on the feed
 - Scroll to top function
@@ -53,7 +53,7 @@ Some features I implemented:
 - Post button
 - Utilizing Next.js Server Actions, Modals, Parallel routing, Intercepting Routes
 
-Todo:
+#### Todo:
 
 - I am considering moving the post button to the sidebar possibly, because it would allow the user to post from different routes. Currently, the only way to post would be from the feed page.
 - The current form pages to post content and comment need to be designed and styled.
@@ -64,13 +64,13 @@ Todo:
 
 The user page includes a user's content from their first name, last name, @name, bio, user's posts, likes, and replies. There is currently no profile image functionality. If an authenticated user is viewing their own profile page, they have the ability to edit their personal information by clicking the edit button. Otherwise, the user may follow or unfollow users to populate the feed with chosen followings of the user's choice. Furthermore, the profile page has analytics based on the number of posts, followings, or followers.
 
-Features:
+#### Features:
 
 - Following, unfollowing, and editing utilizes next.js server actions.
 - Scroll to top function is also applied here
 - Separate page to view the list of followings or followers of the user.
 
-Things to consider:
+#### Things to consider:
 
 - Should a new fetch request be fired when a tab is clicked or should we fetch all data related to user's posts, likes, and comments on render?
   - Would fetching a request when a tab is clicked scale better than fetching all the data on render?
@@ -84,7 +84,7 @@ Building this app involved learning about Websockets. I had thought about using 
 
 Although I learned to use the Websocket API, I had alot more questions such as, what was socket.io used for years ago? Does socket.io use websockets or not? What can socket.io be used for today? Overall, what are the differences between the websocket API and socket.io?
 
-The takeways of Websockets
+#### The takeways of Websockets
 
 - It can be used to open and connect browser and server
 - [MDN](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) provides a list of websocket tools
@@ -93,7 +93,7 @@ The takeways of Websockets
 - Opening chatrooms like twitch chat
 - [Javascript.info](https://javascript.info/websocket) provides valuable information on websockets
 
-Challenges:
+#### Challenges:
 
 - Websockets seemed fairly simple to learn but challenges arose when building with Next.js involving client-side rendering or server-side rendering. I had thought i could use server side rendering to build a realtime messaging feature, but I was just met with bugs in the end.
 - Realtime messaging can be achieved by transferring data between browser and server, but I had considered the best practice on saving messages while chatting.

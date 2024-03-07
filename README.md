@@ -100,12 +100,12 @@ Although I learned to use the Websocket API, I had alot more questions such as, 
   - Should we save after or before the message is sent?(Make a query to the database to save the message)
     - Saving a message before receiving from a websocket slowed down the realtime messaging while a fetch request was awaiting to be resolved to save the message to the database
     - Saving after solves this problem but then:
-      - What if the message fails to save to the DB?
-        - This would cause a bug where the end user can see the message if connected to the chatroom, but the message won't be shown when refreshing the page because it was not saved.
-        - A solution could be to continue to try and save the message on failure (i'm sure there's caveats to this)
-      - Do big social media apps like instagram or twitter have servers that are lightning fast to make the DM messaging almost realtime?
-        - Probably not worth considering this because alot of work and time was considered to make these apps work efficiently.
-        - My use case could be different depending on what the app requires
+  - What if the message fails to save to the DB?
+    - This would cause a bug where the end user can see the message if connected to the chatroom, but the message won't be shown when refreshing the page because it was not saved.
+    - A solution could be to continue to try and save the message on failure (i'm sure there's caveats to this)
+  - Do big social media apps like instagram or twitter have servers that are lightning fast to make the DM messaging almost realtime?
+    - Probably not worth considering this because alot of work and time was considered to make these apps work efficiently.
+    - My use case could be different depending on what the app requires
 
 ## Future Education
 

@@ -11,7 +11,9 @@ This project was built to test my abilities in building full stack apps with mod
 #### Some learning takeaways:
 
 - Server Side Rendering
+- Server Components
 - Client Side Rendering
+- Client Components
 - WebSockets(Websocket API/socket.io)
 - Typescipt
 - SQL
@@ -107,7 +109,7 @@ Although I learned to use the Websocket API, I had alot more questions such as, 
     - Probably not worth considering this because alot of work and time was considered to make these apps work efficiently.
     - My use case could be different depending on what the app requires
 
-## Future Education
+## Future Goals
 
 - Learn to test code with Jest and Playwright
 - Learn Unit, Integration, Functional tests
@@ -115,3 +117,4 @@ Although I learned to use the Websocket API, I had alot more questions such as, 
 - State management with zustand
 - Build an ecommerce page
 - Learn more Web APIs
+- Revisit Javascript Basics to refresh my knowledge

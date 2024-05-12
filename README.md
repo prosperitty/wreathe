@@ -1,5 +1,7 @@
 # Wreathe (Client)
 
+[Wreathe Server Repository](https://github.com/alex-lvl/wreathe-server)
+
 Wreathe is a social app specifically for market participants to discuss financial analysis and price action in markets. In this repository, contains the client-side code for the application
 
 The technology used to build the client-side are Next.js(App router), TailwindCSS, and Typescript.

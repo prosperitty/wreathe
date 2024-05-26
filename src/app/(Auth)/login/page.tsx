@@ -11,7 +11,7 @@ export default function Login() {
 
   useEffect(() => {
     if (accessToken) {
-      return router.push('/')
+      return router.push('/feed')
     }
   }, [accessToken, router])
 

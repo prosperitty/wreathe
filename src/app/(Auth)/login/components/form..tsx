@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { FormEventHandler } from 'react'
+import { signIn } from '@/app/lib/signIn'
 
 interface Props {
   handleSubmit: FormEventHandler<HTMLFormElement>
@@ -9,6 +10,7 @@ export default function Form(props: Props) {
   return (
     <form
       method="POST"
+      action={signIn}
       onSubmit={props.handleSubmit}
       className="col-span-12 lg:col-span-8 self-center p-14"
     >

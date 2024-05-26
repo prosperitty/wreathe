@@ -28,31 +28,31 @@ export default async function ThreadPage({ params }) {
   return (
     <>
       {/* <Header /> */}
-      <header className='h-16 px-2 sm:px-4'>
-        <h1 className='h-full flex justify-center items-center font-bold text-2xl'>
+      <header className="h-16 px-2 sm:px-4">
+        <h1 className="h-full flex justify-center items-center font-bold text-2xl">
           Thread
         </h1>
       </header>
-      <main className='px-2 sm:px-4'>
-        <ul className='overflow-y-auto'>
+      <main className="px-2 sm:px-4">
+        <ul className="overflow-y-auto">
           <Suspense fallback={<ThreadSkeleton />}>
             <Thread thread={thread} isLiked={isLike} />
           </Suspense>
         </ul>
       </main>
-      <section className='px-2 sm:px-4'>
-        <Link href='#' scroll={false}>
-          <button className='text-sm flex justify-evenly items-center rounded-md px-2 py-2 duration-150 bg-white hover:bg-gray-100 text-white bg-gradient-to-br from-[#9B6BFF] to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium text-center'>
+      <section className="px-2 sm:px-4">
+        <Link href="#" scroll={false}>
+          <button className="text-sm flex justify-evenly items-center rounded-md px-2 py-2 duration-150 bg-white hover:bg-gray-100 text-white bg-gradient-to-br from-[#9B6BFF] to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium text-center">
             <PencilSquareIcon
-              aria-label='Compose A Thread'
-              title='Compose A Thread'
-              className='w-6 h-6 mr-1 cursor-pointer'
+              aria-label="Compose A Thread"
+              title="Compose A Thread"
+              className="w-6 h-6 mr-1 cursor-pointer"
             />
             <span>Reply</span>
           </button>
         </Link>
-        <div className='py-4'>
-          <h1 className='h-full flex justify-center items-center font-bold text-2xl'>
+        <div className="py-4">
+          <h1 className="h-full flex justify-center items-center font-bold text-2xl">
             Comments
           </h1>
         </div>

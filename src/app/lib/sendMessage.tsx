@@ -16,7 +16,7 @@ export default async function sendMessage(recepientUsername: string) {
           Authorization: bearerToken,
           'Content-Type': 'application/json',
         },
-      }
+      },
     )
     if (!response.ok) {
       console.error('FAILED TO FOLLOW USER', response)

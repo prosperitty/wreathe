@@ -19,7 +19,7 @@ export default function RootLayout({
   modal: React.ReactNode
 }) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <AuthContextProvider>{children}</AuthContextProvider>
         {modal}

@@ -59,49 +59,49 @@ export default function Comment(props: Props) {
   }, [props.commentData.comment_timestamp])
 
   return (
-    <div className='border-gray-600 border rounded-md p-3'>
-      <p className='text-xs pb-2 text-yellow-400'>
+    <div className="border-gray-600 border rounded-md p-3">
+      <p className="text-xs pb-2 text-yellow-400">
         <span>Replying to: </span>
         <span>{`@${props.threadAuthor}`}</span>
       </p>
-      <div className='flex items-center space-x-4'>
-        <div className='relative h-12 w-12 z-20'>
+      <div className="flex items-center space-x-4">
+        <div className="relative h-12 w-12 z-20">
           <Link href={`/users/${props.commentData.author_ref}`}>
             <Image
-              src='/next.svg'
-              className='rounded-full border border-gray-500'
-              alt='profile picture'
-              layout='fill'
-              objectFit='contain'
+              src="/next.svg"
+              className="rounded-full border border-gray-500"
+              alt="profile picture"
+              layout="fill"
+              objectFit="contain"
               // width={35}
               // height={35}
             />
           </Link>
         </div>
-        <div className='relative font-medium dark:text-white z-20'>
+        <div className="relative font-medium dark:text-white z-20">
           <Link href={`/users/${props.commentData.author_ref}`}>
             <div>
               <span>{props.commentData.wreathe_user.first_name}</span>
               <span> </span>
               <span>{props.commentData.wreathe_user.last_name}</span>
             </div>
-            <div className='text-sm text-gray-500 dark:text-gray-400'>
+            <div className="text-sm text-gray-500 dark:text-gray-400">
               <span>@</span>
               <span>{props.commentData.wreathe_user.username}</span>
             </div>
           </Link>
         </div>
       </div>
-      <h3 className='relative py-4 text-sm font-medium leading-5 text-black dark:text-white'>
+      <h3 className="relative py-4 text-sm font-medium leading-5 text-black dark:text-white">
         {props.commentData.content}
       </h3>
 
-      <ul className='relative pt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500 z-20'>
+      <ul className="relative pt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500 z-20">
         {/* <li>{props.commentData.comment_timestamp}</li> */}
         <li>{date}</li>
         <li>&middot;</li>
-        <li className='cursor-pointer hover:text-yellow-400'>
-          <Link href='#'>{0} comments</Link>
+        <li className="cursor-pointer hover:text-yellow-400">
+          <Link href="#">{0} comments</Link>
         </li>
         <li>&middot;</li>
         {/* <LikeButton isLiked={props.isLiked} commentData={props.commentData} /> */}

@@ -15,7 +15,7 @@ export default function CommentsSection(props) {
         const isLiked = post.comment_likes.some(
           (like) =>
             like.user_uid === userData.user_uid &&
-            like.comment_uid === post.comment_uid
+            like.comment_uid === post.comment_uid,
         )
         console.log(isLiked)
         return (

@@ -25,7 +25,7 @@ export default async function Recepient({
       headers: {
         Authorization: bearerToken,
       },
-    }
+    },
   )
   const result = await response.json()
   console.log(result.directMessages)
@@ -45,7 +45,7 @@ export default async function Recepient({
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ content }),
-        }
+        },
       )
       // console.log(response)
       if (!response.ok) {
@@ -62,8 +62,8 @@ export default async function Recepient({
   }
 
   return (
-    <div className='h-screen flex flex-col'>
-      <header className='bg-gray-100 p-2 sm:p-4 text-gray-700 text-center flex-0 border-b border-gray-300 dark:border-gray-600 dark:text-white dark:bg-gray-800'>
+    <div className="h-screen flex flex-col">
+      <header className="bg-gray-100 p-2 sm:p-4 text-gray-700 text-center flex-0 border-b border-gray-300 dark:border-gray-600 dark:text-white dark:bg-gray-800">
         <Suspense fallback={'loading.....'}>
           <MessageHeader
             firstName={result.recepient.first_name}

@@ -19,7 +19,7 @@ export default [
     rules: {
       quotes: ['error', 'single'],
       indent: ['error', 2],
-      semi: ['error', 'never'],
+      // semi: ['error', 'never'],
       '@typescript-eslint/no-unused-vars': 'error',
       'import/no-unresolved': 'error',
     },

@@ -4,9 +4,7 @@ import Thread from '../../components/Thread'
 import ScrollToTopButton from '../../components/ScrollButton'
 import { Suspense } from 'react'
 import ThreadSkeleton from '../../components/ThreadSkeleton'
-import { cookies } from 'next/headers'
 import { useAuthContext } from '@/app/components/context'
-import { redirect } from 'next/dist/server/api-utils'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -23,7 +21,7 @@ export default function Content(props) {
         const isLiked = post.likes.some(
           (like) =>
             like.user_uid === userData.user_uid &&
-            like.thread_uid === post.thread_uid
+            like.thread_uid === post.thread_uid,
         )
         return <Thread key={post.thread_uid} isLiked={isLiked} thread={post} />
       })
@@ -49,9 +47,9 @@ export default function Content(props) {
 
   return (
     //overflow-y-auto was here replaced in layout
-    <main className='px-2 sm:px-4 h-full'>
+    <main className="px-2 sm:px-4 h-full">
       <ScrollToTopButton />
-      <ul className='overflow-y-auto'>
+      <ul className="overflow-y-auto">
         <Suspense
           fallback={
             <>

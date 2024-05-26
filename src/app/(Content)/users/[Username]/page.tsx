@@ -21,7 +21,7 @@ export default async function Username({
       headers: {
         Authorization: bearerToken,
       },
-    }
+    },
   )
   const result = await response.json()
   const {

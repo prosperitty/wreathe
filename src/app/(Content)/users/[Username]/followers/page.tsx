@@ -15,7 +15,7 @@ export default async function Followers({
       //WEIRD BUG WHERE IF YOU INCLUDE CREDENTIALS, IT DOES NOT POPULATE THE QUERY OF A PRISMA QUERY: INCLUDE FIELD
       // credentials: 'include', // Needed to include the cookie
       next: { revalidate: 0 },
-    }
+    },
   )
   const result = await response.json()
 

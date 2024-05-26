@@ -16,7 +16,7 @@ export default async function unFollowUser(userId: string) {
           Authorization: bearerToken,
           'Content-Type': 'application/json',
         },
-      }
+      },
     )
     if (!response.ok) {
       console.error('FAILED TO UNFOLLOW USER')

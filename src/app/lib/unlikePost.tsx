@@ -24,7 +24,7 @@ export default async function unlikePost(isLiked: boolean, url: string) {
     const result = await response.json()
     console.log(
       'does the unlike system work?! ========================= \n',
-      result
+      result,
     )
     return result
   } catch (error) {

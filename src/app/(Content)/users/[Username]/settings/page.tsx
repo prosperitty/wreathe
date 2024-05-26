@@ -23,7 +23,7 @@ export default async function Settings({
         Authorization: bearerToken,
       },
       next: { revalidate: 0 },
-    }
+    },
   )
   const result = await response.json()
   const { user } = result
@@ -61,7 +61,7 @@ export default async function Settings({
             bio,
             username,
           }),
-        }
+        },
       )
       if (response.ok) {
         const result = await response.json()
@@ -78,162 +78,162 @@ export default async function Settings({
   return (
     <>
       <Suspense fallback={<ThreadSkeleton />}>
-        <main className='p-4'>
-          <form className='max-w-sm mx-auto' action={saveNewCredentials}>
-            <div className='grid md:grid-cols-2 md:gap-6'>
-              <div className='relative z-0 w-full mb-5 group'>
+        <main className="p-4">
+          <form className="max-w-sm mx-auto" action={saveNewCredentials}>
+            <div className="grid md:grid-cols-2 md:gap-6">
+              <div className="relative z-0 w-full mb-5 group">
                 <input
-                  type='text'
-                  name='first-name'
-                  id='first-name'
+                  type="text"
+                  name="first-name"
+                  id="first-name"
                   defaultValue={`${user.first_name}`}
-                  placeholder='First Name'
+                  placeholder="First Name"
                   minLength={1}
                   maxLength={30}
-                  className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   required
                 />
                 <label
-                  htmlFor='first-name'
-                  className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
+                  htmlFor="first-name"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   First name
                 </label>
               </div>
-              <div className='relative z-0 w-full mb-5 group'>
+              <div className="relative z-0 w-full mb-5 group">
                 <input
-                  type='text'
-                  name='last-name'
-                  id='last-name'
+                  type="text"
+                  name="last-name"
+                  id="last-name"
                   defaultValue={`${user.last_name}`}
-                  placeholder='Last Name'
+                  placeholder="Last Name"
                   minLength={1}
                   maxLength={30}
-                  className='block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+                  className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   required
                 />
                 <label
-                  htmlFor='last-name'
-                  className='peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'
+                  htmlFor="last-name"
+                  className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
                   Last name
                 </label>
               </div>
             </div>
-            <div className='mb-5'>
+            <div className="mb-5">
               <label
-                htmlFor='email'
-                className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+                htmlFor="email"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Email
               </label>
               <input
-                type='email'
-                name='email'
-                id='email'
+                type="email"
+                name="email"
+                id="email"
                 defaultValue={`${user.email}`}
-                placeholder='Email'
+                placeholder="Email"
                 maxLength={100}
-                className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 required
               />
             </div>
-            <div className='mb-5'>
+            <div className="mb-5">
               <label
-                htmlFor='username'
-                className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+                htmlFor="username"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Username
               </label>
               <input
-                type='username'
-                name='username'
-                id='username'
+                type="username"
+                name="username"
+                id="username"
                 defaultValue={`${user.username}`}
-                placeholder='@'
+                placeholder="@"
                 minLength={1}
                 maxLength={50}
-                className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                 required
               />
             </div>
-            <div className='mb-5'>
+            <div className="mb-5">
               <label
-                htmlFor='new-password'
-                className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+                htmlFor="new-password"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 New Password
               </label>
               <input
-                type='password'
-                name='new-password'
-                id='password'
-                placeholder='New Password'
+                type="password"
+                name="new-password"
+                id="password"
+                placeholder="New Password"
                 minLength={1}
                 maxLength={100}
-                className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
               />
             </div>
-            <div className='mb-5'>
+            <div className="mb-5">
               <label
-                htmlFor='password'
-                className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+                htmlFor="password"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Verify Password
               </label>
               <input
-                type='password'
-                name='password'
-                id='repeat-password'
-                placeholder='Verify Password'
+                type="password"
+                name="password"
+                id="repeat-password"
+                placeholder="Verify Password"
                 minLength={1}
                 maxLength={100}
-                className='shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light'
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
               />
             </div>
-            <div className='mb-5'>
+            <div className="mb-5">
               <label
-                htmlFor='large-input'
-                className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
+                htmlFor="large-input"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Bio
               </label>
               <textarea
-                name='bio'
-                id='large-input'
+                name="bio"
+                id="large-input"
                 defaultValue={`${bioValue}`}
-                placeholder='Bio'
+                placeholder="Bio"
                 maxLength={150}
-                className='block w-full h-40 p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none'
+                className="block w-full h-40 p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 resize-none"
               />
             </div>
-            <div className='mb-5'>
+            <div className="mb-5">
               <label
-                className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'
-                htmlFor='avatar'
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                htmlFor="avatar"
               >
                 Upload Profile Picture
               </label>
               <input
-                aria-describedby='user_avatar_help'
-                id='avatar'
-                name='avatar'
-                type='file'
-                className='block w-full h-12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400'
+                aria-describedby="user_avatar_help"
+                id="avatar"
+                name="avatar"
+                type="file"
+                className="block w-full h-12 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
               />
             </div>
             <button
-              type='submit'
-              className='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+              type="submit"
+              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Save
             </button>
           </form>
 
-          <form className='max-w-sm mx-auto my-12'>
+          <form className="max-w-sm mx-auto my-12">
             <button
-              type='submit'
-              className='text-white bg-red-700 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-900 dark:focus:ring-red-800'
+              type="submit"
+              className="text-white bg-red-700 hover:bg-red-900 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-900 dark:focus:ring-red-800"
             >
               Delete Account
             </button>

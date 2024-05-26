@@ -43,7 +43,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   async function checkRefreshToken() {
     try {
-      const res = await fetch('http://localhost:8080/refresh-token', {
+      const res = await fetch('http://localhost:8080/logout/refresh-token', {
         method: 'POST',
         mode: 'cors',
         credentials: 'include', // Needed to include the cookie

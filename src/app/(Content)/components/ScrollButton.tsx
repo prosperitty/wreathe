@@ -29,7 +29,7 @@ const ScrollToTopButton = () => {
         isVisible ? 'opacity-100 z-30' : 'opacity-0 -z-10'
       }`}
     >
-      <ArrowUpIcon className='w-4 h-4 sm:w-7 sm:h-7' />
+      <ArrowUpIcon className="w-4 h-4 sm:w-7 sm:h-7" />
     </button>
   )
 }

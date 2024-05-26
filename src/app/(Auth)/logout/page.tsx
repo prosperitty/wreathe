@@ -1,5 +1,4 @@
 'use client'
-import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { useEffect } from 'react'
 // import { cookies } from 'next/headers'
@@ -39,14 +38,11 @@ export default function Logout() {
   //have to use client component to logout, next js probably provides a way to logout with a server component
   useEffect(() => {
     const fetchLogOut = async () => {
-      const response = await fetch(
-        'http://localhost:8080/refresh-token/logout',
-        {
-          method: 'POST',
-          mode: 'cors',
-          credentials: 'include', // Needed to include the cookie
-        }
-      )
+      const response = await fetch('http://localhost:8080/logout', {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'include', // Needed to include the cookie
+      })
       if (!response.ok) return undefined
       console.log(response)
       return response.json()

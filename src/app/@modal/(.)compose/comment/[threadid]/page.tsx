@@ -24,7 +24,7 @@ export default async function ComposeComment({ params }) {
           method: 'POST',
           headers: reqHeader,
           body: JSON.stringify({ content }),
-        }
+        },
       )
       if (response.ok) {
         const result = await response.json()

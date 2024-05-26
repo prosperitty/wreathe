@@ -10,10 +10,10 @@ export default function UserLayout({
 }) {
   return (
     //USED TO BE PADDING BOTTOM-16 HERE
-    <div className='bg-white dark:bg-gray-900 sm:pb-0'>
+    <div className="bg-white dark:bg-gray-900 sm:pb-0">
       <Sidebar />
-      <div className='sm:ml-64 h-full min-h-screen'>
-        <div className='max-w-2xl mx-auto'>{children}</div>
+      <div className="sm:ml-64 h-full min-h-screen">
+        <div className="max-w-2xl mx-auto">{children}</div>
       </div>
       <MobileNav />
     </div>

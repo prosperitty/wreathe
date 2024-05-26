@@ -57,7 +57,7 @@ export default function Room({
             roomId: newRoomId,
             userId: userData.user_uid,
             recepientId,
-          })
+          }),
         )
       }
       scrollToBottom()
@@ -128,7 +128,7 @@ export default function Room({
             'Content-Type': 'application/json',
           },
           body: jsonData,
-        }
+        },
       )
       // console.log(response)
       if (!response.ok) {
@@ -144,7 +144,7 @@ export default function Room({
             recepientId,
             roomId,
             content: message,
-          })
+          }),
         )
         setMessage('')
       }
@@ -190,30 +190,30 @@ export default function Room({
 
   return (
     <>
-      <div id='chatbox' className='flex-1 overflow-y-scroll px-4'>
+      <div id="chatbox" className="flex-1 overflow-y-scroll px-4">
         <Messages directMessages={directMessages} userId={userData.user_uid} />
         {messageList}
       </div>
 
-      <footer className='bg-gray-100 text-black border-t border-gray-300 dark:border-gray-600 px-2 pb-3 pt-2 mb-12 sm:p-4 sm:mb-0 flex-0 w-full dark:text-white dark:bg-gray-800'>
+      <footer className="bg-gray-100 text-black border-t border-gray-300 dark:border-gray-600 px-2 pb-3 pt-2 mb-12 sm:p-4 sm:mb-0 flex-0 w-full dark:text-white dark:bg-gray-800">
         <form
           action={sendMessage}
           onSubmit={sendMessageSocket}
-          className='flex items-center'
+          className="flex items-center"
         >
           <input
-            name='content'
-            type='text'
+            name="content"
+            type="text"
             maxLength={1000}
-            placeholder='Type a message...'
-            className='w-full p-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500 dark:bg-slate-700'
+            placeholder="Type a message..."
+            className="w-full p-2 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500 dark:bg-slate-700"
             required
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
           <button
-            type='submit'
-            className='bg-[#9B6BFF] text-white px-4 py-2 rounded-md ml-2'
+            type="submit"
+            className="bg-[#9B6BFF] text-white px-4 py-2 rounded-md ml-2"
           >
             Send
           </button>

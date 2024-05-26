@@ -1,17 +1,12 @@
-'use client'
-import Image from 'next/image'
-import {
-  ArrowLeftOnRectangleIcon,
-  MagnifyingGlassIcon,
-  PencilSquareIcon,
-} from '@heroicons/react/24/outline'
-import Link from 'next/link'
-import Search from '../../messages/components/Search'
-import UserList from '../../components/UserList'
+'use client';
+import Image from 'next/image';
+import { PencilSquareIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import Search from '../../messages/components/Search';
 
 const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
 export default function Header({ children }) {
   return (
@@ -49,5 +44,5 @@ export default function Header({ children }) {
         </Link>
       </div>
     </header>
-  )
+  );
 }

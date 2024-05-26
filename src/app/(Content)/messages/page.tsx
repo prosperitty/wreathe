@@ -13,7 +13,7 @@ export default async function Messages({
 }: {
   searchParams?: { query: string }
 }) {
-  const query = searchParams?.query || ''
+  const query = searchParams?.query ?? ''
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')
   const user = cookieStore.get('userData')
@@ -31,17 +31,11 @@ export default async function Messages({
   // console.log(result.inboxList)
   // console.log(await fetchSearchedUsers(query))
 
-  async function searchUsername(formData: FormData) {
-    'use server'
-    const query = formData.get('searchQuery')
-    redirect(`/messages/${query}`)
-  }
-
   return (
-    <div className='h-screen flex flex-col'>
-      <header className='flex flex-col bg-gray-100 p-3 text-gray-700 flex-0 border-b border-l border-r border-gray-300 dark:border-gray-600 dark:text-white dark:bg-gray-800'>
-        <h1 className='text-center text-2xl font-bold pb-3'>Inbox</h1>
-        <search className='relative'>
+    <div className="h-screen flex flex-col">
+      <header className="flex flex-col bg-gray-100 p-3 text-gray-700 flex-0 border-b border-l border-r border-gray-300 dark:border-gray-600 dark:text-white dark:bg-gray-800">
+        <h1 className="text-center text-2xl font-bold pb-3">Inbox</h1>
+        <search className="relative">
           <Search />
           <Suspense fallback={'loading.....'}>
             <SearchList query={query} />
@@ -49,7 +43,7 @@ export default async function Messages({
         </search>
       </header>
 
-      <section className='flex-0 sm:overflow-y-hidden sm:hover:overflow-y-scroll w-full border-x border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800'>
+      <section className="flex-0 sm:overflow-y-hidden sm:hover:overflow-y-scroll w-full border-x border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800">
         <ul>
           {result.inbox.map((item) => (
             <InboxItem key={item.message_uid} item={item} userData={userData} />

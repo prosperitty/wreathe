@@ -14,7 +14,7 @@ type AccessToken = string | null
 
 interface ResponseData {
   accessToken: string
-  userData: UserData
+  userData: string
   error: string
 }
 
@@ -30,6 +30,7 @@ interface IAuthContext {
   accessToken: string | null
   setAccessToken: Dispatch<SetStateAction<AccessToken>>
   userData: UserData | null
+  setUserData: Dispatch<SetStateAction<UserData | null>>
   isLoading: boolean
   setIsLoading: Dispatch<SetStateAction<boolean>>
 }
@@ -56,7 +57,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
         console.error('FAILED TO FETCH REFRESH TOKEN API ENDPOINT')
         throw new Error(result.error)
       }
-      // console.log(result)
       const newAccesstoken = result.accessToken
       //bug in server code where refresh token i set as json stringify must be parsed
       result.userData
@@ -76,7 +76,14 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AuthContext.Provider
-      value={{ accessToken, setAccessToken, userData, isLoading, setIsLoading }}
+      value={{
+        accessToken,
+        setAccessToken,
+        userData,
+        setUserData,
+        isLoading,
+        setIsLoading,
+      }}
     >
       {children}
     </AuthContext.Provider>

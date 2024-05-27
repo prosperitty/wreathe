@@ -7,7 +7,7 @@ import { FormEvent, useEffect } from 'react'
 
 export default function Login() {
   const router = useRouter()
-  const { accessToken, setAccessToken } = useAuthContext()
+  const { accessToken, setAccessToken, setUserData } = useAuthContext()
 
   useEffect(() => {
     if (accessToken) {
@@ -41,7 +41,8 @@ export default function Login() {
 
     if (result.accessToken) {
       setAccessToken(result.accessToken)
-      return console.log('result accessToken has been set')
+      setUserData(result.userData)
+      return router.push('/feed')
     } else {
       return console.log(result.error)
     }

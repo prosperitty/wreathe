@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Search from './components/Search'
 import { pages } from 'next/dist/build/templates/app-page'
 import SearchList from './components/SearchList'
+import searchUsername from '@/app/lib/searchUsername'
 // import { Suspense } from 'react'
 
 export default async function Messages({
@@ -36,7 +37,7 @@ export default async function Messages({
       <header className="flex flex-col bg-gray-100 p-3 text-gray-700 flex-0 border-b border-l border-r border-gray-300 dark:border-gray-600 dark:text-white dark:bg-gray-800">
         <h1 className="text-center text-2xl font-bold pb-3">Inbox</h1>
         <search className="relative">
-          <Search />
+          <Search action={searchUsername} />
           <Suspense fallback={'loading.....'}>
             <SearchList query={query} />
           </Suspense>

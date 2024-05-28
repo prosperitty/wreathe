@@ -4,7 +4,7 @@ import searchUsername from '@/app/lib/searchUsername'
 import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 import { useDebouncedCallback } from 'use-debounce'
 
-export default function Search() {
+export default function Search({ action }) {
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const { replace } = useRouter()
@@ -21,7 +21,7 @@ export default function Search() {
   }, 300)
 
   return (
-    <form autoComplete="off" action={searchUsername}>
+    <form autoComplete="off" action={action}>
       <input
         className="rounded-md p-2 text-center bg-gray-100 transition duration-200 focus:text-start focus:outline-none focus:ring-2 w-full dark:bg-gray-600 "
         type="search"

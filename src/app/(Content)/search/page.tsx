@@ -5,6 +5,7 @@ import Search from '../messages/components/Search'
 import UserList from '../feed/components/UserList'
 import { Suspense } from 'react'
 import ThreadSkeleton from '../components/ThreadSkeleton'
+import { searchProfile } from '@/app/lib/searchUsername'
 
 export default function Page({
   searchParams,
@@ -54,7 +55,7 @@ export default function Page({
         </div>
 
         <search className="w-full mx-6 flex-1">
-          <Search />
+          <Search action={searchProfile} />
         </search>
 
         <div className="flex">

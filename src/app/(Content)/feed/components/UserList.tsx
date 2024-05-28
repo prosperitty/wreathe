@@ -15,37 +15,36 @@ interface UserData {
 
 export default async function UserList({ query }: { query: string }) {
   const result = query ? await fetchSearchedUsers(query) : null
-  console.log(result, 'query=====================')
   const searchedUsers = result ? result.searchedUsers : []
 
   return (
     <ul
-      id='user-list'
-      className='absolute w-full z-30 transition ease-in-out'
-      aria-labelledby='userList'
+      id="user-list"
+      className="absolute w-full z-30 transition ease-in-out"
+      aria-labelledby="userList"
     >
       {searchedUsers.map((user: UserData) => (
         <li
           key={user.user_uid}
-          className='rounded-md hover:bg-violet-500 bg-gray-900 border border-gray-600 divide-y divide-gray-600 transition'
+          className="rounded-md hover:bg-violet-500 bg-gray-900 border border-gray-600 divide-y divide-gray-600 transition"
         >
           <Link href={`/users/${user.user_uid}`} scroll={false}>
-            <div className='flex items-start justify-between p-2'>
-              <div className='flex gap-3'>
+            <div className="flex items-start justify-between p-2">
+              <div className="flex gap-3">
                 <Image
-                  src='/undraw_profile_pic.svg'
-                  className='flex-none w-11 h-11 rounded-full'
-                  alt='profile picture and dropdown'
+                  src="/undraw_profile_pic.svg"
+                  className="flex-none w-11 h-11 rounded-full"
+                  alt="profile picture and dropdown"
                   width={100}
                   height={100}
-                  sizes=''
+                  sizes=""
                 />
                 <div>
-                  <div className='text-sm text-gray-700 font-semibold dark:text-white'>
+                  <div className="text-sm text-gray-700 font-semibold dark:text-white">
                     <span>{user.first_name}</span>
                     <span>{user.last_name}</span>
                   </div>
-                  <div className='text-sm text-gray-600 dark:text-gray-400'>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">
                     <span>@</span>
                     <span>{user.username}</span>
                   </div>

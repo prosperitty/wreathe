@@ -41,7 +41,7 @@ export default async function ThreadPage({ params }) {
         </ul>
       </main>
       <section className="px-2 sm:px-4">
-        <Link href="#" scroll={false}>
+        <Link href={`/compose/comment/${params.thread_uid}`} scroll={false}>
           <button className="text-sm flex justify-evenly items-center rounded-md px-2 py-2 duration-150 bg-white hover:bg-gray-100 text-white bg-gradient-to-br from-[#9B6BFF] to-orange-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800 font-medium text-center">
             <PencilSquareIcon
               aria-label="Compose A Thread"

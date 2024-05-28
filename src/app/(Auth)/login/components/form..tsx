@@ -19,9 +19,8 @@ export default function Form(props: Props) {
           Log in to Wreathe
         </h1>
         <h3>
-          Don&#39;t an account?
+          Don&#39;t an account?{' '}
           <Link href="/register" className="font-bold text-sky-500">
-            {' '}
             Register Here
           </Link>
         </h3>

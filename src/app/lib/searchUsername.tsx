@@ -4,7 +4,11 @@ import { fetchSearchedUsers } from './fetchSearchedUsers'
 
 export default async function searchUsername(formData: FormData) {
   const query = formData.get('query')
-  redirect(`/messages/${query}`)
+  const result = query ? await fetchSearchedUsers(query.toString()) : null
+  if (result.searchedUsers.length !== 0) {
+    const { username } = result.searchedUsers[0]
+    username ? redirect(`/messages/${username}`) : 'no user found'
+  }
 }
 
 export async function searchProfile(formData: FormData) {

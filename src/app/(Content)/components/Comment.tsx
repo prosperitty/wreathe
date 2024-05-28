@@ -97,7 +97,6 @@ export default function Comment(props: Props) {
       </h3>
 
       <ul className="relative pt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500 z-20">
-        {/* <li>{props.commentData.comment_timestamp}</li> */}
         <li>{date}</li>
         <li>&middot;</li>
         <li className="cursor-pointer hover:text-yellow-400">

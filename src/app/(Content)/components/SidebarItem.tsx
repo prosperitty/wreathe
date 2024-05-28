@@ -1,13 +1,6 @@
 'use client'
-import { AuthContext, useAuthContext } from '@/app/components/context'
+import { useAuthContext } from '@/app/components/context'
 import Link from 'next/link'
-import { use, useContext, useEffect } from 'react'
-
-interface Props {
-  href: string
-  icon: string
-  navName: string
-}
 
 export default function SidebarItem() {
   const { userData, isLoading } = useAuthContext()

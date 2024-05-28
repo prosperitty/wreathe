@@ -28,6 +28,7 @@ export default function LikeButton(props) {
         console.log(result)
       } catch (error) {
         console.error('FAILED TO LIKE POST', error)
+        throw error
       } finally {
         setLikes(likes + 1)
         setIsLiked(true)
@@ -41,6 +42,7 @@ export default function LikeButton(props) {
         console.log(result)
       } catch (error) {
         console.error('FAILED TO UNLIKE POST', error)
+        throw error
       } finally {
         setLikes(likes - 1)
         setIsLiked(false)

@@ -90,4 +90,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   )
 }
 
-export const useAuthContext = () => useContext<IAuthContext | null>(AuthContext)
+export const useAuthContext = () => {
+  const context = useContext<IAuthContext | null>(AuthContext)
+  if (!context) throw new Error('auth context is null')
+  return context
+}

@@ -1,9 +1,11 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useAuthContext } from './context'
+import { useRouter } from 'next/navigation'
 
 const navigation = [
   { name: 'Home', href: '#home' },
@@ -11,6 +13,15 @@ const navigation = [
 ]
 
 export default function Nav() {
+  const router = useRouter()
+  const { accessToken } = useAuthContext()
+
+  useEffect(() => {
+    if (accessToken) {
+      return router.push('/feed')
+    }
+  }, [accessToken, router])
+
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (

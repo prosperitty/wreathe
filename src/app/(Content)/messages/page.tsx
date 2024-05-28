@@ -1,13 +1,9 @@
 import { cookies } from 'next/headers'
 import InboxItem from './components/InboxItem'
-import { redirect } from 'next/navigation'
 import { Suspense } from 'react'
-import Image from 'next/image'
 import Search from './components/Search'
-import { pages } from 'next/dist/build/templates/app-page'
 import SearchList from './components/SearchList'
 import searchUsername from '@/app/lib/searchUsername'
-// import { Suspense } from 'react'
 
 export default async function Messages({
   searchParams,

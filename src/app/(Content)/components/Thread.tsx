@@ -5,7 +5,6 @@ import { Transition } from '@headlessui/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fragment, useEffect, useState } from 'react'
-import { useAuthContext } from '@/app/components/context'
 import likePost from '@/app/lib/likePost'
 import unlikePost from '@/app/lib/unlikePost'
 import timeAgo from '@/app/lib/timeAgo'
@@ -65,7 +64,7 @@ export default function Thread(props: Props) {
       try {
         const result = await likePost(
           isLiked,
-          `http://localhost:8080/users/${props.thread.wreathe_user.user_uid}/threads/${props.thread.thread_uid}/likes`
+          `http://localhost:8080/users/${props.thread.wreathe_user.user_uid}/threads/${props.thread.thread_uid}/likes`,
         )
         console.log(result)
       } catch (error) {
@@ -78,7 +77,7 @@ export default function Thread(props: Props) {
       try {
         const result = await unlikePost(
           isLiked,
-          `http://localhost:8080/users/${props.thread.wreathe_user.user_uid}/threads/${props.thread.thread_uid}/unlike`
+          `http://localhost:8080/users/${props.thread.wreathe_user.user_uid}/threads/${props.thread.thread_uid}/unlike`,
         )
         console.log(result)
       } catch (error) {
@@ -91,25 +90,25 @@ export default function Thread(props: Props) {
   }
 
   return (
-    <li className='relative border-gray-600 border rounded-md p-3 my-3 over:bg-gray-100 dark:hover:bg-white/[0.12]'>
-      <div className='flex items-center space-x-4'>
-        <div className='relative h-12 w-12 z-20'>
+    <li className="relative border-gray-600 border rounded-md p-3 my-3 over:bg-gray-100 dark:hover:bg-white/[0.12]">
+      <div className="flex items-center space-x-4">
+        <div className="relative h-12 w-12 z-20">
           <Link
             href={`/users/${props.thread.wreathe_user.user_uid}`}
             scroll={false}
           >
             <Image
-              src='/undraw_profile_pic.svg'
-              className='rounded-full border border-gray-500'
-              alt='profile picture'
-              layout='fill'
-              objectFit='contain'
+              src="/undraw_profile_pic.svg"
+              className="rounded-full border border-gray-500"
+              alt="profile picture"
+              layout="fill"
+              objectFit="contain"
               // width={35}
               // height={35}
             />
           </Link>
         </div>
-        <div className='relative font-medium dark:text-white z-20'>
+        <div className="relative font-medium dark:text-white z-20">
           <Link
             href={`/users/${props.thread.wreathe_user.user_uid}`}
             scroll={false}
@@ -119,22 +118,21 @@ export default function Thread(props: Props) {
               <span> </span>
               <span>{props.thread.wreathe_user.last_name}</span>
             </div>
-            <div className='text-sm text-gray-500 dark:text-gray-400'>
+            <div className="text-sm text-gray-500 dark:text-gray-400">
               <span>@</span>
               <span>{props.thread.wreathe_user.username}</span>
             </div>
           </Link>
         </div>
       </div>
-      <h3 className='relative py-4 text-sm font-medium leading-5 text-black dark:text-white'>
+      <h3 className="relative py-4 text-sm font-medium leading-5 text-black dark:text-white">
         {props.thread.content}
       </h3>
 
-      <ul className='relative pt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500 z-20'>
-        {/* <li>{props.thread.thread_timestamp}</li> */}
+      <ul className="relative pt-1 flex space-x-1 text-xs font-normal leading-4 text-gray-500 z-20">
         <li>{date}</li>
         <li>&middot;</li>
-        <li className='cursor-pointer hover:text-yellow-400'>
+        <li className="cursor-pointer hover:text-yellow-400">
           <Link
             href={`/compose/comment/${props.thread.thread_uid}`}
             scroll={false}
@@ -143,39 +141,39 @@ export default function Thread(props: Props) {
           </Link>
         </li>
         <li>&middot;</li>
-        <li className='cursor-pointer hover:text-yellow-400 flex items-center'>
-          <span className='mr-1'>{likes} </span>
+        <li className="cursor-pointer hover:text-yellow-400 flex items-center">
+          <span className="mr-1">{likes} </span>
           <span>likes</span>
         </li>
-        <li className='hover:text-yellow-400'>
-          <div className='absolute right-0 flex items-center'>
+        <li className="hover:text-yellow-400">
+          <div className="absolute right-0 flex items-center">
             <button
               onClick={handleLikeButton}
-              className='w-4 h-4 flex overflow-hidden relative'
+              className="w-4 h-4 flex overflow-hidden relative"
             >
               <Transition
                 as={Fragment}
                 show={isLiked}
-                enter='transition-opacity duration-200 ease-in-out'
-                enterFrom='opacity-0'
-                enterTo='opacity-100'
-                leave='transition-opacity duration-100 ease-in-out'
-                leaveFrom='opacity-100'
-                leaveTo='opacity-0'
+                enter="transition-opacity duration-200 ease-in-out"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition-opacity duration-100 ease-in-out"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
               >
-                <HeartIconSolid className='text-yellow-400 absolute' />
+                <HeartIconSolid className="text-yellow-400 absolute" />
               </Transition>
               <Transition
                 as={Fragment}
                 show={!isLiked}
-                enter='transition-opacity duration-200 ease-linear'
-                enterFrom='opacity-0'
-                enterTo='opacity-100'
-                leave='transition-opacity duration-100 ease-linear'
-                leaveFrom='opacity-100'
-                leaveTo='opacity-0'
+                enter="transition-opacity duration-200 ease-linear"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition-opacity duration-100 ease-linear"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
               >
-                <HeartIconOutline className='absolute' />
+                <HeartIconOutline className="absolute" />
               </Transition>
             </button>
           </div>
@@ -184,7 +182,7 @@ export default function Thread(props: Props) {
 
       <Link
         href={`/users/${props.thread.wreathe_user.user_uid}/threads/${props.thread.thread_uid}`}
-        className='absolute inset-0 rounded-md ring-blue-400 focus:z-10 focus:outline-none focus:ring-2'
+        className="absolute inset-0 rounded-md ring-blue-400 focus:z-10 focus:outline-none focus:ring-2"
         scroll={false}
       />
     </li>

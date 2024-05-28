@@ -1,4 +1,3 @@
-// import { postComment } from '@/app/(Content)/compose/comment/[threadid]/page'
 import ComposeForm from '@/app/(Content)/compose/components/ComposeForm'
 import { redirect } from 'next/navigation'
 import Modal from '@/app/components/Modal'
@@ -6,6 +5,8 @@ import { cookies } from 'next/headers'
 import { revalidatePath } from 'next/cache'
 
 export default async function ComposeComment({ params }) {
+  //=====I THINK I COULDNT PASS PARAMS TO THIS SERVER ACTION SO I KEPT IT IN THIS FILE =====
+  //=====NEXT JS MIGHT PROVIDE A METHOD TO ADD MORE METHODS TO A SERVER ACTION =====
   async function postComment(formData: FormData) {
     'use server'
     const cookieStore = cookies()
@@ -36,8 +37,8 @@ export default async function ComposeComment({ params }) {
       console.error(err, 'FAILED TO POST COMMENT')
     }
 
-    revalidatePath(`http://localhost:3000/compose/comment/${params.threadid}`)
-    redirect(`http://localhost:3000/feed`)
+    revalidatePath(`/users/threads`)
+    redirect(`/feed`)
   }
 
   return (

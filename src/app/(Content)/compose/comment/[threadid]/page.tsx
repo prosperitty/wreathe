@@ -32,10 +32,11 @@ export default async function ComposeCommentPage({ params }) {
     } catch (err) {
       console.log(err)
       console.error(err, 'FAILED TO POST COMMENT')
+      throw err
     }
 
-    revalidatePath(`http://localhost:3000/compose/comment/${params.threadid}`)
-    redirect(`http://localhost:3000/feed`)
+    revalidatePath(`/feed`)
+    redirect(`/feed`)
   }
 
   return (

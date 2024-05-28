@@ -27,10 +27,11 @@ export async function postThread(formData: FormData) {
     }
   } catch (error) {
     console.log(error)
+    throw error
   }
 
   revalidatePath('/feed')
-  // redirect('http://localhost:3000/feed')
+  redirect('/feed')
 }
 
 export default async function ComposeThreadPage() {

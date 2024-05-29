@@ -2,12 +2,13 @@
 import timeAgo from '@/app/lib/timeAgo'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 
 interface Props {
   commentData: Comment
   threadAuthor: string
   isLiked: boolean
+  likeButton: ReactElement
 }
 
 interface Thread {

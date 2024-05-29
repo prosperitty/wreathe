@@ -1,6 +1,6 @@
 import ComposeForm from '@/app/(Content)/compose/components/ComposeForm'
 import Modal from '@/app/components/Modal'
-import { postThread } from '@/app/(Content)/compose/thread/page'
+import postThread from '@/app/lib/submitThread'
 
 export default async function ComposeThread() {
   // async function postThread(formData: FormData) {

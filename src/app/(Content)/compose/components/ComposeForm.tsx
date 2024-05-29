@@ -1,15 +1,9 @@
 'use client'
-import React, { FormEvent, useEffect, useState } from 'react'
-import { useFormStatus } from 'react-dom'
+import React, { FormEvent, useState } from 'react'
 
 export default function ComposeForm({ postContent }) {
-  const { pending } = useFormStatus()
   // const router = useRouter()
   let [characterCount, setCharacterCount] = useState(0)
-
-  useEffect(() => {
-    console.log('PENDING==============', { pending })
-  }, [pending])
 
   function handleCharacterCount(e: FormEvent<HTMLTextAreaElement>) {
     let text = (e.target as HTMLTextAreaElement).value
@@ -56,7 +50,7 @@ export default function ComposeForm({ postContent }) {
           <span>{characterCount}</span>
           <span>/</span>
           <span>250</span>
-          <span className="px-2">{pending}</span>
+          {/* <span className="px-2">{pending}</span> */}
         </div>
       </div>
     </form>

@@ -1,21 +1,26 @@
 'use client'
 import React, { FormEvent, useState } from 'react'
 
-export default function ComposeForm({ postContent }) {
+export default function ComposeForm({
+  postContent,
+}: {
+  postContent: (formData: FormData) => unknown
+}) {
   // const router = useRouter()
   let [characterCount, setCharacterCount] = useState(0)
 
   function handleCharacterCount(e: FormEvent<HTMLTextAreaElement>) {
-    let text = (e.target as HTMLTextAreaElement).value
-    let count = (e.target as HTMLTextAreaElement).value.length
+    const event = e.target as HTMLTextAreaElement
+    let text = event.value
+    let count = event.value.length
     setCharacterCount(count)
 
     if (text.trim() === '') {
       console.log('EMPTY START')
-      e.target.setCustomValidity('Text cannot start with an empty space')
+      event.setCustomValidity('Text cannot start with an empty space')
     } else {
       // If the condition is not met, reset custom validity and clear error message
-      e.target.setCustomValidity('')
+      event.setCustomValidity('')
     }
   }
 

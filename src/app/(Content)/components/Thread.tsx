@@ -57,7 +57,7 @@ export default function Thread(props: Props) {
     }
     const formattedDate = timeAgo(props.thread.thread_timestamp)
     setDate(formattedDate)
-  }, [])
+  }, [props])
 
   const handleLikeButton = async () => {
     if (!isLiked) {

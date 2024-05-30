@@ -2,12 +2,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 interface Props {
-  // firstName: string
-  // lastName: string
+  firstName: string
+  lastName: string
   username: string
+  recepientId: string
 }
 
-export default function MessageHeader(props) {
+export default function MessageHeader(props: Props) {
   return (
     <>
       <div className="flex items-center justify-center">

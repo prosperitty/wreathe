@@ -2,6 +2,23 @@ import ThreadSkeleton from '@/app/(Content)/components/ThreadSkeleton'
 import UserCard from '@/app/(Content)/components/UserCard'
 import { Suspense } from 'react'
 
+interface Following {
+  user_uid: string
+  first_name: string
+  last_name: string
+  email: string | null
+  username: string
+  user_password: string
+  bio: string | null
+  refresh_token: string | null
+}
+
+interface APIResponse {
+  success: boolean
+  message: string
+  following: Following
+}
+
 export default async function Following({
   params,
 }: {
@@ -17,7 +34,7 @@ export default async function Following({
       next: { revalidate: 0 },
     },
   )
-  const result = await response.json()
+  const result: APIResponse = await response.json()
 
   console.log(result.following)
 

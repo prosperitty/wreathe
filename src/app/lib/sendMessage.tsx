@@ -1,6 +1,12 @@
 'use server'
 import { cookies } from 'next/headers'
 
+interface APIResponse {
+  success: boolean
+  message: string
+  directMessage: Message
+}
+
 export default async function sendMessage(recepientUsername: string) {
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')
@@ -22,7 +28,7 @@ export default async function sendMessage(recepientUsername: string) {
       console.error('FAILED TO FOLLOW USER', response)
       throw new Error('FAILED TO FOLLOW USER')
     }
-    const result = await response.json()
+    const result: APIResponse = await response.json()
     console.log('does the SEND MESSAGE system work?! ======', result)
     return result
   } catch (error) {

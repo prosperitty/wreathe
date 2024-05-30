@@ -5,9 +5,8 @@ import Link from 'next/link'
 import { ReactElement, useEffect, useState } from 'react'
 
 interface Props {
-  commentData: Comment
+  commentData: CommentData
   threadAuthor: string
-  isLiked: boolean
   likeButton: ReactElement
 }
 

@@ -6,14 +6,19 @@ import { Suspense } from 'react'
 import ThreadSkeleton from '../../components/ThreadSkeleton'
 import { useAuthContext } from '@/app/components/context'
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
+// function classNames(...classes: string[]) {
+//   return classes.filter(Boolean).join(' ')
+// }
+
+interface Props {
+  feedData: Array<ThreadData>
+  bearerToken: string
 }
 
-export default function Content(props) {
-  const [refreshing, setRefreshing] = useState(false)
-  const [feedData, setFeedData] = useState([])
-  const { userData, isLoading, accessToken } = useAuthContext()
+export default function Content(props: Props) {
+  // const [refreshing, setRefreshing] = useState(false)
+  const [feedData, setFeedData] = useState<JSX.Element[]>([])
+  const { userData } = useAuthContext()
 
   useEffect(() => {
     if (userData) {
@@ -27,22 +32,22 @@ export default function Content(props) {
       })
       setFeedData(feed1)
     }
-    const handleRefresh = () => {
-      // Add your refresh logic here
-      // For example, you can fetch new data from an API
+    // const handleRefresh = () => {
+    //   // Add your refresh logic here
+    //   // For example, you can fetch new data from an API
 
-      // Simulate an asynchronous operation (remove this in real implementation)
-      setRefreshing(true)
-      setTimeout(() => {
-        setRefreshing(false)
-      }, 1500)
-    }
+    //   // Simulate an asynchronous operation (remove this in real implementation)
+    //   setRefreshing(true)
+    //   setTimeout(() => {
+    //     setRefreshing(false)
+    //   }, 1500)
+    // }
 
-    window.addEventListener('scroll', handleRefresh)
+    // window.addEventListener('scroll', handleRefresh)
 
-    return () => {
-      window.removeEventListener('scroll', handleRefresh)
-    }
+    // return () => {
+    //   window.removeEventListener('scroll', handleRefresh)
+    // }
   }, [userData])
 
   return (

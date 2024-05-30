@@ -12,8 +12,8 @@ interface Props {
   username: string
   firstName: string
   lastName: string
-  following: Array<any>
-  followers: Array<any>
+  following: Array<Follower>
+  followers: Array<Follower>
   posts: number
   bio: string
   isFollowing: boolean
@@ -21,8 +21,8 @@ interface Props {
 
 export default function Header(props: Props) {
   const { userData } = useAuthContext()
-  const { Username } = useParams()
-  const [followEditBtn, setFollowEditBtn] = useState<JsxElement>()
+  const { Username }: { Username: string } = useParams()
+  const [followEditBtn, setFollowEditBtn] = useState<JSX.Element>()
   const [isFollowing] = useState(props.isFollowing)
 
   useEffect(() => {

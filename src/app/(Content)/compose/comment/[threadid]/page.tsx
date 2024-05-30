@@ -3,7 +3,11 @@ import { redirect } from 'next/navigation'
 import ComposeForm from '../../components/ComposeForm'
 import { revalidatePath } from 'next/cache'
 
-export default async function ComposeCommentPage({ params }) {
+export default async function ComposeCommentPage({
+  params,
+}: {
+  params: { threadid: string }
+}) {
   async function postComment(formData: FormData) {
     'use server'
     const cookieStore = cookies()

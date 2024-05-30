@@ -10,7 +10,7 @@ import unlikePost from '@/app/lib/unlikePost'
 import timeAgo from '@/app/lib/timeAgo'
 
 interface Props {
-  thread: thread
+  thread: ThreadData
   isLiked: boolean
 }
 

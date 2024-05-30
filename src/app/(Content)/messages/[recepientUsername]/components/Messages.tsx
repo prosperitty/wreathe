@@ -2,7 +2,12 @@ import Image from 'next/image'
 import SenderMessage from './SenderMessage'
 import RecepientMessage from './RecepientMessage'
 
-export default function Messages(props) {
+interface Props {
+  directMessages: Array<Message>
+  userId: string
+}
+
+export default function Messages(props: Props) {
   const recepientMessages = props.directMessages.map((message, index) => {
     if (message.sender_ref === props.userId) {
       return (

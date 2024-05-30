@@ -1,10 +1,15 @@
 import { cookies } from 'next/headers'
-import Image from 'next/image'
 import { Suspense } from 'react'
 import MessageHeader from './components/Header'
-import Messages from './components/Messages'
-import { revalidatePath } from 'next/cache'
 import Room from './components/Room'
+
+interface APIResponse {
+  success: boolean
+  message: string
+  directMessages: Array<Message>
+  recepient: UserData
+  userId: string
+}
 
 export default async function Recepient({
   params,
@@ -13,8 +18,8 @@ export default async function Recepient({
 }) {
   const cookieStore = cookies()
   const user = cookieStore.get('userData')
-  const userData = JSON.parse(user?.value)
   const accessToken = cookieStore.get('accessToken')
+  const userData = user ? JSON.parse(user?.value) : null
   const bearerToken = `Bearer ${accessToken?.value}`
   const response = await fetch(
     `http://localhost:8080/messages/${params.recepientUsername}`,
@@ -27,7 +32,7 @@ export default async function Recepient({
       },
     },
   )
-  const result = await response.json()
+  const result: APIResponse = await response.json()
   console.log(result.directMessages)
 
   async function sendMessage(formData: FormData) {

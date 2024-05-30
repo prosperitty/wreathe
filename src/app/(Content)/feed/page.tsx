@@ -24,7 +24,7 @@ export default async function Feed({
       'Content-Type': 'application/json',
     },
   })
-  const result = await response.json()
+  const result: { threads: Array<ThreadData> } = await response.json()
 
   if (!result.threads || !accessToken) {
     return (

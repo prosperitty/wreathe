@@ -1,4 +1,4 @@
-export default function timeAgo(postTimestamp: string) {
+export default function timeAgo(postTimestamp: Date) {
   // Convert the post timestamp to a Date object
   const postDate = new Date(postTimestamp)
 

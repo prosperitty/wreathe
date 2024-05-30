@@ -9,7 +9,7 @@ const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
-export default function Header({ children }) {
+export default function Header({ children }: { children: React.ReactNode }) {
   return (
     <header className="sticky top-0 px-2 sm:px-4 py-3 flex dark:bg-gray-900  justify-between items-center z-30">
       <Image

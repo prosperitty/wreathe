@@ -1,5 +1,4 @@
 'use client'
-
 import { Suspense, useEffect, useState } from 'react'
 import { Tab } from '@headlessui/react'
 import Thread from '../../../components/Thread'
@@ -8,16 +7,26 @@ import ThreadSkeleton from '@/app/(Content)/components/ThreadSkeleton'
 import Comment from '@/app/(Content)/components/Comment'
 import { useAuthContext } from '@/app/components/context'
 import LikeButton from '@/app/(Content)/components/LikeButton'
-import { useParams } from 'next/navigation'
+
+interface AllLikes {
+  thread: Likes[]
+  comment: CommentLikes[]
+}
+
+interface Props {
+  profileThreads: Array<ThreadData>
+  profileComments: Array<CommentData>
+  profileLikes: any
+}
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Tabs(props) {
-  const [threads, setThreads] = useState([])
-  const [comments, setComments] = useState([])
-  const [likes, setLikes] = useState([])
+export default function Tabs(props: Props) {
+  const [threads, setThreads] = useState<Array<JSX.Element>>([])
+  const [comments, setComments] = useState<Array<JSX.Element>>([])
+  const [likes, setLikes] = useState<Array<JSX.Element>>([])
   const { userData } = useAuthContext()
   let [categories] = useState({
     Threads: [...props.profileThreads],
@@ -37,7 +46,7 @@ export default function Tabs(props) {
     }
   }, [userData])
 
-  const setProfileFeed = (user) => {
+  const setProfileFeed = (user: UserData | null) => {
     if (user) {
       const profileFeed = categories.Threads.map((post) => {
         const isLiked = post.likes.some(
@@ -56,7 +65,7 @@ export default function Tabs(props) {
     }
   }
 
-  const setCommentFeed = (user) => {
+  const setCommentFeed = (user: UserData | null) => {
     if (user) {
       const commentFeed = props.profileComments.map((post) => {
         const isLiked = post.comment_likes.some(
@@ -91,12 +100,12 @@ export default function Tabs(props) {
     }
   }
 
-  const setLikeFeed = (user) => {
+  const setLikeFeed = (user: UserData | null) => {
     if (user) {
-      const likeFeed = props.profileLikes.map((post) => {
+      const likeFeed = props.profileLikes.map((post: Likes & CommentLikes) => {
         if (post.thread_uid) {
           const isLiked = post.thread.likes.some(
-            (like) =>
+            (like: Likes) =>
               like.user_uid === user.user_uid &&
               like.thread_uid === post.thread.thread_uid,
           )
@@ -127,7 +136,7 @@ export default function Tabs(props) {
       })
       setLikes(likeFeed)
     } else {
-      const likeFeed = props.profileLikes.map((post) => {
+      const likeFeed = props.profileLikes.map((post: Likes & CommentLikes) => {
         if (post.thread_uid) {
           return (
             <Thread

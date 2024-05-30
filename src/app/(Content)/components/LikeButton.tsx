@@ -7,7 +7,12 @@ import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid'
 import { useParams } from 'next/navigation'
 import { Fragment, useEffect, useState } from 'react'
 
-export default function LikeButton(props) {
+interface Props {
+  isLiked: boolean
+  commentData: CommentData
+}
+
+export default function LikeButton(props: Props) {
   const [likes, setLikes] = useState(props.commentData.comment_likes.length)
   const [isLiked, setIsLiked] = useState(false)
   const { Username, thread_uid } = useParams()

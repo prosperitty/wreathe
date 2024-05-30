@@ -8,7 +8,11 @@ import Thread from '@/app/(Content)/components/Thread'
 import Link from 'next/link'
 import { PencilSquareIcon } from '@heroicons/react/24/outline'
 
-export default async function ThreadPage({ params }) {
+export default async function ThreadPage({
+  params,
+}: {
+  params: { Username: string; thread_uid: string }
+}) {
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')
   const bearerToken = `Bearer ${accessToken?.value}`

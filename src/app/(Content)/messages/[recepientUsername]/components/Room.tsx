@@ -1,11 +1,18 @@
 'use client'
-import { useAuthContext } from '@/app/components/context'
 import React, { useEffect, useState } from 'react'
 import Messages from './Messages'
 import { useParams } from 'next/navigation'
 import SenderMessage from './SenderMessage'
 import RecepientMessage from './RecepientMessage'
 // import { Socket, io } from 'socket.io-client'
+
+interface Props {
+  userData: UserCookie
+  recepientId: string
+  directMessages: Array<Message>
+  sendMessage: (formData: FormData) => unknown
+  bearerToken: string
+}
 
 interface SocketMessage {
   userId: string
@@ -22,7 +29,7 @@ export default function Room({
   directMessages,
   sendMessage,
   bearerToken,
-}) {
+}: Props) {
   const [chat, setChat] = useState<SocketMessage[]>([])
   const [pendingChat, setPendingChat] = useState('')
   const [message, setMessage] = useState('')

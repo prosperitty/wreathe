@@ -2,17 +2,6 @@ import { fetchSearchedUsers } from '@/app/lib/fetchSearchedUsers'
 import Image from 'next/image'
 import Link from 'next/link'
 
-interface UserData {
-  user_uid: string
-  first_name: string
-  last_name: string
-  email: string | null
-  username: string
-  user_password: string
-  bio: string | null
-  refresh_token: string | null
-}
-
 export default async function UserList({ query }: { query: string }) {
   const result = query ? await fetchSearchedUsers(query) : null
   const searchedUsers = result ? result.searchedUsers : []

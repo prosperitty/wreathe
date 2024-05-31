@@ -4,11 +4,6 @@ import { Suspense } from 'react'
 import ThreadSkeleton from '../../components/ThreadSkeleton'
 import Tabs from './components/Tabs'
 
-interface AllLikes {
-  thread: ThreadData[]
-  comment: CommentData[]
-}
-
 export default async function Username({
   params,
 }: {

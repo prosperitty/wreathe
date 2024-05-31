@@ -5,6 +5,13 @@ import Search from './components/Search'
 import SearchList from './components/SearchList'
 import searchUsername from '@/app/lib/searchUsername'
 
+interface APIResponse {
+  success: boolean
+  message: string
+  inbox: Array<Message>
+  inboxList: Array<Message>
+}
+
 export default async function Messages({
   searchParams,
 }: {
@@ -24,7 +31,7 @@ export default async function Messages({
       Authorization: bearerToken,
     },
   })
-  const result = await response.json()
+  const result: APIResponse = await response.json()
   // console.log(result.inboxList)
   // console.log(await fetchSearchedUsers(query))
 

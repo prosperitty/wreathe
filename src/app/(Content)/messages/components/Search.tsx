@@ -1,10 +1,12 @@
 'use client'
-
-import searchUsername from '@/app/lib/searchUsername'
 import { usePathname, useSearchParams, useRouter } from 'next/navigation'
 import { useDebouncedCallback } from 'use-debounce'
 
-export default function Search({ action }) {
+export default function Search({
+  action,
+}: {
+  action: (formData: FormData) => unknown
+}) {
   const searchParams = useSearchParams()
   const pathname = usePathname()
   const { replace } = useRouter()

@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import SenderMessage from './SenderMessage'
 import RecepientMessage from './RecepientMessage'
 

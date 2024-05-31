@@ -2,21 +2,21 @@ import ThreadSkeleton from '@/app/(Content)/components/ThreadSkeleton'
 import UserCard from '@/app/(Content)/components/UserCard'
 import { Suspense } from 'react'
 
-interface Following {
-  user_uid: string
-  first_name: string
-  last_name: string
-  email: string | null
-  username: string
-  user_password: string
-  bio: string | null
-  refresh_token: string | null
-}
+// interface Following {
+//   user_uid: string
+//   first_name: string
+//   last_name: string
+//   email: string | null
+//   username: string
+//   user_password: string
+//   bio: string | null
+//   refresh_token: string | null
+// }
 
 interface APIResponse {
   success: boolean
   message: string
-  following: Following
+  following: Array<UserData>
 }
 
 export default async function Following({

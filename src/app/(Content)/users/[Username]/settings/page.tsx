@@ -1,4 +1,5 @@
 import ThreadSkeleton from '@/app/(Content)/components/ThreadSkeleton'
+import { revalidatePath } from 'next/cache'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { Suspense } from 'react'
@@ -72,7 +73,8 @@ export default async function Settings({
       console.error(err, 'FAILED TO POST COMMENT')
     }
 
-    redirect(`http://localhost:3000/users/${params.Username}`)
+    revalidatePath(`/users/${params.Username}`)
+    redirect(`/users/${params.Username}`)
   }
 
   return (

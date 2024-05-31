@@ -2,12 +2,16 @@
 import Comment from '@/app/(Content)/components/Comment'
 import LikeButton from '@/app/(Content)/components/LikeButton'
 import { useAuthContext } from '@/app/components/context'
-import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
-export default function CommentsSection(props) {
+interface Props {
+  comments: Array<CommentData>
+  threadAuthor: string
+}
+
+export default function CommentsSection(props: Props) {
   let { userData } = useAuthContext()
-  let [commentList, setCommentList] = useState([])
+  let [commentList, setCommentList] = useState<JSX.Element[]>([])
 
   useEffect(() => {
     if (userData) {

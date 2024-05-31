@@ -6,7 +6,7 @@ export default function timeAgo(postTimestamp: Date) {
   const currentDate = new Date()
 
   // Calculate the difference in milliseconds
-  const timeDifference = currentDate - postDate
+  const timeDifference = currentDate.valueOf() - postDate.valueOf()
 
   // Calculate seconds, minutes, and hours
   const seconds = Math.floor(timeDifference / 1000)

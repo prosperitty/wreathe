@@ -1,6 +1,10 @@
 import Image from 'next/image'
 
-export default function SenderMessage({ message }) {
+export default function SenderMessage({
+  message,
+}: {
+  message: { content: string }
+}) {
   return (
     <div className="flex justify-end my-4">
       <div className="flex max-w-96 bg-indigo-500 text-white rounded-lg p-3 gap-3">

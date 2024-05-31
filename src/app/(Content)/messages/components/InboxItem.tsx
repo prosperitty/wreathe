@@ -2,7 +2,12 @@ import timeAgo from '@/app/lib/timeAgo'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function InboxItem(props) {
+interface Props {
+  item: Message
+  userData: UserData
+}
+
+export default function InboxItem(props: Props) {
   const formattedDate = timeAgo(props.item.message_timestamp)
   const recepientName =
     props.item.sender.user_uid === props.userData.user_uid

@@ -14,7 +14,7 @@ export default function CommentsSection(props: Props) {
   let [commentList, setCommentList] = useState<JSX.Element[]>([])
 
   useEffect(() => {
-    if (userData) {
+    if (userData !== null) {
       const commentList = props.comments.map((post) => {
         const isLiked = post.comment_likes.some(
           (like) =>
@@ -47,7 +47,7 @@ export default function CommentsSection(props: Props) {
       })
       setCommentList(commentList)
     }
-  }, [userData])
+  }, [props.comments, props.threadAuthor, userData])
 
   return <ul>{commentList}</ul>
 }

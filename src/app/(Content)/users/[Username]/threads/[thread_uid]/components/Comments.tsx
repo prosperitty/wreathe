@@ -13,14 +13,6 @@ export default function CommentsSection(props: Props) {
   const { userData } = useAuthContext()
   const [commentList, setCommentList] = useState<JSX.Element[]>([])
 
-  useEffect(() => {
-    if (userData) {
-      setCommentList(personalizedComments)
-    } else {
-      setCommentList(comments)
-    }
-  }, [props.comments, props.threadAuthor, userData])
-
   const personalizedComments = props.comments.map((post) => {
     const isLiked = userData
       ? post.comment_likes.some(
@@ -52,6 +44,14 @@ export default function CommentsSection(props: Props) {
       </li>
     )
   })
+
+  useEffect(() => {
+    if (userData) {
+      setCommentList(personalizedComments)
+    } else {
+      setCommentList(comments)
+    }
+  }, [userData, comments, personalizedComments])
 
   return <ul>{commentList}</ul>
 }

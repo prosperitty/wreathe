@@ -28,7 +28,7 @@ export default function Register() {
     })
     const jsonData = JSON.stringify(data)
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}register`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/register`, {
       method: 'POST',
       mode: 'cors',
       credentials: 'include', // Needed to include the cookie

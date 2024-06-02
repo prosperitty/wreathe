@@ -13,7 +13,7 @@ export default async function Username({
   const accessToken = cookieStore.get('accessToken')
   const bearerToken = `Bearer ${accessToken?.value}`
   const response = await fetch(
-    `http://localhost:8080/users/${params.Username}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/users/${params.Username}`,
     {
       method: 'GET',
       mode: 'cors',

@@ -60,11 +60,12 @@ export default function Thread(props: Props) {
   }, [props])
 
   const handleLikeButton = async () => {
+    const apiURL = process.env.NEXT_PUBLIC_API_URL
     if (!isLiked) {
       try {
         const result = await likePost(
           isLiked,
-          `http://localhost:8080/users/${props.thread.wreathe_user.user_uid}/threads/${props.thread.thread_uid}/likes`,
+          `${apiURL}/users/${props.thread.wreathe_user.user_uid}/threads/${props.thread.thread_uid}/likes`,
         )
         console.log(result)
       } catch (error) {
@@ -77,7 +78,7 @@ export default function Thread(props: Props) {
       try {
         const result = await unlikePost(
           isLiked,
-          `http://localhost:8080/users/${props.thread.wreathe_user.user_uid}/threads/${props.thread.thread_uid}/unlike`,
+          `${apiURL}/users/${props.thread.wreathe_user.user_uid}/threads/${props.thread.thread_uid}/unlike`,
         )
         console.log(result)
       } catch (error) {

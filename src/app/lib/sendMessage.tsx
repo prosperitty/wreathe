@@ -13,7 +13,7 @@ export default async function sendMessage(recepientUsername: string) {
   const bearerToken = `Bearer ${accessToken?.value}`
   try {
     const response = await fetch(
-      `http://localhost:8080/messages/${recepientUsername}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/messages/${recepientUsername}`,
       {
         method: 'POST',
         mode: 'cors',

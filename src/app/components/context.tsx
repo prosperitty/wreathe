@@ -44,14 +44,17 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
 
   async function checkRefreshToken() {
     try {
-      const res = await fetch('http://localhost:8080/logout/refresh-token', {
-        method: 'POST',
-        mode: 'cors',
-        credentials: 'include', // Needed to include the cookie
-        headers: {
-          'Content-Type': 'application/json',
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/logout/refresh-token`,
+        {
+          method: 'POST',
+          mode: 'cors',
+          credentials: 'include', // Needed to include the cookie
+          headers: {
+            'Content-Type': 'application/json',
+          },
         },
-      })
+      )
       const result: ResponseData = await res.json()
       if (!res.ok) {
         console.error('FAILED TO FETCH REFRESH TOKEN API ENDPOINT')

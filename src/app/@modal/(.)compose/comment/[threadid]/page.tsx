@@ -39,7 +39,7 @@ export default async function ComposeComment({
 
     try {
       const response = await fetch(
-        `http://localhost:8080/compose/comment/${params.threadid}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/compose/comment/${params.threadid}`,
         {
           method: 'POST',
           headers: reqHeader,
@@ -76,7 +76,7 @@ export default async function ComposeComment({
 //   //   'use server'
 //   //   const content = formData.get('content')
 
-//   //   const response = await fetch(`http://localhost:8080/compose/comment`, {
+//   //   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/compose/comment`, {
 //   //     method: 'POST',
 //   //     headers: {
 //   //       'Content-Type': 'application/json',

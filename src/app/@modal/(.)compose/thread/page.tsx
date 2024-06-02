@@ -7,7 +7,7 @@ export default async function ComposeThread() {
   //   'use server'
   //   const content = formData.get('content')
 
-  //   const response = await fetch(`http://localhost:8080/compose/thread`, {
+  //   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/compose/thread`, {
   //     method: 'POST',
   //     headers: {
   //       'Content-Type': 'application/json',

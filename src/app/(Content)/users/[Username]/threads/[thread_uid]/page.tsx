@@ -16,7 +16,7 @@ export default async function ThreadPage({
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')
   const bearerToken = `Bearer ${accessToken?.value}`
-  const API_URL = `http://localhost:8080/users/${params.Username}/threads/${params.thread_uid}`
+  const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/users/${params.Username}/threads/${params.thread_uid}`
   const response = await fetch(API_URL, {
     method: 'GET',
     mode: 'cors',

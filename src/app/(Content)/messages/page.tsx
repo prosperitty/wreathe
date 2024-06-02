@@ -23,7 +23,7 @@ export default async function Messages({
   const user = cookieStore.get('userData')
   const userData = user ? JSON.parse(user.value) : undefined
   const bearerToken = `Bearer ${accessToken?.value}`
-  const response = await fetch(`http://localhost:8080/messages`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/messages`, {
     method: 'GET',
     mode: 'cors',
     credentials: 'include', // Needed to include the cookie

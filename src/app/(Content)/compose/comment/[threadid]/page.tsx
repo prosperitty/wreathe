@@ -21,7 +21,7 @@ export default async function ComposeCommentPage({
 
     try {
       const response = await fetch(
-        `http://localhost:8080/compose/comment/${params.threadid}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/compose/comment/${params.threadid}`,
         {
           method: 'POST',
           headers: reqHeader,

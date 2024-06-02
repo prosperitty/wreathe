@@ -28,7 +28,7 @@ export default function Login() {
     })
     const jsonData = JSON.stringify(data)
 
-    const res = await fetch('http://localhost:8080/login', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
       method: 'POST',
       mode: 'cors',
       credentials: 'include', // Needed to include the cookie

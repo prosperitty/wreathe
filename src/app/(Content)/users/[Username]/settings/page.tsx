@@ -13,7 +13,7 @@ export default async function Settings({
   const accessToken = cookieStore.get('accessToken')
   const bearerToken = `Bearer ${accessToken?.value}`
   const response = await fetch(
-    `http://localhost:8080/users/${params.Username}/settings`,
+    `${process.env.NEXT_PUBLIC_API_URL}/users/${params.Username}/settings`,
     {
       method: 'GET',
       mode: 'cors',
@@ -50,7 +50,7 @@ export default async function Settings({
 
     try {
       const response = await fetch(
-        `http://localhost:8080/users/${params.Username}/settings`,
+        `${process.env.NEXT_PUBLIC_API_URL}/users/${params.Username}/settings`,
         {
           method: 'POST',
           headers: reqHeader,

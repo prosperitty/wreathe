@@ -11,11 +11,14 @@ export default async function postComment(formData: FormData) {
     'Content-Type': 'application/json',
   }
 
-  const response = await fetch(`http://localhost:8080/compose/comment`, {
-    method: 'POST',
-    headers: reqHeader,
-    body: JSON.stringify({ content }),
-  })
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/compose/comment`,
+    {
+      method: 'POST',
+      headers: reqHeader,
+      body: JSON.stringify({ content }),
+    },
+  )
 
   const result = await response.json()
   console.log('this should work for thwe comment route page ====', result)

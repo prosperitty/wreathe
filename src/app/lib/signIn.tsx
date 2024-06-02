@@ -8,7 +8,7 @@ export async function signIn(formData: FormData) {
   const username = formData.get('username')
   const password = formData.get('password')
   try {
-    const response = await fetch('http://localhost:8080/login', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
       method: 'POST',
       mode: 'cors',
       credentials: 'include', // Needed to include the cookie

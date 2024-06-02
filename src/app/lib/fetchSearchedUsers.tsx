@@ -2,7 +2,7 @@
 
 export async function fetchSearchedUsers(query: string) {
   try {
-    const response = await fetch(`http://localhost:8080/search`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/search`, {
       method: 'POST',
       headers: {
         // Authorization: bearerToken,

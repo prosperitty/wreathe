@@ -27,11 +27,14 @@ export default async function postThread(formData: FormData) {
   }
 
   try {
-    const response = await fetch(`http://localhost:8080/compose/thread`, {
-      method: 'POST',
-      headers: reqHeader,
-      body: JSON.stringify({ content }),
-    })
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/compose/thread`,
+      {
+        method: 'POST',
+        headers: reqHeader,
+        body: JSON.stringify({ content }),
+      },
+    )
     if (response.ok) {
       const result: APIResponse = await response.json()
       console.log('this should work from the route page ====', result)

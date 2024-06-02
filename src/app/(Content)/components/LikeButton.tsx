@@ -24,11 +24,12 @@ export default function LikeButton(props: Props) {
   }, [])
 
   const handleLikeButton = async () => {
+    const apiURL = process.env.NEXT_PUBLIC_API_URL
     if (!isLiked) {
       try {
         const result = await likePost(
           isLiked,
-          `http://localhost:8080/users/${Username}/threads/${thread_uid}/comments/${props.commentData.comment_uid}/like`,
+          `${apiURL}/users/${Username}/threads/${thread_uid}/comments/${props.commentData.comment_uid}/like`,
         )
         console.log(result)
       } catch (error) {
@@ -42,7 +43,7 @@ export default function LikeButton(props: Props) {
       try {
         const result = await unlikePost(
           isLiked,
-          `http://localhost:8080/users/${Username}/threads/${thread_uid}/comments/${props.commentData.comment_uid}/unlike`,
+          `${apiURL}/users/${Username}/threads/${thread_uid}/comments/${props.commentData.comment_uid}/unlike`,
         )
         console.log(result)
       } catch (error) {

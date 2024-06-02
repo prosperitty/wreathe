@@ -25,7 +25,7 @@ export default async function Followers({
   params: { Username: string }
 }) {
   const response = await fetch(
-    `http://localhost:8080/users/${params.Username}/followers`,
+    `${process.env.NEXT_PUBLIC_API_URL}/users/${params.Username}/followers`,
     {
       method: 'GET',
       mode: 'cors',

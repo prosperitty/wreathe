@@ -7,7 +7,7 @@ export default async function unFollowUser(userId: string) {
   const bearerToken = `Bearer ${accessToken?.value}`
   try {
     const response = await fetch(
-      `http://localhost:8080/users/${userId}/unfollow`,
+      `${process.env.NEXT_PUBLIC_API_URL}/users/${userId}/unfollow`,
       {
         method: 'POST',
         mode: 'cors',

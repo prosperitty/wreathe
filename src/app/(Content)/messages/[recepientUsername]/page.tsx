@@ -22,7 +22,7 @@ export default async function Recepient({
   const userData = user ? JSON.parse(user?.value) : null
   const bearerToken = `Bearer ${accessToken?.value}`
   const response = await fetch(
-    `http://localhost:8080/messages/${params.recepientUsername}`,
+    `${process.env.NEXT_PUBLIC_API_URL}/messages/${params.recepientUsername}`,
     {
       method: 'GET',
       mode: 'cors',
@@ -40,7 +40,7 @@ export default async function Recepient({
     const content = formData.get('content')
     try {
       const response = await fetch(
-        `http://localhost:8080/messages/${params.recepientUsername}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/messages/${params.recepientUsername}`,
         {
           method: 'POST',
           // mode: 'cors',

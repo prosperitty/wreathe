@@ -15,7 +15,7 @@ export default async function Feed({
   const cookieStore = cookies()
   const accessToken = cookieStore.get('accessToken')
   const bearerToken = `Bearer ${accessToken?.value}`
-  const response = await fetch(`http://localhost:8080/feed`, {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/feed`, {
     method: 'GET',
     mode: 'cors',
     credentials: 'include', // Needed to include the cookie

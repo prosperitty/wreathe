@@ -44,6 +44,9 @@ export default function Logout() {
           method: 'POST',
           mode: 'cors',
           credentials: 'include', // Needed to include the cookie
+          headers: {
+            'Content-Type': 'application/json',
+          },
         },
       )
       if (!response.ok) return undefined

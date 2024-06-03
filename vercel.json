@@ -1,0 +1,11 @@
+{
+  "env": {
+    "NEXT_PUBLIC_API_URL": "@next_public_api_url"
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",      
+      "destination": "https://${NEXT_PUBLIC_API_URL}/:path*"
+    }
+  ]
+}

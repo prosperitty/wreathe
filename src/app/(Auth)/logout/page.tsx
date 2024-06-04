@@ -1,4 +1,5 @@
 'use client'
+import { useAuthContext } from '@/app/components/context'
 import { redirect } from 'next/navigation'
 import { useEffect } from 'react'
 // import { cookies } from 'next/headers'
@@ -35,23 +36,21 @@ import { useEffect } from 'react'
 // }
 
 export default function Logout() {
+  const { setAccessToken } = useAuthContext()
   //have to use client component to logout, next js probably provides a way to logout with a server component
   useEffect(() => {
     const fetchLogOut = async () => {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/logout`,
-        {
-          method: 'POST',
-          mode: 'cors',
-          credentials: 'include', // Needed to include the cookie
-          headers: {
-            'Content-Type': 'application/json',
-          },
+      const response = await fetch(`/logout/api`, {
+        method: 'GET',
+        // mode: 'cors',
+        credentials: 'include', // Needed to include the cookie
+        headers: {
+          'Content-Type': 'application/json',
         },
-      )
-      if (!response.ok) return undefined
-      console.log(response)
-      return response.json()
+      })
+      const res = await response.json()
+      if (!response.ok || !res.success) return <p>failed to log out</p>
+      return setAccessToken(null)
     }
     fetchLogOut()
     return redirect('/')

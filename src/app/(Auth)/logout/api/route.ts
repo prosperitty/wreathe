@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers'
+import { NextResponse } from 'next/server'
 
 export async function GET() {
   const cookieStore = cookies()
@@ -19,5 +20,5 @@ export async function GET() {
   cookieStore.delete('accessToken')
   cookieStore.delete('userData')
 
-  return Response.json({ res })
+  return NextResponse.json({ res })
 }

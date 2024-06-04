@@ -4,7 +4,7 @@
   },
   "rewrites": [
     {
-      "source": "/(.*)",      
+      "source": "/:path*",      
       "destination": "https://${NEXT_PUBLIC_API_URL}/:path*"
     }
   ]

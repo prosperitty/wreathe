@@ -1,7 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/:path*",      
-      "destination": "https://__ENV.NEXT_PUBLIC_API_URL__/:path*"    }
-  ]
-}

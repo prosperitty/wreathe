@@ -23,20 +23,20 @@ export async function signIn(formData: FormData) {
       throw new Error(`FAILED TO LOGIN: ${result.errorMessage}`)
     }
     cookies().set('accessToken', result.accessToken, {
-      // httpOnly: false,
-      sameSite: 'lax',
+      httpOnly: process.env.NODE_ENV === 'development' ? false : true,
+      sameSite: 'strict',
       maxAge: 60 * 60 * 1000,
       path: '/',
     })
     cookies().set('refreshToken', result.refreshToken, {
-      // httpOnly: false,
-      sameSite: 'lax',
+      httpOnly: process.env.NODE_ENV === 'development' ? false : true,
+      sameSite: 'strict',
       maxAge: 24 * 60 * 60 * 1000,
       path: '/logout',
     })
     cookies().set('userData', JSON.stringify(result.userData), {
-      // httpOnly: false,
-      sameSite: 'lax',
+      httpOnly: process.env.NODE_ENV === 'development' ? false : true,
+      sameSite: 'strict',
       maxAge: 24 * 60 * 60 * 1000,
       path: '/',
     })

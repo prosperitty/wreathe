@@ -14,17 +14,6 @@ interface Props {
   isLiked: boolean
 }
 
-interface thread {
-  thread_uid: string
-  content: string
-  ispublished: boolean
-  thread_timestamp: string
-  author_ref: string
-  wreathe_user: PostUser
-  comment: Array<Comment>
-  likes: Array<Likes>
-}
-
 interface PostUser {
   user_uid: string
   first_name: string

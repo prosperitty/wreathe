@@ -5,13 +5,8 @@ import Thread from '../../../components/Thread'
 import ScrollToTopButton from '../../../components/ScrollButton'
 import ThreadSkeleton from '@/app/(Content)/components/ThreadSkeleton'
 import Comment from '@/app/(Content)/components/Comment'
-import { useAuthContext } from '@/app/components/context'
 import LikeButton from '@/app/(Content)/components/LikeButton'
-
-interface AllLikes {
-  thread: Likes[]
-  comment: CommentLikes[]
-}
+import { callRefreshToken } from '@/app/lib/callRefreshToken'
 
 interface Props {
   profileThreads: Array<ThreadData>
@@ -24,10 +19,7 @@ function classNames(...classes: string[]) {
 }
 
 export default function Tabs(props: Props) {
-  const [threads, setThreads] = useState<Array<JSX.Element>>([])
-  const [comments, setComments] = useState<Array<JSX.Element>>([])
-  const [likes, setLikes] = useState<Array<JSX.Element>>([])
-  const { userData } = useAuthContext()
+  const [userData, setUserData] = useState<UserData | null>(null)
   let [categories] = useState({
     Threads: [...props.profileThreads],
     Comments: [...props.profileComments],
@@ -35,42 +27,38 @@ export default function Tabs(props: Props) {
   })
 
   useEffect(() => {
-    if (userData) {
-      setProfileFeed(userData)
-      setCommentFeed(userData)
-      setLikeFeed(userData)
-    } else {
-      setProfileFeed(null)
-      setCommentFeed(null)
-      setLikeFeed(null)
-    }
-  }, [userData])
+    ;(async () => {
+      const data = await callRefreshToken()
+      setUserData(data)
+    })()
+  }, [])
 
-  const setProfileFeed = (user: UserData | null) => {
-    if (user) {
-      const profileFeed = categories.Threads.map((post) => {
+  const setProfileFeed = () => {
+    let profileFeed = []
+    if (userData) {
+      profileFeed = categories.Threads.map((post) => {
         const isLiked = post.likes.some(
           (like) =>
-            like.user_uid === user.user_uid &&
+            like.user_uid === userData.user_uid &&
             like.thread_uid === post.thread_uid,
         )
         return <Thread key={post.thread_uid} isLiked={isLiked} thread={post} />
       })
-      setThreads(profileFeed)
     } else {
-      const profileFeed = categories.Threads.map((post) => {
+      profileFeed = categories.Threads.map((post) => {
         return <Thread key={post.thread_uid} isLiked={false} thread={post} />
       })
-      setThreads(profileFeed)
     }
+    return profileFeed
   }
 
-  const setCommentFeed = (user: UserData | null) => {
-    if (user) {
-      const commentFeed = props.profileComments.map((post) => {
+  const setCommentFeed = () => {
+    let commentFeed = []
+    if (userData) {
+      commentFeed = props.profileComments.map((post) => {
         const isLiked = post.comment_likes.some(
           (like) =>
-            like.user_uid === user.user_uid &&
+            like.user_uid === userData.user_uid &&
             like.comment_uid === post.comment_uid,
         )
         return (
@@ -83,9 +71,8 @@ export default function Tabs(props: Props) {
           </li>
         )
       })
-      setComments(commentFeed)
     } else {
-      const commentFeed = props.profileComments.map((post) => {
+      commentFeed = props.profileComments.map((post) => {
         return (
           <li key={post.comment_uid}>
             <Comment
@@ -96,17 +83,18 @@ export default function Tabs(props: Props) {
           </li>
         )
       })
-      setComments(commentFeed)
     }
+    return commentFeed
   }
 
-  const setLikeFeed = (user: UserData | null) => {
-    if (user) {
-      const likeFeed = props.profileLikes.map((post: Likes & CommentLikes) => {
+  const setLikeFeed = () => {
+    let likeFeed: JSX.Element[] = []
+    if (userData) {
+      likeFeed = props.profileLikes.map((post: Likes & CommentLikes) => {
         if (post.thread_uid) {
           const isLiked = post.thread.likes.some(
             (like: Likes) =>
-              like.user_uid === user.user_uid &&
+              like.user_uid === userData.user_uid &&
               like.thread_uid === post.thread.thread_uid,
           )
           return (
@@ -119,7 +107,7 @@ export default function Tabs(props: Props) {
         } else if (post.comment_uid) {
           const isLiked = post.comment.comment_likes.some(
             (like) =>
-              like.user_uid === user.user_uid &&
+              like.user_uid === userData.user_uid &&
               like.comment_uid === post.comment.comment_uid,
           )
           return (
@@ -134,9 +122,8 @@ export default function Tabs(props: Props) {
           )
         }
       })
-      setLikes(likeFeed)
     } else {
-      const likeFeed = props.profileLikes.map((post: Likes & CommentLikes) => {
+      likeFeed = props.profileLikes.map((post: Likes & CommentLikes) => {
         if (post.thread_uid) {
           return (
             <Thread
@@ -158,8 +145,8 @@ export default function Tabs(props: Props) {
           )
         }
       })
-      setLikes(likeFeed)
     }
+    return likeFeed
   }
 
   return (
@@ -199,7 +186,7 @@ export default function Tabs(props: Props) {
                   </>
                 }
               >
-                {threads}
+                {setProfileFeed()}
               </Suspense>
             </ul>
           </Tab.Panel>
@@ -217,7 +204,7 @@ export default function Tabs(props: Props) {
                   </>
                 }
               >
-                {comments}
+                {setCommentFeed()}
               </Suspense>
             </ul>
           </Tab.Panel>
@@ -235,14 +222,7 @@ export default function Tabs(props: Props) {
                   </>
                 }
               >
-                {/* {props.profileLikes.map((post) => (
-                  <Thread
-                    key={post.thread.thread_uid}
-                    isLiked={true}
-                    thread={post.thread}
-                  />
-                ))} */}
-                {likes}
+                {setLikeFeed()}
               </Suspense>
             </ul>
           </Tab.Panel>

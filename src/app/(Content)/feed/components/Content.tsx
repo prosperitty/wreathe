@@ -4,7 +4,7 @@ import Thread from '../../components/Thread'
 import ScrollToTopButton from '../../components/ScrollButton'
 import { Suspense } from 'react'
 import ThreadSkeleton from '../../components/ThreadSkeleton'
-import { useAuthContext } from '@/app/components/context'
+import { callRefreshToken } from '@/app/lib/callRefreshToken'
 
 // function classNames(...classes: string[]) {
 //   return classes.filter(Boolean).join(' ')
@@ -12,26 +12,19 @@ import { useAuthContext } from '@/app/components/context'
 
 interface Props {
   feedData: Array<ThreadData>
-  bearerToken: string
 }
 
 export default function Content(props: Props) {
   // const [refreshing, setRefreshing] = useState(false)
-  const [feedData, setFeedData] = useState<JSX.Element[]>([])
-  const { userData } = useAuthContext()
+  const [userData, setUserData] = useState<UserData | null>(null)
 
+  //idk if this is even the way to do this....
   useEffect(() => {
-    if (userData) {
-      const feed1 = props.feedData.map((post) => {
-        const isLiked = post.likes.some(
-          (like) =>
-            like.user_uid === userData.user_uid &&
-            like.thread_uid === post.thread_uid,
-        )
-        return <Thread key={post.thread_uid} isLiked={isLiked} thread={post} />
-      })
-      setFeedData(feed1)
-    }
+    ;(async () => {
+      const data = await callRefreshToken()
+      setUserData(data)
+    })()
+
     // const handleRefresh = () => {
     //   // Add your refresh logic here
     //   // For example, you can fetch new data from an API
@@ -48,24 +41,49 @@ export default function Content(props: Props) {
     // return () => {
     //   window.removeEventListener('scroll', handleRefresh)
     // }
-  }, [userData])
+  }, [])
 
-  return (
-    //overflow-y-auto was here replaced in layout
-    <main className="px-2 sm:px-4 h-full">
-      <ScrollToTopButton />
-      <ul className="overflow-y-auto">
-        <Suspense
-          fallback={
-            <>
-              <ThreadSkeleton /> <ThreadSkeleton /> <ThreadSkeleton />
-              <ThreadSkeleton />
-            </>
-          }
-        >
-          {feedData}
-        </Suspense>
-      </ul>
-    </main>
-  )
+  if (userData) {
+    return (
+      //overflow-y-auto was here replaced in layout
+      <main className="px-2 sm:px-4 h-full">
+        <ScrollToTopButton />
+        <ul className="overflow-y-auto">
+          <Suspense
+            fallback={
+              <>
+                <ThreadSkeleton /> <ThreadSkeleton /> <ThreadSkeleton />
+                <ThreadSkeleton />
+              </>
+            }
+          >
+            {props.feedData.map((post) => {
+              const isLiked = post.likes.some(
+                (like) =>
+                  like.user_uid === userData.user_uid &&
+                  like.thread_uid === post.thread_uid,
+              )
+              return (
+                <Thread key={post.thread_uid} isLiked={isLiked} thread={post} />
+              )
+            })}
+          </Suspense>
+        </ul>
+      </main>
+    )
+  }
 }
+
+// if (userData) {
+//   const feed1 = props.feedData.map((post) => {
+//     const isLiked = post.likes.some(
+//       (like) =>
+//         like.user_uid === userData.user_uid &&
+//         like.thread_uid === post.thread_uid,
+//     )
+//     return <Thread key={post.thread_uid} isLiked={isLiked} thread={post} />
+//   })
+//   return setFeedData(feed1)
+// } else {
+//   callRefreshToken(setUserData)
+// }

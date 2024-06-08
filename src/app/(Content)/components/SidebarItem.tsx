@@ -1,11 +1,19 @@
 'use client'
-import { useAuthContext } from '@/app/components/context'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import { callRefreshToken } from '@/app/lib/callRefreshToken'
 
 export default function SidebarItem() {
-  const { userData, isLoading } = useAuthContext()
+  const [userData, setUserData] = useState<UserData | null>(null)
 
-  if (!isLoading && userData) {
+  useEffect(() => {
+    ;(async () => {
+      const data = await callRefreshToken()
+      setUserData(data)
+    })()
+  }, [])
+
+  if (userData) {
     return (
       <li>
         <Link
@@ -25,7 +33,7 @@ export default function SidebarItem() {
         </Link>
       </li>
     )
-  } else if (!isLoading && !userData) {
+  } else if (!userData) {
     return (
       <>
         <li>

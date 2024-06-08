@@ -48,3 +48,20 @@ export default async function postThread(formData: FormData) {
   revalidatePath('/feed')
   redirect('/feed')
 }
+
+// async function postThread(formData: FormData) {
+//   'use server'
+//   const content = formData.get('content')
+
+//   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/compose/thread`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify({ content }),
+//   })
+
+//   const result = await response.json()
+//   console.log('this should work', result)
+//   return result
+// }

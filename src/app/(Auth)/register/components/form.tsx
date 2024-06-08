@@ -1,3 +1,4 @@
+import { register } from '@/app/lib/register'
 import Link from 'next/link'
 import { FormEventHandler } from 'react'
 
@@ -5,11 +6,12 @@ interface Props {
   handleSubmit: FormEventHandler<HTMLFormElement>
 }
 
-export default function Form(props: Props) {
+export default function Form() {
   return (
     <form
       method="POST"
-      onSubmit={props.handleSubmit}
+      action={register}
+      // onSubmit={props.handleSubmit}
       className="col-span-12 lg:col-span-8 self-center p-14"
     >
       <div className="relative z-0 w-full mb-12 group">

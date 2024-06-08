@@ -6,7 +6,6 @@ export default function ComposeForm({
 }: {
   postContent: (formData: FormData) => unknown
 }) {
-  // const router = useRouter()
   let [characterCount, setCharacterCount] = useState(0)
 
   function handleCharacterCount(e: FormEvent<HTMLTextAreaElement>) {

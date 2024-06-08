@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useAuthContext } from './context'
 import { useRouter } from 'next/navigation'
+import { callRefreshToken } from '../lib/callRefreshToken'
 
 const navigation = [
   { name: 'Home', href: '#home' },
@@ -13,14 +13,16 @@ const navigation = [
 ]
 
 export default function Nav() {
-  const router = useRouter()
-  const { accessToken } = useAuthContext()
+  // const router = useRouter()
 
-  useEffect(() => {
-    if (accessToken) {
-      return router.push('/feed')
-    }
-  }, [accessToken, router])
+  // useEffect(() => {
+  //   ;(async () => {
+  //     const data = await callRefreshToken()
+  //     if (data) {
+  //       return router.push('/feed')
+  //     }
+  //   })()
+  // }, [router])
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 

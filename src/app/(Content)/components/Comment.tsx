@@ -68,7 +68,7 @@ export default function Comment(props: Props) {
         <div className="relative h-12 w-12 z-20">
           <Link href={`/users/${props.commentData.author_ref}`}>
             <Image
-              src="/next.svg"
+              src="/undraw_profile_pic.svg"
               className="rounded-full border border-gray-500"
               alt="profile picture"
               layout="fill"

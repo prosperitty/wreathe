@@ -6,7 +6,7 @@ interface Props {
   handleSubmit: FormEventHandler<HTMLFormElement>
 }
 
-export default function Form(props: Props) {
+export default function Form() {
   return (
     <form
       method="POST"

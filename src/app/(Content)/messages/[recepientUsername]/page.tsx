@@ -43,7 +43,7 @@ export default async function Recepient({
         `${process.env.NEXT_PUBLIC_API_URL}/messages/${params.recepientUsername}`,
         {
           method: 'POST',
-          // mode: 'cors',
+          mode: 'cors',
           // credentials: 'include', // NOT Needed to include the cookie WHEN IT IS SERVER COMPONENT/ACTION
           headers: {
             Authorization: bearerToken,

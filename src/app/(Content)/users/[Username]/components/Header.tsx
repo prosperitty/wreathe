@@ -1,12 +1,11 @@
 'use client'
-import { useAuthContext } from '@/app/components/context'
+import { callRefreshToken } from '@/app/lib/callRefreshToken'
 import followUser from '@/app/lib/followUser'
 import unFollowUser from '@/app/lib/unfollowUser'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
-import { JsxElement } from 'typescript'
 
 interface Props {
   username: string
@@ -20,20 +19,17 @@ interface Props {
 }
 
 export default function Header(props: Props) {
-  const { userData } = useAuthContext()
+  const [userData, setUserData] = useState<UserData | null>(null)
   const { Username }: { Username: string } = useParams()
   const [followEditBtn, setFollowEditBtn] = useState<JSX.Element>()
   const [isFollowing] = useState(props.isFollowing)
 
   useEffect(() => {
-    if (userData) {
-      if (userData.user_uid === Username) {
-        return setFollowEditBtn(renderEditButton)
-      } else if (userData.user_uid !== Username) {
-        return setFollowEditBtn(dynamicFollowButton)
-      }
-    }
-  }, [userData])
+    ;(async () => {
+      const data = await callRefreshToken()
+      setUserData(data)
+    })()
+  }, [])
 
   async function follow() {
     try {
@@ -124,7 +120,16 @@ export default function Header(props: Props) {
         </h5>
       </div>
       <div className="text-center">
-        {followEditBtn}
+        {(() => {
+          if (userData) {
+            if (userData.user_uid === Username) {
+              return renderEditButton()
+            } else if (userData.user_uid !== Username) {
+              return dynamicFollowButton()
+            }
+          }
+        })()}
+        {/* {followEditBtn} */}
         {/* <button
           onClick={follow}
           type='button'

@@ -8,6 +8,7 @@ export default async function ComposeCommentPage({
 }: {
   params: { threadid: string }
 }) {
+  //maybe use func.call to call this function when called outside of this component?
   async function postComment(formData: FormData) {
     'use server'
     const cookieStore = cookies()
@@ -28,18 +29,18 @@ export default async function ComposeCommentPage({
           body: JSON.stringify({ content }),
         },
       )
-      if (response.ok) {
-        const result = await response.json()
-        console.log('this should work for thwe comment route page ====', result)
-        // return result
+      const res = await response.json()
+      if (!response.ok) {
+        console.error('Error submitting comment')
+        throw new Error('Error submitting comment')
       }
+      console.log('this should work for thwe comment route page ====', res)
     } catch (err) {
-      console.log(err)
       console.error(err, 'FAILED TO POST COMMENT')
       throw err
     }
 
-    revalidatePath(`/feed`)
+    revalidatePath(`/users/feed`)
     redirect(`/feed`)
   }
 

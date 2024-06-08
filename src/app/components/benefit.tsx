@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { ReactComponentElement, ReactElement } from 'react'
+import { ReactElement } from 'react'
 
 interface Bullet {
   title: string

@@ -48,6 +48,7 @@ export default function Room({
     //   socket.disconnect()
     // }
 
+    // ========== MUST CHANGE TO SERVER DOMAIN ======================================
     socket = new WebSocket('ws://localhost:8080')
 
     socket.onopen = () => {

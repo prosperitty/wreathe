@@ -18,14 +18,6 @@ interface ResponseData {
   error: string
 }
 
-// interface UserData {
-//   user_uid: string
-//   first_name: string
-//   last_name: string
-//   email: string | null
-//   username: string
-// }
-
 interface IAuthContext {
   accessToken: string | null
   setAccessToken: Dispatch<SetStateAction<AccessToken>>

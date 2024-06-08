@@ -1,5 +1,5 @@
 'use client'
-import { useAuthContext } from '@/app/components/context'
+import { callRefreshToken } from '@/app/lib/callRefreshToken'
 import {
   EnvelopeIcon,
   HomeIcon,
@@ -10,14 +10,20 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 export default function MobileNav() {
-  const { userData, isLoading } = useAuthContext()
-  const [profileURL, setProfileURL] = useState('')
+  const [userData, setUserData] = useState<UserData | null>(null)
+  // const [profileURL, setProfileURL] = useState('')
 
   useEffect(() => {
-    if (userData) {
-      setProfileURL(`/users/${userData.user_uid}`)
-    }
-  }, [userData])
+    ;(async () => {
+      const data = await callRefreshToken()
+      setUserData(data)
+    })()
+    // if (userData) {
+    //   setProfileURL(`/users/${userData.user_uid}`)
+    // } else {
+    //   callRefreshToken(setUserData)
+    // }
+  }, [])
 
   return (
     <nav className="bg-white fixed bottom-0 w-full border-t border-gray-200 flex transition-transform translate-y-0 sm:translate-y-full dark:bg-gray-800 dark:border-gray-600 z-30">
@@ -52,7 +58,7 @@ export default function MobileNav() {
         </div>
       </Link>
       <Link
-        href={profileURL}
+        href={userData ? `/users/${userData.user_uid}` : ``}
         className="flex flex-grow items-center justify-center p-2 text-gray-500 hover:text-indigo-500 dark:text-white"
       >
         <div className="text-center">

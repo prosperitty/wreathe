@@ -135,7 +135,7 @@ export default async function Feed({
           </div>
         </Header>
 
-        <Content feedData={result.threads} bearerToken={bearerToken} />
+        <Content feedData={result.threads} />
       </>
     )
   }

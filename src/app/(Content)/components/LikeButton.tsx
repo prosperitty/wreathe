@@ -21,7 +21,7 @@ export default function LikeButton(props: Props) {
     if (props.isLiked) {
       setIsLiked(true)
     }
-  }, [])
+  }, [props.isLiked])
 
   const handleLikeButton = async () => {
     const apiURL = process.env.NEXT_PUBLIC_API_URL

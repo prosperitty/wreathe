@@ -22,22 +22,28 @@ export async function signIn(formData: FormData) {
       console.error('FAILED TO LOGIN', response)
       throw new Error(`FAILED TO LOGIN: ${result.errorMessage}`)
     }
-    cookies().set('accessToken', result.accessToken, {
-      httpOnly: process.env.NODE_ENV === 'development' ? false : true,
-      sameSite: 'strict',
-      maxAge: 60 * 60 * 1000,
-      path: '/',
-    })
+    const currentTime = new Date().getTime()
+    const oneDay = 24 * 60 * 60 * 1000
+    const oneMinute = 60 * 60 * 1000
     cookies().set('refreshToken', result.refreshToken, {
       httpOnly: process.env.NODE_ENV === 'development' ? false : true,
+      secure: true,
       sameSite: 'strict',
-      maxAge: 24 * 60 * 60 * 1000,
+      expires: currentTime + oneDay,
       path: '/logout',
+    })
+    cookies().set('accessToken', result.accessToken, {
+      httpOnly: process.env.NODE_ENV === 'development' ? false : true,
+      secure: true,
+      sameSite: 'strict',
+      expires: currentTime + oneMinute,
+      path: '/',
     })
     cookies().set('userData', JSON.stringify(result.userData), {
       httpOnly: process.env.NODE_ENV === 'development' ? false : true,
+      secure: true,
       sameSite: 'strict',
-      maxAge: 24 * 60 * 60 * 1000,
+      expires: currentTime + oneMinute,
       path: '/',
     })
   } catch (error) {

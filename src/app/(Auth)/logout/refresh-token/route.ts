@@ -25,26 +25,29 @@ export async function GET() {
     const cookieData = await checkRefreshToken(bearerToken)
     if (cookieData) {
       const { accessToken, refreshToken, userData } = cookieData
-      console.log('ALL COOKIE DATA', cookieData)
+      // console.log('ALL COOKIE DATA', cookieData)
+      const currentTime = new Date().getTime()
+      const oneDay = 24 * 60 * 60 * 1000
+      const oneMinute = 60 * 60 * 1000
       cookies().set('refreshToken', refreshToken, {
         httpOnly: process.env.NODE_ENV === 'development' ? false : true,
         secure: true,
         sameSite: 'strict',
-        maxAge: 24 * 60 * 60 * 1000,
+        expires: currentTime + oneDay,
         path: '/logout',
       })
       cookies().set('accessToken', accessToken, {
         httpOnly: process.env.NODE_ENV === 'development' ? false : true,
         secure: true,
         sameSite: 'strict',
-        maxAge: 60 * 60 * 1000,
+        expires: currentTime + oneMinute,
         path: '/',
       })
       cookies().set('userData', JSON.stringify(userData), {
         httpOnly: process.env.NODE_ENV === 'development' ? false : true,
         secure: true,
         sameSite: 'strict',
-        maxAge: 24 * 60 * 60 * 1000,
+        expires: currentTime + oneMinute,
         path: '/',
       })
       console.log('REFRESHED ALL TOKENS')

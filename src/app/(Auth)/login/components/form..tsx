@@ -9,7 +9,7 @@ interface Props {
 export default function Form() {
   return (
     <form
-      method="POST"
+      // method="POST"
       action={signIn}
       // onSubmit={props.handleSubmit}
       className="col-span-12 lg:col-span-8 self-center p-14"

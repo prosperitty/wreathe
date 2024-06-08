@@ -48,8 +48,13 @@ export default function Room({
     //   socket.disconnect()
     // }
 
-    // ========== MUST CHANGE TO SERVER DOMAIN ======================================
-    socket = new WebSocket('ws://localhost:8080')
+    let domain = process.env.NEXT_PUBLIC_API_URL
+
+    process.env.NODE_ENV === 'development'
+      ? (domain = domain?.split('http://')[1])
+      : (domain = domain?.split('https://')[1])
+
+    socket = new WebSocket(`ws://${domain}`)
 
     socket.onopen = () => {
       console.log('WebSocket connection opened')

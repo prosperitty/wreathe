@@ -48,13 +48,13 @@ export default function Room({
     //   socket.disconnect()
     // }
 
-    let domain = process.env.NEXT_PUBLIC_API_URL
+    const url = process.env.NEXT_PUBLIC_API_URL
+    let domain =
+      process.env.NODE_ENV === 'development'
+        ? 'ws://' + url?.split('http://')[1]
+        : 'wss://' + url?.split('https://')[1]
 
-    process.env.NODE_ENV === 'development'
-      ? (domain = domain?.split('http://')[1])
-      : (domain = domain?.split('https://')[1])
-
-    socket = new WebSocket(`ws://${domain}`)
+    socket = new WebSocket(domain)
 
     socket.onopen = () => {
       console.log('WebSocket connection opened')

@@ -35,17 +35,19 @@ export default async function Username({
 
   return (
     <>
-      <Header
-        //profileData must be kept on server and must set individual fields because it contains sensitive credentials
-        username={profileData.username}
-        firstName={profileData.first_name}
-        lastName={profileData.last_name}
-        following={profileData.followers}
-        followers={profileData.following}
-        posts={profileThreads.length + profileComments.length}
-        isFollowing={isFollowing}
-        bio={profileData.bio}
-      />
+      <Suspense fallback={'loading'}>
+        <Header
+          //profileData must be kept on server and must set individual fields because it contains sensitive credentials
+          username={profileData.username}
+          firstName={profileData.first_name}
+          lastName={profileData.last_name}
+          following={profileData.followers}
+          followers={profileData.following}
+          posts={profileThreads.length + profileComments.length}
+          isFollowing={isFollowing}
+          bio={profileData.bio}
+        />
+      </Suspense>
       <Suspense
         fallback={
           <>

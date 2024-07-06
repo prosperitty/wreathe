@@ -1,6 +1,8 @@
 # Wreathe (Client)
 
-[Wreathe Server Repository](https://github.com/alex-lvl/wreathe-server)
+[Wreathe Server Repository](https://github.com/prosperitty/wreathe-server)
+
+[Live Demo](https://wreathe.vercel.app/)
 
 Wreathe is a social app specifically for market participants to discuss financial analysis and price action in markets. In this repository, contains the client-side code for the application
 
